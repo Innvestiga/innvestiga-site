@@ -1,0 +1,2580 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Innvestiga — Inteligencia de mercado para Centroamérica y el Caribe</title>
+
+<!-- TYPE: editorial serif + neutral sans + mono numerals -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<!-- LEAFLET (interactive map) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<style>
+/* =========================================================================
+   INNVESTIGA — 2026 ONE-PAGE LANDING
+   Aesthetic: editorial serif display + neutral sans body + mono numerals.
+   Palette: deep ink #0A0E14 / gold #E8B931 / cream #F4ECD8 (overridable via Tweaks).
+   ========================================================================= */
+:root {
+  --ink-0:     #06090F;
+  --ink-1:     #0A0E14;
+  --ink-2:     #10151E;
+  --ink-3:     #1A2230;
+  --ink-line:  rgba(244, 236, 216, 0.10);
+  --ink-line-2:rgba(244, 236, 216, 0.18);
+  --cream:     #F4ECD8;
+  --cream-dim: rgba(244, 236, 216, 0.62);
+  --cream-mute:rgba(244, 236, 216, 0.38);
+  --accent:    #E8B931;
+  --accent-2:  #F2D27A;
+  --accent-soft: rgba(232, 185, 49, 0.14);
+
+  --display: "Instrument Serif", "Times New Roman", serif;
+  --sans:    "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+
+  --container: 1320px;
+  --gap: clamp(20px, 3vw, 40px);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { background: var(--ink-1); color: var(--cream); }
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  background: var(--ink-1);
+  color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* Subtle grain across the whole page — sells the editorial-print feel */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+}
+
+/* =========================================================================
+   NAV
+   ========================================================================= */
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(94%, 1280px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px 10px 22px;
+  border-radius: var(--r-pill);
+  background: rgba(10, 14, 20, 0.55);
+  border: 1px solid var(--ink-line-2);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+.nav__brand {
+  display: flex; align-items: center;
+  height: 36px;
+}
+.nav__brand .logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  /* Cream halo so dark-navy strokes lift off the ink background */
+  filter:
+    drop-shadow(0 0 6px rgba(244,236,216,0.35))
+    drop-shadow(0 0 14px rgba(244,236,216,0.18));
+  transition: filter .25s;
+}
+.nav__brand:hover .logo-img {
+  filter:
+    drop-shadow(0 0 8px rgba(244,236,216,0.55))
+    drop-shadow(0 0 18px rgba(244,236,216,0.25));
+}
+
+.nav__links {
+  display: flex; gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+.nav__link {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border-radius: var(--r-pill);
+  color: var(--cream-dim);
+  transition: color .25s, background .25s;
+}
+.nav__link:hover { color: var(--cream); background: rgba(244,236,216,0.04); }
+.nav__link--ext {
+  /* Visually distinguish the external client-area link with the accent */
+  color: var(--accent) !important;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.nav__link--ext .ext-arrow { width: 11px; height: 11px; opacity: 0.85; transition: transform .25s; }
+.nav__link--ext:hover .ext-arrow { transform: translate(2px, -2px); }
+.navdrawer__link--ext { color: var(--accent); }
+.nav__cta {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: var(--r-pill);
+  background: var(--cream);
+  color: var(--ink-0);
+  border: 0;
+  transition: transform .2s ease, background .25s;
+}
+.nav__cta:hover { transform: translateY(-1px); background: var(--accent-2); }
+@media (max-width: 880px) {
+  .nav__links { display: none; }
+}
+
+/* =========================================================================
+   HERO — split: editorial copy on the left, interactive map on the right.
+   ========================================================================= */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding: 120px 0 60px;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(232,185,49,0.10), transparent 50%),
+    radial-gradient(circle at 0% 90%, rgba(40,90,200,0.06), transparent 60%),
+    var(--ink-1);
+}
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.4fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+@media (max-width: 1080px) {
+  .hero__grid { grid-template-columns: 1fr; }
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  padding: 8px 14px 8px 12px;
+  border: 1px solid var(--ink-line-2);
+  border-radius: var(--r-pill);
+  background: rgba(244,236,216,0.02);
+}
+.eyebrow .pulse {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(232,185,49, 0.6);
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(232,185,49,0.55); }
+  70% { box-shadow: 0 0 0 12px rgba(232,185,49,0); }
+  100% { box-shadow: 0 0 0 0 rgba(232,185,49,0); }
+}
+
+.hero__title {
+  margin: 22px 0 18px;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(48px, 7.2vw, 108px);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  color: var(--cream);
+  text-wrap: balance;
+}
+.hero__title .it {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero__title .it::after {
+  content: ".";
+  color: var(--cream);
+  font-style: normal;
+}
+.hero__sub {
+  max-width: 38ch;
+  color: var(--cream-dim);
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.55;
+  margin-bottom: 32px;
+  text-wrap: pretty;
+}
+.hero__ctas {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 22px;
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  border: 1px solid transparent;
+  transition: transform .2s, background .25s, border-color .25s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn--primary { background: var(--cream); color: var(--ink-0); }
+.btn--primary:hover { background: var(--accent-2); }
+.btn--ghost { background: transparent; color: var(--cream); border-color: var(--ink-line-2); }
+.btn--ghost:hover { border-color: var(--cream-dim); }
+.btn .arrow { width: 14px; height: 14px; }
+
+.hero__meta {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 460px;
+}
+@media (max-width: 400px) {
+  .hero__meta { grid-template-columns: repeat(2, 1fr); }
+}
+.hero__meta .stat {
+  border-top: 1px solid var(--ink-line-2);
+  padding-top: 14px;
+}
+.hero__meta .stat .num {
+  font-family: var(--display);
+  font-size: 38px;
+  line-height: 1;
+  color: var(--cream);
+}
+.hero__meta .stat .num small {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  vertical-align: top;
+  margin-left: 4px;
+}
+.hero__meta .stat .lbl {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+}
+
+/* =========================================================================
+   HERO MAP
+   ========================================================================= */
+.mapwrap {
+  position: relative;
+  aspect-ratio: 5 / 4.2;
+  width: 100%;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--ink-line-2);
+  background: var(--ink-2);
+  box-shadow:
+    0 1px 0 rgba(244,236,216,0.05) inset,
+    0 30px 80px rgba(0,0,0,0.5);
+}
+#innv-map { width: 100%; height: 100%; background: var(--ink-1); }
+/* Tone down the basemap further for editorial feel */
+.mapwrap::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 30%, rgba(10,14,20,0.5) 100%);
+  z-index: 400;
+}
+.leaflet-container { background: #06090F !important; font-family: var(--sans) !important; }
+.leaflet-control-zoom a {
+  background: rgba(10,14,20,0.7) !important;
+  color: var(--cream) !important;
+  border: 1px solid var(--ink-line-2) !important;
+  backdrop-filter: blur(8px);
+  font-family: var(--sans) !important;
+}
+.leaflet-control-zoom a:hover { background: var(--ink-3) !important; }
+
+/* Custom pulsing pins */
+.innv-pin-wrap { background: transparent !important; border: none !important; }
+.innv-pin {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.innv-pin__dot {
+  position: relative;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 2px rgba(10,14,20,0.8), 0 0 12px rgba(232,185,49,0.7);
+  z-index: 3;
+  transition: transform .25s;
+}
+.innv-pin__ring {
+  position: absolute;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  animation: pinPulse 2.4s ease-out infinite;
+}
+.innv-pin__ring--2 { animation-delay: 1.2s; }
+.innv-pin--hub .innv-pin__dot {
+  width: 12px; height: 12px;
+  background: var(--cream);
+  box-shadow: 0 0 0 3px var(--accent), 0 0 0 4px rgba(10,14,20,0.8), 0 0 20px rgba(232,185,49,0.9);
+}
+.innv-pin--hub .innv-pin__ring { width: 28px; height: 28px; border-color: var(--cream); }
+.innv-pin__halo {
+  position: absolute;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,185,49,0.18), transparent 65%);
+  z-index: 1;
+}
+.innv-pin.is-hover .innv-pin__dot { transform: scale(1.4); }
+.innv-pin.is-selected .innv-pin__dot {
+  transform: scale(1.6);
+  background: var(--cream);
+  box-shadow: 0 0 0 3px var(--accent), 0 0 24px var(--accent);
+}
+.innv-pin.is-flash .innv-pin__dot { animation: flash 1.5s ease-out 1; }
+@keyframes pinPulse {
+  0%   { opacity: 0.8; transform: scale(0.4); }
+  100% { opacity: 0;   transform: scale(2.6); }
+}
+@keyframes flash {
+  0%   { transform: scale(1); }
+  20%  { transform: scale(2); box-shadow: 0 0 0 4px var(--cream), 0 0 30px var(--accent); }
+  100% { transform: scale(1); }
+}
+
+/* Map UI overlays */
+.map-overlay {
+  position: absolute;
+  z-index: 500;
+  pointer-events: none;
+}
+.map-overlay > * { pointer-events: auto; }
+
+.map-overlay--tl {
+  top: 16px; left: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  max-width: 240px;
+}
+.map-overlay--br {
+  bottom: 14px; right: 64px;
+}
+
+.map-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  padding: 8px 12px;
+  background: rgba(10,14,20,0.75);
+  border: 1px solid var(--ink-line-2);
+  border-radius: var(--r-pill);
+  backdrop-filter: blur(10px);
+}
+.map-chip .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.legend {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 12px;
+  border: 1px solid var(--ink-line-2);
+  border-radius: 14px;
+  background: rgba(10,14,20,0.7);
+  backdrop-filter: blur(14px);
+  max-height: 320px;
+  overflow-y: auto;
+}
+.legend__title {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+  margin-bottom: 6px;
+  padding: 4px 6px;
+}
+.legend-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  background: transparent;
+  border: 0;
+  color: var(--cream-dim);
+  font-size: 12px;
+  font-family: var(--sans);
+  text-align: left;
+  transition: background .2s;
+  width: 100%;
+}
+.legend-row:hover { background: rgba(244,236,216,0.05); color: var(--cream); }
+.legend-row.is-active { background: var(--accent-soft); color: var(--cream); }
+.legend-row.is-active .legend-dot { background: var(--cream); box-shadow: 0 0 0 2px var(--accent); }
+.legend-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.legend-name { flex: 1; }
+.legend-count {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--cream-mute);
+  padding: 2px 6px;
+  background: rgba(244,236,216,0.05);
+  border-radius: 4px;
+}
+
+.map-reset {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  background: rgba(10,14,20,0.75);
+  border: 1px solid var(--ink-line-2);
+  color: var(--cream);
+  border-radius: var(--r-pill);
+  backdrop-filter: blur(10px);
+}
+.map-reset:hover { background: var(--accent); color: var(--ink-0); border-color: transparent; }
+
+/* City detail card slides in from right */
+.citycard {
+  position: absolute;
+  top: 16px;
+  right: -360px;
+  width: 320px;
+  max-width: calc(100% - 32px);
+  z-index: 600;
+  background: rgba(10,14,20,0.85);
+  border: 1px solid var(--ink-line-2);
+  border-radius: 18px;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: right .5s cubic-bezier(0.19,1,0.22,1), opacity .3s;
+  opacity: 0;
+}
+.citycard.is-open { right: 16px; opacity: 1; }
+.cc__img {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.cc__img.is-empty {
+  background: linear-gradient(135deg, var(--ink-3), var(--ink-2));
+  display: flex; align-items: center; justify-content: center;
+}
+.cc__img .cc-img__fallback {
+  font-family: var(--display);
+  font-size: 32px;
+  color: var(--accent);
+}
+.cc__img::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,14,20,0.9));
+}
+.cc__close {
+  position: absolute; top: 10px; right: 10px;
+  width: 30px; height: 30px;
+  background: rgba(10,14,20,0.7);
+  border: 1px solid var(--ink-line-2);
+  border-radius: 50%;
+  color: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 5;
+  font-size: 16px; line-height: 1;
+}
+.cc__body { padding: 16px 18px 18px; position: relative; z-index: 2; margin-top: -40px; }
+.cc__badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  background: rgba(244,236,216,0.08);
+  border-radius: 4px;
+  color: var(--cream-dim);
+  margin-bottom: 10px;
+}
+.cc__badge.is-hub { background: var(--accent); color: var(--ink-0); font-weight: 500; }
+.cc__city { font-family: var(--display); font-size: 28px; line-height: 1; color: var(--cream); margin: 0; }
+.cc__country { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-top: 6px; }
+.cc__note { font-size: 13px; color: var(--cream-dim); margin-top: 12px; line-height: 1.5; }
+.cc__coords { font-family: var(--mono); font-size: 10px; color: var(--cream-mute); margin-top: 14px; letter-spacing: 0.05em; }
+
+/* =========================================================================
+   COVERAGE STRIP — large mono numerals as a divider section
+   ========================================================================= */
+.strip {
+  border-block: 1px solid var(--ink-line);
+  padding: 56px 0;
+  background: var(--ink-0);
+}
+.strip__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 60px);
+  align-items: end;
+}
+@media (max-width: 780px) { .strip__grid { grid-template-columns: repeat(2, 1fr); } }
+.strip__cell .lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+  margin-bottom: 8px;
+}
+.strip__cell .val {
+  font-family: var(--display);
+  font-size: clamp(56px, 7vw, 100px);
+  line-height: 0.95;
+  color: var(--cream);
+  letter-spacing: -0.03em;
+}
+.strip__cell .val sup {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--accent);
+  vertical-align: super;
+  margin-left: 4px;
+  font-weight: 500;
+}
+.strip__cell .val i { font-style: italic; color: var(--accent); }
+
+/* =========================================================================
+   SECTIONS
+   ========================================================================= */
+.section { padding: clamp(80px, 10vw, 140px) 0; position: relative; }
+.section__head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.4fr) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 60px);
+  margin-bottom: clamp(40px, 5vw, 80px);
+  align-items: end;
+}
+@media (max-width: 880px) { .section__head { grid-template-columns: 1fr; } }
+.section__tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+  display: flex; align-items: center; gap: 12px;
+}
+.section__tag::before {
+  content: ""; width: 30px; height: 1px; background: var(--accent);
+}
+.section__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(38px, 5.5vw, 78px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin: 0;
+  text-wrap: balance;
+}
+.section__title i { font-style: italic; color: var(--accent); }
+
+/* Services */
+.services {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink-line-2);
+}
+@media (max-width: 1080px) { .services { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .services { grid-template-columns: 1fr; } }
+.service {
+  padding: 32px 28px 36px;
+  border-right: 1px solid var(--ink-line);
+  border-bottom: 1px solid var(--ink-line);
+  position: relative;
+  transition: background .3s;
+}
+.service:hover { background: rgba(244,236,216,0.02); }
+.service:hover .service__num { color: var(--accent); }
+.service:last-child { border-right: 0; }
+@media (max-width: 1080px) {
+  .service:nth-child(2n) { border-right: 0; }
+  .service { border-right: 1px solid var(--ink-line); }
+}
+.service__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--cream-mute);
+  margin-bottom: 24px;
+  transition: color .3s;
+}
+.service__icon {
+  width: 38px; height: 38px;
+  margin-bottom: 28px;
+  display: flex; align-items: center; justify-content: center;
+}
+/* Tiny iconography drawn from CSS primitives — circles, squares, lines only */
+.icon-mr { background: radial-gradient(circle at 50% 50%, var(--accent) 18%, transparent 20%), radial-gradient(circle at 50% 50%, transparent 40%, var(--cream) 41% 44%, transparent 45%), radial-gradient(circle at 50% 50%, transparent 64%, var(--cream-mute) 65% 68%, transparent 69%); width: 38px; height: 38px; border-radius: 50%; }
+.icon-ms { background-image:
+    linear-gradient(var(--cream), var(--cream)),
+    linear-gradient(var(--cream), var(--cream)),
+    linear-gradient(var(--accent), var(--accent));
+  background-size: 100% 2px, 100% 2px, 12px 2px;
+  background-position: 0 6px, 0 18px, 0 30px;
+  background-repeat: no-repeat;
+}
+.icon-mb { background:
+    linear-gradient(to top, var(--accent) 0 30%, transparent 30%) 0 100% / 8px 100% no-repeat,
+    linear-gradient(to top, var(--cream) 0 65%, transparent 65%) 14px 100% / 8px 100% no-repeat,
+    linear-gradient(to top, var(--cream-dim) 0 50%, transparent 50%) 28px 100% / 8px 100% no-repeat;
+}
+.icon-ma {
+  border: 1px solid var(--cream);
+  border-radius: 50%;
+  position: relative;
+}
+.icon-ma::after {
+  content: ""; position: absolute; right: -4px; bottom: -4px;
+  width: 14px; height: 2px; background: var(--accent);
+  transform: rotate(45deg); transform-origin: left center;
+}
+.service__title {
+  font-family: var(--display);
+  font-size: 30px;
+  line-height: 1.05;
+  margin: 0 0 14px;
+  color: var(--cream);
+}
+.service__title i { font-style: italic; color: var(--accent); }
+.service__desc {
+  font-size: 14px;
+  color: var(--cream-dim);
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+.service__list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.service__list li {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--cream-mute);
+  padding-left: 14px;
+  position: relative;
+}
+.service__list li::before {
+  content: ""; position: absolute; left: 0; top: 8px;
+  width: 6px; height: 1px; background: var(--accent);
+}
+
+/* =========================================================================
+   COVERAGE GRID — every city with photo
+   ========================================================================= */
+.coverage__filters {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.fbtn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--ink-line-2);
+  background: transparent;
+  color: var(--cream-dim);
+  transition: all .2s;
+}
+.fbtn:hover { color: var(--cream); border-color: var(--cream-dim); }
+.fbtn.is-active { background: var(--cream); color: var(--ink-0); border-color: var(--cream); }
+.fbtn .count {
+  margin-left: 6px;
+  font-size: 9px;
+  opacity: 0.6;
+}
+
+.coverage__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 1080px) { .coverage__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px)  { .coverage__grid { grid-template-columns: repeat(2, 1fr); } }
+
+.ccard {
+  background: var(--ink-2);
+  border: 1px solid var(--ink-line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform .35s cubic-bezier(0.19,1,0.22,1), border-color .25s;
+}
+.ccard:hover { transform: translateY(-4px); border-color: var(--accent); }
+.ccard__img {
+  aspect-ratio: 4 / 3.2;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--ink-3);
+  position: relative;
+  transition: transform .8s;
+}
+.ccard:hover .ccard__img { transform: scale(1.04); }
+.ccard__img::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10,14,20,0.85));
+}
+.ccard__img.is-empty { background: linear-gradient(135deg, var(--ink-3), var(--ink-2)); display: flex; align-items: center; justify-content: center; color: var(--accent); font-family: var(--display); font-size: 30px; }
+.ccard__body {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 14px 16px 16px;
+  z-index: 2;
+}
+.ccard__country {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.ccard__city {
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--cream);
+}
+.ccard__hub {
+  position: absolute; top: 12px; left: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  background: var(--accent);
+  color: var(--ink-0);
+  border-radius: 4px;
+  font-weight: 500;
+  z-index: 3;
+}
+
+/* =========================================================================
+   APPROACH (methodology) — large editorial paragraph + side proof points
+   ========================================================================= */
+.approach {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+}
+@media (max-width: 880px) { .approach { grid-template-columns: 1fr; } }
+.approach__lead {
+  font-family: var(--display);
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.3;
+  color: var(--cream);
+  text-wrap: pretty;
+  max-width: 60ch;
+}
+.approach__lead i { color: var(--accent); }
+.approach__lead .underline {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+}
+.approach__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media (max-width: 520px) { .approach__cols { grid-template-columns: 1fr; } }
+.approach__col h4 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+.approach__col p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--cream-dim);
+  margin: 0;
+}
+
+/* =========================================================================
+   CTA
+   ========================================================================= */
+.cta {
+  position: relative;
+  margin: clamp(24px, 3vw, 40px) auto;
+  max-width: calc(var(--container) - 40px);
+  border-radius: clamp(20px, 3vw, 36px);
+  background:
+    radial-gradient(circle at 80% 20%, rgba(232,185,49,0.25), transparent 50%),
+    linear-gradient(135deg, #1a2230, #0a0e14);
+  padding: clamp(48px, 6vw, 84px) clamp(28px, 5vw, 80px);
+  text-align: center;
+  border: 1px solid var(--ink-line-2);
+  overflow: hidden;
+}
+.cta::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(244,236,216,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244,236,216,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.cta__title {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  position: relative;
+}
+.cta__title i { font-style: italic; color: var(--accent); }
+.cta__sub {
+  max-width: 50ch; margin: 0 auto 32px;
+  color: var(--cream-dim);
+  position: relative;
+}
+.cta__buttons { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; position: relative; }
+
+/* =========================================================================
+   FOOTER
+   ========================================================================= */
+.footer {
+  border-top: 1px solid var(--ink-line);
+  padding: 60px 0 30px;
+  background: var(--ink-0);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 780px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+.footer__logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter:
+    drop-shadow(0 0 8px rgba(244,236,216,0.35))
+    drop-shadow(0 0 20px rgba(244,236,216,0.15));
+}
+.footer__tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+  margin-top: 16px;
+}
+.footer__col h5 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 16px;
+}
+.footer__col a, .footer__col span {
+  display: block;
+  font-size: 14px;
+  color: var(--cream-dim);
+  padding: 4px 0;
+  transition: color .2s;
+}
+.footer__col a:hover { color: var(--cream); }
+.footer__bottom {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ink-line);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+  gap: 12px;
+}
+
+/* =========================================================================
+   NAV — language toggle + mobile drawer
+   ========================================================================= */
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.langtoggle {
+  display: inline-flex;
+  border: 1px solid var(--ink-line-2);
+  border-radius: var(--r-pill);
+  padding: 3px;
+  background: rgba(244,236,216,0.02);
+}
+.langtoggle button {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 6px 11px;
+  border: 0;
+  background: transparent;
+  color: var(--cream-mute);
+  border-radius: var(--r-pill);
+  transition: background .2s, color .2s;
+}
+.langtoggle button:hover { color: var(--cream); }
+.langtoggle button.is-active {
+  background: var(--cream);
+  color: var(--ink-0);
+}
+
+.nav__burger {
+  display: none;
+  width: 40px; height: 40px;
+  border: 1px solid var(--ink-line-2);
+  background: transparent;
+  border-radius: 50%;
+  position: relative;
+  padding: 0;
+}
+.nav__burger span {
+  position: absolute; left: 10px; right: 10px; height: 1.5px;
+  background: var(--cream);
+  border-radius: 1px;
+  transition: transform .3s, opacity .3s, top .3s;
+}
+.nav__burger span:nth-child(1) { top: 14px; }
+.nav__burger span:nth-child(2) { top: 19px; }
+.nav__burger span:nth-child(3) { top: 24px; }
+.nav__burger.is-open span:nth-child(1) { top: 19px; transform: rotate(45deg); }
+.nav__burger.is-open span:nth-child(2) { opacity: 0; }
+.nav__burger.is-open span:nth-child(3) { top: 19px; transform: rotate(-45deg); }
+
+@media (max-width: 880px) {
+  .nav__burger { display: block; }
+  .nav__cta { display: none; }
+  .langtoggle { display: none; }
+}
+
+.navdrawer {
+  position: fixed; inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .35s;
+}
+.navdrawer.is-open { pointer-events: auto; opacity: 1; }
+.navdrawer__scrim { position: absolute; inset: 0; background: rgba(6,9,15,0.7); backdrop-filter: blur(10px); }
+.navdrawer__panel {
+  position: absolute; top: 0; right: 0;
+  width: min(85%, 360px);
+  height: 100%;
+  background: var(--ink-1);
+  border-left: 1px solid var(--ink-line-2);
+  padding: 100px 28px 32px;
+  display: flex; flex-direction: column; gap: 6px;
+  transform: translateX(100%);
+  transition: transform .4s cubic-bezier(0.19,1,0.22,1);
+}
+.navdrawer.is-open .navdrawer__panel { transform: translateX(0); }
+.navdrawer__link {
+  font-family: var(--display);
+  font-size: 28px;
+  color: var(--cream);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ink-line);
+}
+.navdrawer__link:hover { color: var(--accent); }
+.navdrawer .langtoggle {
+  display: inline-flex;
+  margin-top: 24px;
+  align-self: flex-start;
+}
+@media (min-width: 881px) { .navdrawer { display: none; } }
+
+/* =========================================================================
+   MAP — first-time hint + legend caption
+   ========================================================================= */
+.map-hint {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 16px 9px 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: rgba(10,14,20,0.78);
+  border: 1px solid var(--ink-line-2);
+  border-radius: var(--r-pill);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+  white-space: nowrap;
+  animation: hintFloat 3s ease-in-out infinite;
+  transition: opacity .5s, transform .5s;
+}
+.map-hint.is-hidden { opacity: 0; transform: translate(-50%, 10px); }
+.map-hint__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent);
+  animation: pulse 1.8s infinite;
+}
+@keyframes hintFloat {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(-50%, -3px); }
+}
+.map-caption {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 500;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--cream-dim);
+  padding: 7px 12px;
+  background: rgba(10,14,20,0.65);
+  border: 1px solid var(--ink-line);
+  border-radius: var(--r-pill);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+/* Mobile: convert side card into a bottom sheet */
+@media (max-width: 720px) {
+  .citycard {
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: -100%;
+    width: 100%;
+    max-width: none;
+    border-radius: 18px 18px 0 0;
+    transition: bottom .5s cubic-bezier(0.19,1,0.22,1), opacity .3s;
+  }
+  .citycard.is-open { right: 0; bottom: 0; }
+  .cc__img { height: 130px; }
+  .map-hint { font-size: 9px; padding: 8px 12px; }
+  .mapwrap { aspect-ratio: 4 / 3; }
+}
+
+/* =========================================================================
+   COVERAGE CARDS — switch to <img loading="lazy">
+   ========================================================================= */
+.ccard__img {
+  aspect-ratio: 4 / 3.2;
+  background-color: var(--ink-3);
+  position: relative;
+  overflow: hidden;
+}
+.ccard__photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .8s;
+}
+.ccard:hover .ccard__photo { transform: scale(1.04); }
+.ccard__photo.is-empty {
+  background: linear-gradient(135deg, var(--ink-3), var(--ink-2));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+  font-family: var(--display);
+  font-size: 30px;
+}
+
+/* =========================================================================
+   PROCESS — 5-step horizontal strip with connecting line
+   ========================================================================= */
+.process__intro {
+  max-width: 70ch;
+  color: var(--cream-dim);
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.55;
+  margin: 0 0 60px;
+}
+.process {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+/* Horizontal connecting line, behind the nodes */
+.process::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 56px;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--ink-line-2) 0 6px,
+    transparent 6px 12px
+  );
+}
+.process__step {
+  padding: 0 18px 0 0;
+  position: relative;
+}
+.process__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+.process__node {
+  position: relative;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--ink-1);
+  border: 1px solid var(--accent);
+  margin-bottom: 28px;
+  z-index: 2;
+}
+.process__node::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: scale(0);
+  transition: transform .4s cubic-bezier(0.19,1,0.22,1);
+}
+.process__step:hover .process__node::after { transform: scale(1); }
+.process__node--end::after { transform: scale(1); }
+.process__t {
+  font-family: var(--display);
+  font-size: 28px;
+  color: var(--cream);
+  margin: 0 0 10px;
+  line-height: 1;
+  font-weight: 400;
+}
+.process__d {
+  font-size: 13px;
+  color: var(--cream-dim);
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+.process__time {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+  padding: 4px 8px;
+  display: inline-block;
+  background: rgba(244,236,216,0.04);
+  border-radius: 4px;
+}
+@media (max-width: 1080px) {
+  .process { grid-template-columns: repeat(2, 1fr); gap: 40px 32px; }
+  .process::before { display: none; }
+}
+@media (max-width: 560px) {
+  .process { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* =========================================================================
+   CONTACT FORM MODAL
+   ========================================================================= */
+.cform {
+  position: fixed; inset: 0;
+  z-index: 5000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s;
+}
+.cform.is-open { opacity: 1; pointer-events: auto; }
+.cform__scrim {
+  position: absolute; inset: 0;
+  background: rgba(6,9,15,0.78);
+  backdrop-filter: blur(10px);
+}
+.cform__card {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  max-height: calc(100vh - 40px);
+  background: var(--ink-1);
+  border: 1px solid var(--ink-line-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transform: translateY(20px) scale(0.97);
+  transition: transform .4s cubic-bezier(0.19,1,0.22,1);
+  display: flex; flex-direction: column;
+}
+.cform.is-open .cform__card { transform: translateY(0) scale(1); }
+.cform__x {
+  position: absolute; top: 14px; right: 14px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(244,236,216,0.05);
+  border: 1px solid var(--ink-line-2);
+  color: var(--cream);
+  font-size: 18px; line-height: 1;
+  z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, transform .2s;
+}
+.cform__x:hover { background: rgba(244,236,216,0.1); transform: rotate(90deg); }
+.cform__pane { padding: 36px 36px 32px; overflow-y: auto; }
+.cform__pane--success { display: none; text-align: center; padding: 60px 36px 40px; }
+.cform.is-success .cform__pane--form { display: none; }
+.cform.is-success .cform__pane--success { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+.cform__head { margin-bottom: 28px; }
+.cform__head .eyebrow { margin-bottom: 14px; }
+.cform__title {
+  font-family: var(--display);
+  font-size: 36px;
+  line-height: 1.05;
+  color: var(--cream);
+  margin: 0 0 8px;
+  font-weight: 400;
+}
+.cform__sub {
+  font-size: 14px;
+  color: var(--cream-dim);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 50ch;
+}
+
+.cform__form { display: flex; flex-direction: column; gap: 16px; }
+.cform__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 540px) { .cform__row { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field__lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+}
+.field input, .field select, .field textarea {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--cream);
+  background: var(--ink-2);
+  border: 1px solid var(--ink-line-2);
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color .2s, background .2s;
+  width: 100%;
+  resize: vertical;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--accent);
+  background: var(--ink-3);
+}
+.field input.is-error { border-color: #E26D5A; }
+.field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%23F4ECD8' stroke-width='1.5'><path d='M1 1l5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+  padding-right: 36px;
+}
+.cform__foot {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 8px;
+}
+.cform__submit { align-self: flex-start; }
+.cform__submit:disabled { opacity: 0.6; cursor: wait; }
+.cform__privacy {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: var(--cream-mute);
+  margin: 4px 0 0;
+}
+
+/* Success pane */
+.cform__check {
+  width: 80px; height: 80px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.cform__check svg { width: 100%; height: 100%; }
+.check-stroke {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+}
+.cform.is-success .check-stroke {
+  animation: drawCheck .6s ease-out .15s forwards;
+}
+@keyframes drawCheck { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 540px) {
+  .cform__pane { padding: 28px 22px 24px; }
+  .cform__title { font-size: 28px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===================================================================== -->
+<!-- NAV                                                                   -->
+<!-- ===================================================================== -->
+<nav class="nav">
+  <a href="#hero" class="nav__brand" aria-label="Innvestiga">
+    <img src="assets/brand/innvestiga-logo.png" alt="Innvestiga · Market Specialists" class="logo-img" />
+  </a>
+  <div class="nav__links">
+    <a href="#cobertura" class="nav__link" data-i18n="nav.cobertura">Cobertura</a>
+    <a href="#servicios" class="nav__link" data-i18n="nav.servicios">Servicios</a>
+    <a href="#proceso"   class="nav__link" data-i18n="nav.proceso">Proceso</a>
+    <a href="#enfoque"   class="nav__link" data-i18n="nav.enfoque">Enfoque</a>
+    <a href="#ciudades"  class="nav__link" data-i18n="nav.ciudades">Ciudades</a>
+    <a href="https://esi3.innvestiga.com/" target="_blank" rel="noopener" class="nav__link nav__link--ext" data-i18n="nav.cliente">Área cliente
+      <svg class="ext-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8l4-4M5 4h3v3"/></svg>
+    </a>
+  </div>
+  <div class="nav__right">
+    <div class="langtoggle" role="group" aria-label="Language">
+      <button type="button" data-lang-btn="es" onclick="window.i18n.set('es')">ES</button>
+      <button type="button" data-lang-btn="en" onclick="window.i18n.set('en')">EN</button>
+    </div>
+    <button type="button" class="nav__cta" data-open-contact data-i18n="nav.cta">Cotizar proyecto</button>
+    <button type="button" class="nav__burger" id="nav-burger" aria-label="Menu" data-i18n-attr="aria-label:menu.open">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="navdrawer" id="nav-drawer" aria-hidden="true">
+  <div class="navdrawer__scrim" data-close-drawer></div>
+  <div class="navdrawer__panel">
+    <a href="#cobertura" class="navdrawer__link" data-close-drawer data-i18n="nav.cobertura">Cobertura</a>
+    <a href="#servicios" class="navdrawer__link" data-close-drawer data-i18n="nav.servicios">Servicios</a>
+    <a href="#proceso"   class="navdrawer__link" data-close-drawer data-i18n="nav.proceso">Proceso</a>
+    <a href="#enfoque"   class="navdrawer__link" data-close-drawer data-i18n="nav.enfoque">Enfoque</a>
+    <a href="#ciudades"  class="navdrawer__link" data-close-drawer data-i18n="nav.ciudades">Ciudades</a>
+    <a href="https://esi3.innvestiga.com/" target="_blank" rel="noopener" class="navdrawer__link navdrawer__link--ext" data-i18n="nav.cliente">Área cliente ↗</a>
+    <button type="button" class="btn btn--primary" data-open-contact data-close-drawer style="margin-top:24px" data-i18n="nav.cta">Cotizar proyecto</button>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- HERO                                                                  -->
+<!-- ===================================================================== -->
+<section class="hero" id="hero" data-screen-label="01 Hero">
+  <div class="container">
+    <div class="hero__grid">
+
+      <div class="hero__copy">
+        <span class="eyebrow"><span class="pulse"></span><span data-i18n="hero.eyebrow">Operativo en 7 países</span></span>
+        <h1 class="hero__title">
+          <span data-i18n="hero.title1">Inteligencia</span><br />
+          <span data-i18n="hero.title2">de mercado,</span><br />
+          <span class="it" data-i18n="hero.title3">sin fronteras</span>
+        </h1>
+        <p class="hero__sub" data-i18n="hero.sub">
+          Investigamos comportamientos, mercados y experiencias de marca en Centroamérica,
+          el sur de México y el Caribe — con equipo propio en cada país y una metodología
+          unificada que entrega data comparable, no improvisada.
+        </p>
+        <div class="hero__ctas">
+          <button type="button" class="btn btn--primary" data-open-contact>
+            <span data-i18n="hero.cta1">Agendar una sesión</span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <a href="#cobertura" class="btn btn--ghost" data-i18n="hero.cta2">Ver cobertura</a>
+        </div>
+
+        <div class="hero__meta">
+          <div class="stat">
+            <div class="num"><span data-i18n="hero.stat1.num">7</span><small data-i18n="hero.stat1.unit">países</small></div>
+            <div class="lbl" data-i18n="hero.stat1.lbl">Operación regional</div>
+          </div>
+          <div class="stat">
+            <div class="num"><span data-i18n="hero.stat2.num">16</span><small data-i18n="hero.stat2.unit">ciudades</small></div>
+            <div class="lbl" data-i18n="hero.stat2.lbl">Cobertura activa</div>
+          </div>
+          <div class="stat">
+            <div class="num"><span data-i18n="hero.stat3.num">12</span><small data-i18n="hero.stat3.unit">años</small></div>
+            <div class="lbl" data-i18n="hero.stat3.lbl">En campo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__map">
+        <div class="mapwrap" id="cobertura" data-screen-label="01 Hero Map">
+          <div id="innv-map"></div>
+
+          <!-- First-time hint, fades after first pin click -->
+          <div class="map-hint" id="map-hint">
+            <span class="map-hint__dot"></span>
+            <span data-i18n="map.hint">Toca un punto del mapa para explorar la ciudad</span>
+          </div>
+
+          <!-- Legend caption explaining the two pin sizes -->
+          <div class="map-caption" data-i18n="map.legend">● Cobertura activa &nbsp; ◉ Hub regional</div>
+
+          <!-- City detail card (slides in from right when a pin is clicked) -->
+          <aside class="citycard" id="innv-citycard" aria-live="polite">
+            <button class="cc__close" id="cc-close" aria-label="" data-i18n-attr="aria-label:map.close">×</button>
+            <div class="cc__img" id="cc-img"><span class="cc-img__fallback"></span></div>
+            <div class="cc__body">
+              <span class="cc__badge" id="cc-badge">COBERTURA ACTIVA</span>
+              <h3 class="cc__city" id="cc-city">—</h3>
+              <div class="cc__country" id="cc-country">—</div>
+              <p class="cc__note" id="cc-note" data-i18n="map.empty.note">Selecciona una ciudad del mapa.</p>
+              <div class="cc__coords" id="cc-coords">—</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- COVERAGE STRIP                                                        -->
+<!-- ===================================================================== -->
+<section class="strip" data-screen-label="02 Stats">
+  <div class="container">
+    <div class="strip__grid">
+      <div class="strip__cell">
+        <div class="lbl" data-i18n="strip.lbl1">Encuestadores en campo</div>
+        <div class="val">500<sup>+</sup></div>
+      </div>
+      <div class="strip__cell">
+        <div class="lbl" data-i18n="strip.lbl2">Estudios entregados</div>
+        <div class="val">2,400<sup>+</sup></div>
+      </div>
+      <div class="strip__cell">
+        <div class="lbl" data-i18n="strip.lbl3">Industrias atendidas</div>
+        <div class="val">22</div>
+      </div>
+      <div class="strip__cell">
+        <div class="lbl" data-i18n="strip.lbl4">Idiomas de campo</div>
+        <div class="val"><i>4</i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- SERVICES                                                              -->
+<!-- ===================================================================== -->
+<section class="section" id="servicios" data-screen-label="03 Services">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__tag" data-i18n="svc.tag">Servicios</div>
+      <h2 class="section__title">
+        <span data-i18n="svc.title.a">Cuatro disciplinas,</span> <i data-i18n="svc.title.b">una sola</i> <span data-i18n="svc.title.c">certeza.</span>
+      </h2>
+    </div>
+
+    <div class="services">
+      <div class="service">
+        <div class="service__num">/ 01</div>
+        <div class="service__icon"><div class="icon-mr"></div></div>
+        <h3 class="service__title"><span data-i18n="svc.1.title.a">Investigación</span> <i data-i18n="svc.1.title.b">cuantitativa</i></h3>
+        <p class="service__desc" data-i18n="svc.1.desc">Estudios CATI, CAPI y CAWI con muestras estadísticamente sólidas y trazables hasta cada respondente.</p>
+        <ul class="service__list">
+          <li data-i18n="svc.1.li1">Tracking de marca</li>
+          <li data-i18n="svc.1.li2">Segmentación</li>
+          <li data-i18n="svc.1.li3">Pricing &amp; conjoint</li>
+        </ul>
+      </div>
+      <div class="service">
+        <div class="service__num">/ 02</div>
+        <div class="service__icon"><div class="icon-ms"></div></div>
+        <h3 class="service__title"><span data-i18n="svc.2.title.a">Investigación</span> <i data-i18n="svc.2.title.b">cualitativa</i></h3>
+        <p class="service__desc" data-i18n="svc.2.desc">Focus groups, etnografías digitales y entrevistas a profundidad — moderación local con marco analítico común.</p>
+        <ul class="service__list">
+          <li data-i18n="svc.2.li1">Sesiones presenciales</li>
+          <li data-i18n="svc.2.li2">Comunidades online</li>
+          <li data-i18n="svc.2.li3">Etnografía en hogar</li>
+        </ul>
+      </div>
+      <div class="service">
+        <div class="service__num">/ 03</div>
+        <div class="service__icon"><div class="icon-mb"></div></div>
+        <h3 class="service__title"><span data-i18n="svc.3.title.a">Mystery</span> <i data-i18n="svc.3.title.b">shopping</i></h3>
+        <p class="service__desc" data-i18n="svc.3.desc">Auditoría de experiencia en punto de venta, canales digitales y call centers con KPIs comparables por país.</p>
+        <ul class="service__list">
+          <li data-i18n="svc.3.li1">Retail &amp; HORECA</li>
+          <li data-i18n="svc.3.li2">Banca &amp; servicios</li>
+          <li data-i18n="svc.3.li3">Omnicanal</li>
+        </ul>
+      </div>
+      <div class="service">
+        <div class="service__num">/ 04</div>
+        <div class="service__icon"><div class="icon-ma"></div></div>
+        <h3 class="service__title"><span data-i18n="svc.4.title.a">Inteligencia</span> <i data-i18n="svc.4.title.b">continua</i></h3>
+        <p class="service__desc" data-i18n="svc.4.desc">Dashboards en vivo, alertas competitivas y reportes mensuales — tu organización no espera, tampoco la data.</p>
+        <ul class="service__list">
+          <li data-i18n="svc.4.li1">Looker / PowerBI</li>
+          <li data-i18n="svc.4.li2">API de datos</li>
+          <li data-i18n="svc.4.li3">Reportes ejecutivos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- PROCESS                                                               -->
+<!-- ===================================================================== -->
+<section class="section section--process" id="proceso" data-screen-label="04 Process">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__tag" data-i18n="proc.tag">Proceso</div>
+      <h2 class="section__title">
+        <span data-i18n="proc.title.a">De la pregunta a la decisión,</span> <i data-i18n="proc.title.b">en cinco pasos.</i>
+      </h2>
+    </div>
+    <p class="process__intro" data-i18n="proc.intro">Cada estudio sigue el mismo camino — sin importar país, idioma o industria. Por eso podemos prometer tiempos firmes y data comparable.</p>
+
+    <ol class="process">
+      <li class="process__step">
+        <div class="process__num">01</div>
+        <div class="process__node"></div>
+        <h4 class="process__t" data-i18n="proc.1.t">Kickoff</h4>
+        <p class="process__d" data-i18n="proc.1.d">Briefing, objetivos de decisión y diseño muestral por país.</p>
+        <div class="process__time" data-i18n="proc.1.time">Día 1–3</div>
+      </li>
+      <li class="process__step">
+        <div class="process__num">02</div>
+        <div class="process__node"></div>
+        <h4 class="process__t" data-i18n="proc.2.t">Diseño</h4>
+        <p class="process__d" data-i18n="proc.2.d">Cuestionario maestro, traducción cultural y piloto rápido.</p>
+        <div class="process__time" data-i18n="proc.2.time">Día 4–7</div>
+      </li>
+      <li class="process__step">
+        <div class="process__num">03</div>
+        <div class="process__node"></div>
+        <h4 class="process__t" data-i18n="proc.3.t">Campo</h4>
+        <p class="process__d" data-i18n="proc.3.d">Equipos locales en simultáneo, monitoreo 24/7 y triple validación.</p>
+        <div class="process__time" data-i18n="proc.3.time">Día 8–18</div>
+      </li>
+      <li class="process__step">
+        <div class="process__num">04</div>
+        <div class="process__node"></div>
+        <h4 class="process__t" data-i18n="proc.4.t">Análisis</h4>
+        <p class="process__d" data-i18n="proc.4.d">Ponderación regional, cruces estratégicos y lectura de negocio.</p>
+        <div class="process__time" data-i18n="proc.4.time">Día 19–22</div>
+      </li>
+      <li class="process__step">
+        <div class="process__num">05</div>
+        <div class="process__node process__node--end"></div>
+        <h4 class="process__t" data-i18n="proc.5.t">Entrega</h4>
+        <p class="process__d" data-i18n="proc.5.d">Reporte ejecutivo, dashboard en vivo y sesión de trabajo final.</p>
+        <div class="process__time" data-i18n="proc.5.time">Día 23–25</div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- APPROACH                                                              -->
+<!-- ===================================================================== -->
+<section class="section" id="enfoque" data-screen-label="05 Approach">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__tag" data-i18n="app.tag">Enfoque</div>
+      <h2 class="section__title">
+        <span data-i18n="app.title.a">El equipo está</span> <i data-i18n="app.title.b">donde está</i> <span data-i18n="app.title.c">el dato.</span>
+      </h2>
+    </div>
+
+    <div class="approach">
+      <p class="approach__lead" data-i18n="app.lead">
+        No vendemos paneles ni subcontratamos campo. Cada ciudad donde aparece un
+        <i>punto</i> en el mapa tiene un <span class="underline">coordinador propio</span>,
+        protocolos auditados y rotación supervisada — porque la calidad de una
+        decisión se construye al recolectar la primera respuesta, no al
+        graficar la última.
+      </p>
+      <div class="approach__cols">
+        <div class="approach__col">
+          <h4 data-i18n="app.c1.t">/ Calidad de campo</h4>
+          <p data-i18n="app.c1.d">Triple validación por respondente: geolocalización, audio y supervisión back-office en menos de 24 horas.</p>
+        </div>
+        <div class="approach__col">
+          <h4 data-i18n="app.c2.t">/ Comparabilidad</h4>
+          <p data-i18n="app.c2.d">Cuestionarios maestros traducidos y adaptados localmente; resultados ponderados a métricas regionales unificadas.</p>
+        </div>
+        <div class="approach__col">
+          <h4 data-i18n="app.c3.t">/ Tiempos</h4>
+          <p data-i18n="app.c3.d">Operativos paralelos en los 7 países permiten cerrar levantamientos regionales en 18–25 días, no en 3 meses.</p>
+        </div>
+        <div class="approach__col">
+          <h4 data-i18n="app.c4.t">/ Confidencialidad</h4>
+          <p data-i18n="app.c4.d">Cumplimos GDPR, LGPD y normativas locales de protección de datos. NDA y data clean-room disponibles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- COVERAGE GRID                                                         -->
+<!-- ===================================================================== -->
+<section class="section" id="ciudades" data-screen-label="06 Cities">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__tag" data-i18n="cit.tag">Ciudades</div>
+      <h2 class="section__title">
+        <span data-i18n="cit.title.a">16 ciudades donde el equipo</span> <i data-i18n="cit.title.b">ya está.</i>
+      </h2>
+    </div>
+
+    <div class="coverage__filters" id="coverage-filters">
+      <button class="fbtn is-active" data-code="all"><span data-i18n="cit.all">Todas</span> <span class="count">16</span></button>
+      <!-- country buttons injected by JS -->
+    </div>
+
+    <div class="coverage__grid" id="coverage-grid">
+      <!-- city cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- CTA                                                                   -->
+<!-- ===================================================================== -->
+<section id="cta" data-screen-label="07 CTA">
+  <div class="cta">
+    <h2 class="cta__title"><span data-i18n="cta.title.a">¿Listos para tomar decisiones</span><br /><i data-i18n="cta.title.b">basadas en evidencia?</i></h2>
+    <p class="cta__sub" data-i18n="cta.sub">Cuéntanos tu pregunta de negocio. Te respondemos con un plan de campo en 48 horas — no con una presentación de ventas.</p>
+    <div class="cta__buttons">
+      <button type="button" class="btn btn--primary" data-open-contact>
+        <span data-i18n="cta.btn1">Solicitar plan en 48h</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+      <a href="mailto:info@innvestiga.com" class="btn btn--ghost" data-i18n="cta.btn2">Hablar con un experto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- FOOTER                                                                -->
+<!-- ===================================================================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <img src="assets/brand/innvestiga-logo.png" alt="Innvestiga" class="footer__logo" />
+        <div class="footer__tag" data-i18n="ft.tag">Market specialists · 7 países · est. 2014</div>
+      </div>
+      <div class="footer__col">
+        <h5 data-i18n="ft.h1">Cobertura</h5>
+        <span>Guatemala</span>
+        <span>El Salvador</span>
+        <span>Honduras</span>
+        <span>Nicaragua</span>
+        <span>Costa Rica</span>
+        <span>Rep. Dominicana</span>
+        <span>México (Chiapas)</span>
+      </div>
+      <div class="footer__col">
+        <h5 data-i18n="ft.h2">Servicios</h5>
+        <a href="#servicios" data-i18n="ft.svc1">Cuantitativa</a>
+        <a href="#servicios" data-i18n="ft.svc2">Cualitativa</a>
+        <a href="#servicios" data-i18n="ft.svc3">Mystery shopping</a>
+        <a href="#servicios" data-i18n="ft.svc4">Inteligencia continua</a>
+      </div>
+      <div class="footer__col">
+        <h5 data-i18n="ft.h3">Contacto</h5>
+        <a href="mailto:info@innvestiga.com">info@innvestiga.com</a>
+        <a href="#">LinkedIn</a>
+        <a href="#" data-i18n="ft.contact.loc">Guatemala · San Salvador</a>
+      </div>
+      <div class="footer__col">
+        <h5 data-i18n="ft.h4">Legal</h5>
+        <a href="#" data-i18n="ft.legal.priv">Política de privacidad</a>
+        <a href="#" data-i18n="ft.legal.cook">Cookies</a>
+        <span data-i18n="ft.legal.gdpr">Cumplimiento GDPR &amp; LGPD</span>
+        <span data-i18n="ft.legal.nda">NDA disponible</span>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span data-i18n="ft.copy">© 2026 Innvestiga · Todos los derechos reservados</span>
+      <span data-i18n="ft.made">Hecho con data y café · GT · SV</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================================================================== -->
+<!-- SCRIPTS                                                               -->
+<!-- ===================================================================== -->
+<script>
+/* ===================================================================
+   map-data.js — 7 countries · 16 cities. Coordinates are real lat/lng.
+   =================================================================== */
+window.INNV_CITIES = [
+  // GUATEMALA
+  { id: "gua-gt",     city: "Ciudad de Guatemala", country: "Guatemala",      code: "GT", lat: 14.6349, lng: -90.5069, img: null,                                 hub: true,  note: "Sede regional Norte" },
+  { id: "gua-ant",    city: "Antigua",             country: "Guatemala",      code: "GT", lat: 14.5586, lng: -90.7295, img: "assets/cities/guaAntigua.jpg",       hub: false, note: "Centro turístico colonial" },
+  { id: "gua-liv",    city: "Lívingston",          country: "Guatemala",      code: "GT", lat: 15.8316, lng: -88.7484, img: "assets/cities/guaLivingston.jpg",    hub: false, note: "Caribe garífuna" },
+  { id: "gua-xela",   city: "Quetzaltenango",      country: "Guatemala",      code: "GT", lat: 14.8333, lng: -91.5167, img: "assets/cities/guaXela.jpg",          hub: false, note: "Altiplano occidental" },
+
+  // EL SALVADOR
+  { id: "sv-ss",      city: "San Salvador",        country: "El Salvador",    code: "SV", lat: 13.6929, lng: -89.2182, img: "assets/cities/svSalvadorDelMundo.jpg", hub: true,  note: "Sede regional Sur" },
+  { id: "sv-ataco",   city: "Concepción de Ataco", country: "El Salvador",    code: "SV", lat: 13.8703, lng: -89.8497, img: "assets/cities/svAtaco.png",          hub: false, note: "Ruta de las Flores" },
+  { id: "sv-libertad",city: "La Libertad",         country: "El Salvador",    code: "SV", lat: 13.4883, lng: -89.3222, img: "assets/cities/svSurf.webp",          hub: false, note: "Costa del Pacífico" },
+
+  // HONDURAS
+  { id: "hn-tgu",     city: "Tegucigalpa",         country: "Honduras",       code: "HN", lat: 14.0723, lng: -87.1921, img: "assets/cities/honTegu.jpg",          hub: false, note: "Capital y Distrito Central" },
+  { id: "hn-tgu2",    city: "Tegucigalpa Centro",  country: "Honduras",       code: "HN", lat: 14.0931, lng: -87.2010, img: "assets/cities/honTeguc.jpg",         hub: false, note: "Núcleo histórico" },
+
+  // MÉXICO (CHIAPAS)
+  { id: "mx-txg",     city: "Tuxtla Gutiérrez",    country: "México",         code: "MX", lat: 16.7569, lng: -93.1292, img: "assets/cities/mexTuxtla.jpg",        hub: false, note: "Capital de Chiapas" },
+  { id: "mx-tap",     city: "Tapachula",           country: "México",         code: "MX", lat: 14.9020, lng: -92.2620, img: "assets/cities/mexTapachula.jpeg",    hub: false, note: "Frontera sur" },
+  { id: "mx-scc",     city: "San Cristóbal",       country: "México",         code: "MX", lat: 16.7370, lng: -92.6376, img: "assets/cities/mexCasaDeLaCultura.jpg", hub: false, note: "Pueblo mágico colonial" },
+
+  // COSTA RICA
+  { id: "cr-ala",     city: "Alajuela",            country: "Costa Rica",     code: "CR", lat: 10.0162, lng: -84.2117, img: "assets/cities/criAlajuela.jpg",      hub: false, note: "Valle central" },
+  { id: "cr-her",     city: "Heredia",             country: "Costa Rica",     code: "CR", lat: 9.9989,  lng: -84.1166, img: "assets/cities/criHeredia.jpg",       hub: false, note: "Ciudad de las flores" },
+  { id: "cr-pun",     city: "Puntarenas",          country: "Costa Rica",     code: "CR", lat: 9.9778,  lng: -84.8294, img: "assets/cities/criPuntarenas.jpg",    hub: false, note: "Pacífico central" },
+
+  // NICARAGUA
+  { id: "ni-mga",     city: "Managua",             country: "Nicaragua",      code: "NI", lat: 12.1140, lng: -86.2362, img: null,                                 hub: false, note: "Operativo activo" },
+
+  // REPÚBLICA DOMINICANA
+  { id: "do-sdq",     city: "Santo Domingo",       country: "Rep. Dominicana", code: "DO", lat: 18.4861, lng: -69.9312, img: "assets/cities/domSantoDom.jpg",     hub: true,  note: "Sede Caribe" },
+  { id: "do-pm",      city: "Plaza Monumental",    country: "Rep. Dominicana", code: "DO", lat: 19.4517, lng: -70.6970, img: "assets/cities/domPlazaMonu.jpg",    hub: false, note: "Santiago de los Caballeros" },
+];
+
+window.INNV_COUNTRIES = [
+  { code: "MX", name: "México",          flag: "🇲🇽", region: "Chiapas" },
+  { code: "GT", name: "Guatemala",       flag: "🇬🇹", region: "Nacional" },
+  { code: "SV", name: "El Salvador",     flag: "🇸🇻", region: "Nacional" },
+  { code: "HN", name: "Honduras",        flag: "🇭🇳", region: "Nacional" },
+  { code: "NI", name: "Nicaragua",       flag: "🇳🇮", region: "Nacional" },
+  { code: "CR", name: "Costa Rica",      flag: "🇨🇷", region: "Nacional" },
+  { code: "DO", name: "Rep. Dominicana", flag: "🇩🇴", region: "Nacional" },
+];
+</script>
+
+<script>
+/* ===================================================================
+   i18n.js — ES/EN translation switcher.
+   =================================================================== */
+(function () {
+  const T = {
+    es: {
+      "nav.cobertura": "Cobertura",
+      "nav.servicios": "Servicios",
+      "nav.proceso":   "Proceso",
+      "nav.enfoque":   "Enfoque",
+      "nav.ciudades":  "Ciudades",
+      "nav.cliente":   "Área cliente",
+      "nav.cta":       "Cotizar proyecto",
+
+      "hero.eyebrow":   "Operativo en 7 países",
+      "hero.title1":    "Inteligencia",
+      "hero.title2":    "de mercado,",
+      "hero.title3":    "sin fronteras",
+      "hero.sub":       "Investigamos comportamientos, mercados y experiencias de marca en Centroamérica, el sur de México y el Caribe — con equipo propio en cada país y una metodología unificada que entrega data comparable, no improvisada.",
+      "hero.cta1":      "Agendar una sesión",
+      "hero.cta2":      "Ver cobertura",
+      "hero.stat1.num": "7",
+      "hero.stat1.unit":"países",
+      "hero.stat1.lbl": "Operación regional",
+      "hero.stat2.num": "16",
+      "hero.stat2.unit":"ciudades",
+      "hero.stat2.lbl": "Cobertura activa",
+      "hero.stat3.num": "12",
+      "hero.stat3.unit":"años",
+      "hero.stat3.lbl": "En campo",
+
+      "map.hint":          "Toca un punto del mapa para explorar la ciudad",
+      "map.legend":        "● Cobertura activa   ◉ Hub regional",
+      "map.badge.active":  "COBERTURA ACTIVA",
+      "map.badge.hub":     "HUB REGIONAL",
+      "map.empty.note":    "Selecciona una ciudad del mapa.",
+      "map.close":         "Cerrar",
+
+      "strip.lbl1": "Encuestadores en campo",
+      "strip.lbl2": "Estudios entregados",
+      "strip.lbl3": "Industrias atendidas",
+      "strip.lbl4": "Idiomas de campo",
+
+      "svc.tag":   "Servicios",
+      "svc.title.a": "Cuatro disciplinas,",
+      "svc.title.b": "una sola",
+      "svc.title.c": "certeza.",
+      "svc.1.title.a": "Investigación",
+      "svc.1.title.b": "cuantitativa",
+      "svc.1.desc":  "Estudios CATI, CAPI y CAWI con muestras estadísticamente sólidas y trazables hasta cada respondente.",
+      "svc.1.li1":   "Tracking de marca",
+      "svc.1.li2":   "Segmentación",
+      "svc.1.li3":   "Pricing & conjoint",
+      "svc.2.title.a": "Investigación",
+      "svc.2.title.b": "cualitativa",
+      "svc.2.desc":  "Focus groups, etnografías digitales y entrevistas a profundidad — moderación local con marco analítico común.",
+      "svc.2.li1":   "Sesiones presenciales",
+      "svc.2.li2":   "Comunidades online",
+      "svc.2.li3":   "Etnografía en hogar",
+      "svc.3.title.a": "Mystery",
+      "svc.3.title.b": "shopping",
+      "svc.3.desc":  "Auditoría de experiencia en punto de venta, canales digitales y call centers con KPIs comparables por país.",
+      "svc.3.li1":   "Retail & HORECA",
+      "svc.3.li2":   "Banca & servicios",
+      "svc.3.li3":   "Omnicanal",
+      "svc.4.title.a": "Inteligencia",
+      "svc.4.title.b": "continua",
+      "svc.4.desc":  "Dashboards en vivo, alertas competitivas y reportes mensuales — tu organización no espera, tampoco la data.",
+      "svc.4.li1":   "Looker / PowerBI",
+      "svc.4.li2":   "API de datos",
+      "svc.4.li3":   "Reportes ejecutivos",
+
+      "proc.tag":     "Proceso",
+      "proc.title.a": "De la pregunta a la decisión,",
+      "proc.title.b": "en cinco pasos.",
+      "proc.intro":   "Cada estudio sigue el mismo camino — sin importar país, idioma o industria. Por eso podemos prometer tiempos firmes y data comparable.",
+      "proc.1.t":     "Kickoff",
+      "proc.1.d":     "Briefing, objetivos de decisión y diseño muestral por país.",
+      "proc.1.time":  "Día 1–3",
+      "proc.2.t":     "Diseño",
+      "proc.2.d":     "Cuestionario maestro, traducción cultural y piloto rápido.",
+      "proc.2.time":  "Día 4–7",
+      "proc.3.t":     "Campo",
+      "proc.3.d":     "Equipos locales en simultáneo, monitoreo 24/7 y triple validación.",
+      "proc.3.time":  "Día 8–18",
+      "proc.4.t":     "Análisis",
+      "proc.4.d":     "Ponderación regional, cruces estratégicos y lectura de negocio.",
+      "proc.4.time":  "Día 19–22",
+      "proc.5.t":     "Entrega",
+      "proc.5.d":     "Reporte ejecutivo, dashboard en vivo y sesión de trabajo final.",
+      "proc.5.time":  "Día 23–25",
+
+      "app.tag":     "Enfoque",
+      "app.title.a": "El equipo está",
+      "app.title.b": "donde está",
+      "app.title.c": "el dato.",
+      "app.lead":    "No vendemos paneles ni subcontratamos campo. Cada ciudad donde aparece un <i>punto</i> en el mapa tiene un <span class=\"underline\">coordinador propio</span>, protocolos auditados y rotación supervisada — porque la calidad de una decisión se construye al recolectar la primera respuesta, no al graficar la última.",
+      "app.c1.t":    "/ Calidad de campo",
+      "app.c1.d":    "Triple validación por respondente: geolocalización, audio y supervisión back-office en menos de 24 horas.",
+      "app.c2.t":    "/ Comparabilidad",
+      "app.c2.d":    "Cuestionarios maestros traducidos y adaptados localmente; resultados ponderados a métricas regionales unificadas.",
+      "app.c3.t":    "/ Tiempos",
+      "app.c3.d":    "Operativos paralelos en los 7 países permiten cerrar levantamientos regionales en 18–25 días, no en 3 meses.",
+      "app.c4.t":    "/ Confidencialidad",
+      "app.c4.d":    "Cumplimos GDPR, LGPD y normativas locales de protección de datos. NDA y data clean-room disponibles.",
+
+      "cit.tag":     "Ciudades",
+      "cit.title.a": "16 ciudades donde el equipo",
+      "cit.title.b": "ya está.",
+      "cit.all":     "Todas",
+
+      "cta.title.a": "¿Listos para tomar decisiones",
+      "cta.title.b": "basadas en evidencia?",
+      "cta.sub":     "Cuéntanos tu pregunta de negocio. Te respondemos con un plan de campo en 48 horas — no con una presentación de ventas.",
+      "cta.btn1":    "Solicitar plan en 48h",
+      "cta.btn2":    "Hablar con un experto",
+
+      "ft.tag":      "Market specialists · 7 países · est. 2014",
+      "ft.h1":       "Cobertura",
+      "ft.h2":       "Servicios",
+      "ft.h3":       "Contacto",
+      "ft.h4":       "Legal",
+      "ft.legal.priv":"Política de privacidad",
+      "ft.legal.cook":"Cookies",
+      "ft.legal.gdpr":"Cumplimiento GDPR & LGPD",
+      "ft.legal.nda": "NDA disponible",
+      "ft.copy":     "© 2026 Innvestiga · Todos los derechos reservados",
+      "ft.made":     "Hecho con data y café · GT · SV",
+      "ft.svc1":     "Cuantitativa",
+      "ft.svc2":     "Cualitativa",
+      "ft.svc3":     "Mystery shopping",
+      "ft.svc4":     "Inteligencia continua",
+      "ft.contact.loc": "Guatemala · San Salvador",
+
+      "form.title":  "Cotizar un proyecto",
+      "form.sub":    "Respondemos con un plan de campo concreto en menos de 48 horas hábiles.",
+      "form.name":   "Nombre",
+      "form.namePh": "Tu nombre completo",
+      "form.company":"Empresa",
+      "form.companyPh":"Organización o marca",
+      "form.email":  "Email corporativo",
+      "form.emailPh":"tu@empresa.com",
+      "form.country":"País de interés",
+      "form.countryAll":"Todos / Regional",
+      "form.type":   "Tipo de estudio",
+      "form.typeChoose":"Selecciona…",
+      "form.type.quant":"Cuantitativo",
+      "form.type.qual":"Cualitativo",
+      "form.type.mys": "Mystery shopping",
+      "form.type.cont":"Inteligencia continua",
+      "form.type.other":"Otro / No estoy seguro",
+      "form.msg":    "Cuéntanos brevemente tu pregunta de negocio",
+      "form.msgPh":  "Ej. \"Queremos entender por qué cae nuestro NPS en el canal joven en CA-4\"",
+      "form.submit": "Enviar — plan en 48h",
+      "form.sending":"Enviando…",
+      "form.success.t":"Gracias.",
+      "form.success.d":"Recibimos tu solicitud. Un coordinador regional te escribirá en menos de 48 horas hábiles.",
+      "form.success.btn":"Cerrar",
+      "form.close":  "Cerrar formulario",
+      "form.privacy":"Tus datos se tratan bajo nuestra política de privacidad. Nunca los compartimos.",
+
+      "menu.open":  "Menú",
+      "menu.close": "Cerrar",
+    },
+
+    en: {
+      "nav.cobertura": "Coverage",
+      "nav.servicios": "Services",
+      "nav.proceso":   "Process",
+      "nav.enfoque":   "Approach",
+      "nav.ciudades":  "Cities",
+      "nav.cliente":   "Client area",
+      "nav.cta":       "Request a quote",
+
+      "hero.eyebrow":   "Active in 7 countries",
+      "hero.title1":    "Market",
+      "hero.title2":    "intelligence,",
+      "hero.title3":    "without borders",
+      "hero.sub":       "We research behaviors, markets and brand experiences across Central America, southern Mexico and the Caribbean — with in-house teams in every country and a unified methodology that delivers comparable data, not improvised numbers.",
+      "hero.cta1":      "Book a session",
+      "hero.cta2":      "See coverage",
+      "hero.stat1.num": "7",
+      "hero.stat1.unit":"countries",
+      "hero.stat1.lbl": "Regional operation",
+      "hero.stat2.num": "16",
+      "hero.stat2.unit":"cities",
+      "hero.stat2.lbl": "Active coverage",
+      "hero.stat3.num": "12",
+      "hero.stat3.unit":"years",
+      "hero.stat3.lbl": "In the field",
+
+      "map.hint":          "Tap a point on the map to explore the city",
+      "map.legend":        "● Active coverage   ◉ Regional hub",
+      "map.badge.active":  "ACTIVE COVERAGE",
+      "map.badge.hub":     "REGIONAL HUB",
+      "map.empty.note":    "Select a city from the map.",
+      "map.close":         "Close",
+
+      "strip.lbl1": "Field interviewers",
+      "strip.lbl2": "Studies delivered",
+      "strip.lbl3": "Industries served",
+      "strip.lbl4": "Field languages",
+
+      "svc.tag":   "Services",
+      "svc.title.a": "Four disciplines,",
+      "svc.title.b": "one",
+      "svc.title.c": "certainty.",
+      "svc.1.title.a": "Quantitative",
+      "svc.1.title.b": "research",
+      "svc.1.desc":  "CATI, CAPI and CAWI studies with statistically sound samples — every response traceable to the respondent.",
+      "svc.1.li1":   "Brand tracking",
+      "svc.1.li2":   "Segmentation",
+      "svc.1.li3":   "Pricing & conjoint",
+      "svc.2.title.a": "Qualitative",
+      "svc.2.title.b": "research",
+      "svc.2.desc":  "Focus groups, digital ethnographies and in-depth interviews — local moderation under a shared analytical frame.",
+      "svc.2.li1":   "In-person sessions",
+      "svc.2.li2":   "Online communities",
+      "svc.2.li3":   "In-home ethnography",
+      "svc.3.title.a": "Mystery",
+      "svc.3.title.b": "shopping",
+      "svc.3.desc":  "Experience audits at point of sale, digital channels and call centers — KPIs comparable across countries.",
+      "svc.3.li1":   "Retail & HORECA",
+      "svc.3.li2":   "Banking & services",
+      "svc.3.li3":   "Omnichannel",
+      "svc.4.title.a": "Continuous",
+      "svc.4.title.b": "intelligence",
+      "svc.4.desc":  "Live dashboards, competitive alerts and monthly reports — your business doesn't wait, neither should the data.",
+      "svc.4.li1":   "Looker / PowerBI",
+      "svc.4.li2":   "Data API",
+      "svc.4.li3":   "Executive reports",
+
+      "proc.tag":     "Process",
+      "proc.title.a": "From the question to the decision,",
+      "proc.title.b": "in five steps.",
+      "proc.intro":   "Every study follows the same path — regardless of country, language or industry. That's how we can promise firm timelines and comparable data.",
+      "proc.1.t":     "Kickoff",
+      "proc.1.d":     "Briefing, decision goals and per-country sampling design.",
+      "proc.1.time":  "Day 1–3",
+      "proc.2.t":     "Design",
+      "proc.2.d":     "Master questionnaire, cultural translation and quick pilot.",
+      "proc.2.time":  "Day 4–7",
+      "proc.3.t":     "Field",
+      "proc.3.d":     "Local teams running in parallel, 24/7 monitoring and triple validation.",
+      "proc.3.time":  "Day 8–18",
+      "proc.4.t":     "Analysis",
+      "proc.4.d":     "Regional weighting, strategic crosstabs and business read.",
+      "proc.4.time":  "Day 19–22",
+      "proc.5.t":     "Delivery",
+      "proc.5.d":     "Executive report, live dashboard and final working session.",
+      "proc.5.time":  "Day 23–25",
+
+      "app.tag":     "Approach",
+      "app.title.a": "The team is",
+      "app.title.b": "where the",
+      "app.title.c": "data is.",
+      "app.lead":    "We don't sell panels or subcontract field work. Every city where a <i>point</i> appears on the map has its own <span class=\"underline\">coordinator</span>, audited protocols and supervised rotation — because the quality of a decision is built when the first response is collected, not when the last one is plotted.",
+      "app.c1.t":    "/ Field quality",
+      "app.c1.d":    "Triple validation per respondent: geolocation, audio and back-office review in under 24 hours.",
+      "app.c2.t":    "/ Comparability",
+      "app.c2.d":    "Master questionnaires translated and locally adapted; results weighted to unified regional metrics.",
+      "app.c3.t":    "/ Timelines",
+      "app.c3.d":    "Parallel operations across all 7 countries close regional studies in 18–25 days, not 3 months.",
+      "app.c4.t":    "/ Confidentiality",
+      "app.c4.d":    "GDPR, LGPD and local data-protection compliance. NDA and clean-room available.",
+
+      "cit.tag":     "Cities",
+      "cit.title.a": "16 cities where the team is",
+      "cit.title.b": "already on the ground.",
+      "cit.all":     "All",
+
+      "cta.title.a": "Ready to make decisions",
+      "cta.title.b": "backed by evidence?",
+      "cta.sub":     "Tell us your business question. We'll respond with a concrete field plan in 48 hours — not a sales deck.",
+      "cta.btn1":    "Request plan in 48h",
+      "cta.btn2":    "Talk to an expert",
+
+      "ft.tag":      "Market specialists · 7 countries · est. 2014",
+      "ft.h1":       "Coverage",
+      "ft.h2":       "Services",
+      "ft.h3":       "Contact",
+      "ft.h4":       "Legal",
+      "ft.legal.priv":"Privacy policy",
+      "ft.legal.cook":"Cookies",
+      "ft.legal.gdpr":"GDPR & LGPD compliance",
+      "ft.legal.nda": "NDA available",
+      "ft.copy":     "© 2026 Innvestiga · All rights reserved",
+      "ft.made":     "Made with data and coffee · GT · SV",
+      "ft.svc1":     "Quantitative",
+      "ft.svc2":     "Qualitative",
+      "ft.svc3":     "Mystery shopping",
+      "ft.svc4":     "Continuous intelligence",
+      "ft.contact.loc": "Guatemala · San Salvador",
+
+      "form.title":  "Request a quote",
+      "form.sub":    "We respond with a concrete field plan within 48 business hours.",
+      "form.name":   "Name",
+      "form.namePh": "Your full name",
+      "form.company":"Company",
+      "form.companyPh":"Organization or brand",
+      "form.email":  "Work email",
+      "form.emailPh":"you@company.com",
+      "form.country":"Country of interest",
+      "form.countryAll":"All / Regional",
+      "form.type":   "Study type",
+      "form.typeChoose":"Choose…",
+      "form.type.quant":"Quantitative",
+      "form.type.qual":"Qualitative",
+      "form.type.mys": "Mystery shopping",
+      "form.type.cont":"Continuous intelligence",
+      "form.type.other":"Other / Not sure yet",
+      "form.msg":    "Briefly, what's your business question?",
+      "form.msgPh":  "e.g. \"We want to understand why our NPS drops in the youth channel across CA-4\"",
+      "form.submit": "Send — plan in 48h",
+      "form.sending":"Sending…",
+      "form.success.t":"Thank you.",
+      "form.success.d":"We received your request. A regional coordinator will be in touch within 48 business hours.",
+      "form.success.btn":"Close",
+      "form.close":  "Close form",
+      "form.privacy":"Your data is handled under our privacy policy. We never share it.",
+
+      "menu.open":  "Menu",
+      "menu.close": "Close",
+    },
+  };
+
+  const STORAGE_KEY = "innv-lang";
+  let current = localStorage.getItem(STORAGE_KEY) || "es";
+
+  function t(key) { return (T[current] && T[current][key]) || (T.es[key]) || key; }
+
+  function apply() {
+    document.documentElement.lang = current;
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (!key) return;
+      const val = t(key);
+      if (val.indexOf("<") >= 0) el.innerHTML = val;
+      else el.textContent = val;
+    });
+    document.querySelectorAll("[data-i18n-attr]").forEach(el => {
+      el.getAttribute("data-i18n-attr").split(",").forEach(pair => {
+        const [attr, key] = pair.split(":").map(s => s.trim());
+        if (attr && key) el.setAttribute(attr, t(key));
+      });
+    });
+    document.querySelectorAll("[data-lang-btn]").forEach(b => {
+      b.classList.toggle("is-active", b.dataset.langBtn === current);
+    });
+    if (window.innvSyncCardLang) window.innvSyncCardLang();
+  }
+
+  function set(lang) {
+    if (!T[lang]) return;
+    current = lang;
+    localStorage.setItem(STORAGE_KEY, lang);
+    apply();
+  }
+
+  window.i18n = { t, set, apply, get: () => current };
+  document.addEventListener("DOMContentLoaded", apply);
+})();
+</script>
+
+<script>
+/* ===================================================================
+   map.js — Leaflet map with custom pulsing pins, side panel, filter.
+   =================================================================== */
+(function () {
+  const CITIES = window.INNV_CITIES;
+  const COUNTRIES = window.INNV_COUNTRIES;
+
+  const map = L.map("innv-map", {
+    zoomControl: false,
+    attributionControl: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: true,
+    dragging: true,
+    minZoom: 4,
+    maxZoom: 9,
+  }).setView([14.5, -88.0], 5);
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
+    {
+      subdomains: "abcd",
+      maxZoom: 19,
+      attribution: "© OpenStreetMap © CARTO",
+    }
+  ).addTo(map);
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png",
+    { subdomains: "abcd", maxZoom: 19, opacity: 0.55 }
+  ).addTo(map);
+
+  L.control.zoom({ position: "bottomright" }).addTo(map);
+
+  const markersById = {};
+  function makeIcon(city) {
+    const isHub = city.hub;
+    const cls = isHub ? "innv-pin innv-pin--hub" : "innv-pin";
+    return L.divIcon({
+      className: "innv-pin-wrap",
+      html: `
+        <div class="${cls}" data-id="${city.id}">
+          <span class="innv-pin__ring"></span>
+          <span class="innv-pin__ring innv-pin__ring--2"></span>
+          <span class="innv-pin__dot"></span>
+          ${isHub ? '<span class="innv-pin__halo"></span>' : ""}
+        </div>
+      `,
+      iconSize: [isHub ? 28 : 18, isHub ? 28 : 18],
+      iconAnchor: [isHub ? 14 : 9, isHub ? 14 : 9],
+    });
+  }
+
+  CITIES.forEach((c) => {
+    const m = L.marker([c.lat, c.lng], { icon: makeIcon(c), riseOnHover: true }).addTo(map);
+    m.on("click", () => selectCity(c.id));
+    m.on("mouseover", () => {
+      const el = document.querySelector(`.innv-pin[data-id="${c.id}"]`);
+      if (el) el.classList.add("is-hover");
+    });
+    m.on("mouseout", () => {
+      const el = document.querySelector(`.innv-pin[data-id="${c.id}"]`);
+      if (el) el.classList.remove("is-hover");
+    });
+    markersById[c.id] = m;
+  });
+
+  const card = document.getElementById("innv-citycard");
+  const cardCity = document.getElementById("cc-city");
+  const cardCountry = document.getElementById("cc-country");
+  const cardNote = document.getElementById("cc-note");
+  const cardImg = document.getElementById("cc-img");
+  const cardCoords = document.getElementById("cc-coords");
+  const cardBadge = document.getElementById("cc-badge");
+  const hintEl = document.getElementById("map-hint");
+  let selectedId = null;
+
+  function t(key, fallback) {
+    return (window.i18n && window.i18n.t(key)) || fallback;
+  }
+
+  function selectCity(id) {
+    const c = CITIES.find((x) => x.id === id);
+    if (!c) return;
+    selectedId = id;
+    cardCity.textContent = c.city;
+    cardCountry.textContent = c.country;
+    cardNote.textContent = c.note;
+    cardCoords.textContent = `${c.lat.toFixed(3)}°, ${c.lng.toFixed(3)}°`;
+    cardBadge.textContent = c.hub ? t("map.badge.hub", "HUB REGIONAL") : t("map.badge.active", "COBERTURA ACTIVA");
+    cardBadge.classList.toggle("is-hub", !!c.hub);
+    if (c.img) {
+      cardImg.style.backgroundImage = `url('${c.img}')`;
+      cardImg.classList.remove("is-empty");
+      cardImg.querySelector(".cc-img__fallback").textContent = "";
+    } else {
+      cardImg.style.backgroundImage = "none";
+      cardImg.classList.add("is-empty");
+      cardImg.querySelector(".cc-img__fallback").textContent = c.city;
+    }
+    card.classList.add("is-open");
+    document.querySelectorAll(".innv-pin").forEach((p) => p.classList.remove("is-selected"));
+    const el = document.querySelector(`.innv-pin[data-id="${id}"]`);
+    if (el) el.classList.add("is-selected");
+    map.panTo([c.lat, c.lng], { animate: true, duration: 0.6 });
+    if (hintEl) hintEl.classList.add("is-hidden");
+    stopAutoRotate();
+  }
+
+  window.innvSyncCardLang = function () {
+    if (selectedId) {
+      const c = CITIES.find((x) => x.id === selectedId);
+      if (c) cardBadge.textContent = c.hub ? t("map.badge.hub") : t("map.badge.active");
+    }
+  };
+
+  document.getElementById("cc-close").addEventListener("click", () => {
+    card.classList.remove("is-open");
+    document.querySelectorAll(".innv-pin").forEach((p) => p.classList.remove("is-selected"));
+    selectedId = null;
+  });
+
+  const hubs = CITIES.filter((c) => c.hub);
+  let hubIdx = 0;
+  let autoRotateTimer = null;
+  function startAutoRotate() {
+    stopAutoRotate();
+    autoRotateTimer = setInterval(() => {
+      if (selectedId) return;
+      const next = hubs[hubIdx % hubs.length];
+      hubIdx++;
+      const el = document.querySelector(`.innv-pin[data-id="${next.id}"]`);
+      if (el) {
+        el.classList.add("is-flash");
+        setTimeout(() => el.classList.remove("is-flash"), 1500);
+      }
+    }, 2600);
+  }
+  function stopAutoRotate() { if (autoRotateTimer) clearInterval(autoRotateTimer); autoRotateTimer = null; }
+  function hideHint() { if (hintEl) hintEl.classList.add("is-hidden"); }
+  map.on("click", () => { stopAutoRotate(); hideHint(); });
+  map.on("dragstart zoomstart", () => { stopAutoRotate(); hideHint(); });
+  startAutoRotate();
+
+  window.innvFocusCity = (id) => {
+    const c = CITIES.find((x) => x.id === id);
+    if (!c) return;
+    document.getElementById("hero").scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => selectCity(id), 700);
+  };
+})();
+</script>
+
+<script>
+/* ===================================================================
+   contact-form.js — Lead capture modal. Triggered by [data-open-contact].
+   Submission is simulated; wire up to EmailJS/Formspree/your endpoint.
+   =================================================================== */
+(function () {
+  const COUNTRIES = (window.INNV_COUNTRIES || []);
+  let modal, form, successPane, submitBtn;
+
+  function buildMarkup() {
+    const wrap = document.createElement("div");
+    wrap.className = "cform";
+    wrap.id = "innv-contact-modal";
+    wrap.setAttribute("aria-hidden", "true");
+    wrap.innerHTML = `
+      <div class="cform__scrim" data-close></div>
+      <div class="cform__card" role="dialog" aria-modal="true" aria-labelledby="cform-title">
+        <button type="button" class="cform__x" data-close aria-label="" data-i18n-attr="aria-label:form.close">×</button>
+
+        <div class="cform__pane cform__pane--form">
+          <div class="cform__head">
+            <span class="eyebrow"><span class="pulse"></span><span data-i18n="hero.eyebrow"></span></span>
+            <h3 class="cform__title" id="cform-title" data-i18n="form.title"></h3>
+            <p class="cform__sub" data-i18n="form.sub"></p>
+          </div>
+
+          <form class="cform__form" novalidate>
+            <div class="cform__row">
+              <label class="field">
+                <span class="field__lbl" data-i18n="form.name"></span>
+                <input type="text" name="name" required data-i18n-attr="placeholder:form.namePh" />
+              </label>
+              <label class="field">
+                <span class="field__lbl" data-i18n="form.company"></span>
+                <input type="text" name="company" required data-i18n-attr="placeholder:form.companyPh" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field__lbl" data-i18n="form.email"></span>
+              <input type="email" name="email" required data-i18n-attr="placeholder:form.emailPh" />
+            </label>
+
+            <div class="cform__row">
+              <label class="field">
+                <span class="field__lbl" data-i18n="form.country"></span>
+                <select name="country">
+                  <option value="ALL" data-i18n="form.countryAll"></option>
+                  ${COUNTRIES.map(c => `<option value="${c.code}">${c.name}</option>`).join("")}
+                </select>
+              </label>
+              <label class="field">
+                <span class="field__lbl" data-i18n="form.type"></span>
+                <select name="type">
+                  <option value="" data-i18n="form.typeChoose"></option>
+                  <option value="quant" data-i18n="form.type.quant"></option>
+                  <option value="qual"  data-i18n="form.type.qual"></option>
+                  <option value="mys"   data-i18n="form.type.mys"></option>
+                  <option value="cont"  data-i18n="form.type.cont"></option>
+                  <option value="other" data-i18n="form.type.other"></option>
+                </select>
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field__lbl" data-i18n="form.msg"></span>
+              <textarea name="message" rows="4" data-i18n-attr="placeholder:form.msgPh"></textarea>
+            </label>
+
+            <div class="cform__foot">
+              <button type="submit" class="btn btn--primary cform__submit">
+                <span class="cform__submit-label" data-i18n="form.submit"></span>
+                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+              <p class="cform__privacy" data-i18n="form.privacy"></p>
+            </div>
+          </form>
+        </div>
+
+        <div class="cform__pane cform__pane--success">
+          <div class="cform__check">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="24" r="20" stroke-opacity="0.3" />
+              <path d="M14 24l7 7 13-15" class="check-stroke" />
+            </svg>
+          </div>
+          <h3 class="cform__title" data-i18n="form.success.t"></h3>
+          <p class="cform__sub" data-i18n="form.success.d"></p>
+          <button type="button" class="btn btn--ghost" data-close data-i18n="form.success.btn"></button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(wrap);
+    modal = wrap;
+    form  = wrap.querySelector("form");
+    successPane = wrap.querySelector(".cform__pane--success");
+    submitBtn   = wrap.querySelector(".cform__submit");
+    if (window.i18n) window.i18n.apply();
+  }
+
+  function open() {
+    if (!modal) buildMarkup();
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    modal.classList.remove("is-success");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => { const i = form.querySelector("input"); if (i) i.focus(); }, 250);
+  }
+  function close() {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      if (form) form.reset();
+      modal.classList.remove("is-success");
+    }, 400);
+  }
+
+  document.addEventListener("click", e => {
+    const opener = e.target.closest("[data-open-contact]");
+    if (opener) { e.preventDefault(); open(); return; }
+    if (!modal) return;
+    if (e.target.closest("[data-close]")) close();
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && modal && modal.classList.contains("is-open")) close();
+  });
+
+  document.addEventListener("submit", e => {
+    if (!modal || e.target !== form) return;
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    if (!data.name || !data.company || !data.email) {
+      form.querySelectorAll("input[required]").forEach(inp => {
+        if (!inp.value) inp.classList.add("is-error");
+        else inp.classList.remove("is-error");
+      });
+      return;
+    }
+    const orig = submitBtn.querySelector(".cform__submit-label").textContent;
+    submitBtn.disabled = true;
+    submitBtn.querySelector(".cform__submit-label").textContent = window.i18n.t("form.sending");
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.querySelector(".cform__submit-label").textContent = orig;
+      modal.classList.add("is-success");
+      console.log("[Innvestiga form submission]", data);
+    }, 900);
+  });
+})();
+</script>
+
+<script>
+/* Coverage grid + filter (vanilla, no React needed here) */
+(function () {
+  const CITIES = window.INNV_CITIES;
+  const COUNTRIES = window.INNV_COUNTRIES;
+  const grid = document.getElementById("coverage-grid");
+  const filters = document.getElementById("coverage-filters");
+
+  // Build filter buttons
+  COUNTRIES.forEach(co => {
+    const count = CITIES.filter(c => c.code === co.code).length;
+    const b = document.createElement("button");
+    b.className = "fbtn";
+    b.dataset.code = co.code;
+    b.innerHTML = `${co.name} <span class="count">${count}</span>`;
+    filters.appendChild(b);
+  });
+
+  function render(code) {
+    grid.innerHTML = "";
+    const list = code === "all" ? CITIES : CITIES.filter(c => c.code === code);
+    list.forEach(c => {
+      const el = document.createElement("div");
+      el.className = "ccard";
+      // Use real <img loading="lazy"> so the browser defers offscreen photos.
+      const imgMarkup = c.img
+        ? `<img class="ccard__photo" src="${c.img}" alt="${c.city}, ${c.country}" loading="lazy" decoding="async" />`
+        : `<div class="ccard__photo is-empty">${c.city.split(" ").map(w=>w[0]).slice(0,2).join("")}</div>`;
+      el.innerHTML = `
+        <div class="ccard__img">${imgMarkup}</div>
+        ${c.hub ? '<span class="ccard__hub">Hub</span>' : ""}
+        <div class="ccard__body">
+          <div class="ccard__country">${c.country}</div>
+          <div class="ccard__city">${c.city}</div>
+        </div>
+      `;
+      el.addEventListener("click", () => window.innvFocusCity && window.innvFocusCity(c.id));
+      grid.appendChild(el);
+    });
+  }
+
+  filters.addEventListener("click", e => {
+    const b = e.target.closest(".fbtn");
+    if (!b) return;
+    filters.querySelectorAll(".fbtn").forEach(x => x.classList.remove("is-active"));
+    b.classList.add("is-active");
+    render(b.dataset.code);
+  });
+
+  render("all");
+})();
+
+/* Mobile nav drawer */
+(function () {
+  const burger = document.getElementById("nav-burger");
+  const drawer = document.getElementById("nav-drawer");
+  if (!burger || !drawer) return;
+  function openDrawer() {
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    burger.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeDrawer() {
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    burger.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+  burger.addEventListener("click", () => {
+    drawer.classList.contains("is-open") ? closeDrawer() : openDrawer();
+  });
+  drawer.addEventListener("click", e => {
+    if (e.target.closest("[data-close-drawer]")) closeDrawer();
+  });
+})();
+</script>
+
+</body>
+</html>
