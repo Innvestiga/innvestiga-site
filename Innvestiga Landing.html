@@ -3,7 +3,33 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Innvestiga — Inteligencia de mercado para Centroamérica y el Caribe</title>
+<title>Innvestiga — Mystery Shopping regional en Centroamérica y el Caribe</title>
+
+<!-- SEO -->
+<meta name="description" content="Especialistas en Mystery Shopping y experiencia del cliente en Centroamérica, el sur de México y el Caribe. Evaluaciones presenciales, digitales, telefónicas y omnicanal con shoppers entrenados y resultados comparables." />
+<meta name="theme-color" content="#0A0E14" />
+<link rel="canonical" href="https://main.innvestiga.com/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Innvestiga" />
+<meta property="og:url" content="https://main.innvestiga.com/" />
+<meta property="og:title" content="Innvestiga — Mystery Shopping regional en Centroamérica y el Caribe" />
+<meta property="og:description" content="Mystery Shopping con resultados que revelan lo que vive tu cliente. Evaluamos experiencias reales en puntos de venta, call centers y canales digitales — con equipo propio en 7 países." />
+<meta property="og:image" content="https://main.innvestiga.com/assets/brand/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Innvestiga · Mystery Shopping regional" />
+<meta property="og:locale" content="es_GT" />
+<meta property="og:locale:alternate" content="en_US" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://main.innvestiga.com/" />
+<meta name="twitter:title" content="Innvestiga — Mystery Shopping regional en Centroamérica y el Caribe" />
+<meta name="twitter:description" content="Mystery Shopping con resultados que revelan lo que vive tu cliente. Equipo propio en 7 países · 16 ciudades · 500+ shoppers." />
+<meta name="twitter:image" content="https://main.innvestiga.com/assets/brand/og-image.jpg" />
+<meta name="twitter:image:alt" content="Innvestiga · Mystery Shopping regional" />
 
 <!-- TYPE: editorial serif + neutral sans + mono numerals -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1417,6 +1443,102 @@ body::before {
   .cform__pane { padding: 28px 22px 24px; }
   .cform__title { font-size: 28px; }
 }
+
+/* =========================================================================
+   "QUÉ HACEMOS" / Intro block — sits between Stats strip and Services.
+   Reuses .section__head spacing; just adds a centered lead paragraph block.
+   ========================================================================= */
+.whatdo {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+.whatdo__lead {
+  font-family: var(--display);
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.35;
+  color: var(--cream);
+  margin: 0 0 18px;
+}
+.whatdo__body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--cream-dim);
+  margin: 0;
+}
+
+/* =========================================================================
+   BENEFICIOS — 5 cards. 5-up desktop → 2-up tablet → 1-up mobile.
+   ========================================================================= */
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(14px, 1.6vw, 20px);
+}
+.benefits__card {
+  padding: 24px 22px;
+  border: 1px solid var(--ink-line);
+  border-radius: var(--r-md);
+  background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink-1) 100%);
+  transition: border-color .25s ease, transform .25s ease;
+}
+.benefits__card:hover {
+  border-color: var(--ink-line-2);
+  transform: translateY(-2px);
+}
+.benefits__t {
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.15;
+  margin: 0 0 10px;
+  color: var(--cream);
+}
+.benefits__t .slash { color: var(--accent); font-style: normal; }
+.benefits__d {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--cream-dim);
+  margin: 0;
+}
+@media (max-width: 1024px) {
+  .benefits { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .benefits { grid-template-columns: 1fr; }
+  .benefits__t { font-size: 20px; }
+}
+
+/* =========================================================================
+   INDUSTRIAS — chip grid, wraps naturally across viewports.
+   ========================================================================= */
+.industries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+.industries__chip {
+  padding: 12px 20px;
+  border: 1px solid var(--ink-line-2);
+  border-radius: var(--r-pill);
+  background: var(--ink-2);
+  color: var(--cream);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  transition: border-color .2s ease, background .2s ease, color .2s ease;
+}
+.industries__chip::before {
+  content: "● ";
+  color: var(--accent);
+  margin-right: 4px;
+}
+.industries__chip:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+@media (max-width: 540px) {
+  .industries__chip { padding: 10px 16px; font-size: 13px; }
+}
 </style>
 </head>
 
@@ -1475,35 +1597,35 @@ body::before {
       <div class="hero__copy">
         <span class="eyebrow"><span class="pulse"></span><span data-i18n="hero.eyebrow">Operativo en 7 países</span></span>
         <h1 class="hero__title">
-          <span data-i18n="hero.title1">Inteligencia</span><br />
-          <span data-i18n="hero.title2">de mercado,</span><br />
-          <span class="it" data-i18n="hero.title3">sin fronteras</span>
+          <span data-i18n="hero.title1">Mystery Shopping</span><br />
+          <span data-i18n="hero.title2">que revela</span><br />
+          <span class="it" data-i18n="hero.title3">lo que vive tu cliente</span>
         </h1>
         <p class="hero__sub" data-i18n="hero.sub">
-          Investigamos comportamientos, mercados y experiencias de marca en Centroamérica,
-          el sur de México y el Caribe — con equipo propio en cada país y una metodología
-          unificada que entrega data comparable, no improvisada.
+          Evaluamos experiencias reales en puntos de venta, call centers, canales digitales
+          y procesos de atención en Centroamérica y el Caribe — descubre cómo te atienden
+          cuando nadie sabe que estás observando.
         </p>
         <div class="hero__ctas">
           <button type="button" class="btn btn--primary" data-open-contact>
-            <span data-i18n="hero.cta1">Agendar una sesión</span>
+            <span data-i18n="hero.cta1">Solicitar evaluación</span>
             <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </button>
-          <a href="#cobertura" class="btn btn--ghost" data-i18n="hero.cta2">Ver cobertura</a>
+          <a href="#cobertura" class="btn btn--ghost" data-i18n="hero.cta2">Ver cobertura regional</a>
         </div>
 
         <div class="hero__meta">
           <div class="stat">
-            <div class="num"><span data-i18n="hero.stat1.num">7</span><small data-i18n="hero.stat1.unit">países</small></div>
-            <div class="lbl" data-i18n="hero.stat1.lbl">Regional</div>
+            <div class="num"><span data-i18n="hero.stat1.num">12</span><small data-i18n="hero.stat1.unit">años</small></div>
+            <div class="lbl" data-i18n="hero.stat1.lbl">En campo</div>
           </div>
           <div class="stat">
-            <div class="num"><span data-i18n="hero.stat2.num">16</span><small data-i18n="hero.stat2.unit">ciudades</small></div>
-            <div class="lbl" data-i18n="hero.stat2.lbl">Activas</div>
+            <div class="num"><span data-i18n="hero.stat2.num">22</span><small data-i18n="hero.stat2.unit">industrias</small></div>
+            <div class="lbl" data-i18n="hero.stat2.lbl">Atendidas</div>
           </div>
           <div class="stat">
-            <div class="num"><span data-i18n="hero.stat3.num">12</span><small data-i18n="hero.stat3.unit">años</small></div>
-            <div class="lbl" data-i18n="hero.stat3.lbl">En campo</div>
+            <div class="num"><span data-i18n="hero.stat3.num">4</span><small data-i18n="hero.stat3.unit">idiomas</small></div>
+            <div class="lbl" data-i18n="hero.stat3.lbl">De campo</div>
           </div>
         </div>
       </div>
@@ -1547,21 +1669,40 @@ body::before {
   <div class="container">
     <div class="strip__grid">
       <div class="strip__cell">
-        <div class="lbl" data-i18n="strip.lbl1">Encuestadores en campo</div>
-        <div class="val">500<sup>+</sup></div>
+        <div class="lbl" data-i18n="strip.lbl1">Países operativos</div>
+        <div class="val">7</div>
       </div>
       <div class="strip__cell">
-        <div class="lbl" data-i18n="strip.lbl2">Estudios entregados</div>
+        <div class="lbl" data-i18n="strip.lbl2">Ciudades activas</div>
+        <div class="val">16</div>
+      </div>
+      <div class="strip__cell">
+        <div class="lbl" data-i18n="strip.lbl3">Evaluaciones realizadas</div>
         <div class="val">2,400<sup>+</sup></div>
       </div>
       <div class="strip__cell">
-        <div class="lbl" data-i18n="strip.lbl3">Industrias atendidas</div>
-        <div class="val">22</div>
+        <div class="lbl" data-i18n="strip.lbl4">Shoppers en campo</div>
+        <div class="val">500<sup>+</sup></div>
       </div>
-      <div class="strip__cell">
-        <div class="lbl" data-i18n="strip.lbl4">Idiomas de campo</div>
-        <div class="val"><i>4</i></div>
-      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- WHAT WE DO                                                            -->
+<!-- ===================================================================== -->
+<section class="section" id="que-hacemos" data-screen-label="03 What we do">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__tag" data-i18n="wd.tag">¿Qué hacemos?</div>
+      <h2 class="section__title">
+        <span data-i18n="wd.title.a">Mystery Shopping</span> <i data-i18n="wd.title.b">con enfoque</i> <span data-i18n="wd.title.c">estratégico.</span>
+      </h2>
+    </div>
+
+    <div class="whatdo">
+      <p class="whatdo__lead" data-i18n="wd.lead">No solo recopilamos observaciones: convertimos experiencias reales en información accionable para mejorar ventas, atención y fidelización.</p>
+      <p class="whatdo__body" data-i18n="wd.body">Evaluamos cada punto de contacto entre tu marca y tus clientes — para detectar oportunidades, inconsistencias y riesgos operativos.</p>
     </div>
   </div>
 </section>
@@ -1569,12 +1710,12 @@ body::before {
 <!-- ===================================================================== -->
 <!-- SERVICES                                                              -->
 <!-- ===================================================================== -->
-<section class="section" id="servicios" data-screen-label="03 Services">
+<section class="section" id="servicios" data-screen-label="04 Services">
   <div class="container">
     <div class="section__head">
       <div class="section__tag" data-i18n="svc.tag">Servicios</div>
       <h2 class="section__title">
-        <span data-i18n="svc.title.a">Cuatro disciplinas,</span> <i data-i18n="svc.title.b">una sola</i> <span data-i18n="svc.title.c">certeza.</span>
+        <span data-i18n="svc.title.a">Cuatro formas de</span> <i data-i18n="svc.title.b">evaluar</i> <span data-i18n="svc.title.c">la experiencia.</span>
       </h2>
     </div>
 
@@ -1582,46 +1723,95 @@ body::before {
       <div class="service">
         <div class="service__num">/ 01</div>
         <div class="service__icon"><div class="icon-mr"></div></div>
-        <h3 class="service__title"><span data-i18n="svc.1.title.a">Investigación</span> <i data-i18n="svc.1.title.b">cuantitativa</i></h3>
-        <p class="service__desc" data-i18n="svc.1.desc">Estudios CATI, CAPI y CAWI con muestras estadísticamente sólidas y trazables hasta cada respondente.</p>
+        <h3 class="service__title"><span data-i18n="svc.1.title.a">Mystery Shopper</span> <i data-i18n="svc.1.title.b">presencial</i></h3>
+        <p class="service__desc" data-i18n="svc.1.desc">Evaluamos la experiencia real dentro de sucursales, tiendas, restaurantes, bancos y puntos de servicio.</p>
         <ul class="service__list">
-          <li data-i18n="svc.1.li1">Tracking de marca</li>
-          <li data-i18n="svc.1.li2">Segmentación</li>
-          <li data-i18n="svc.1.li3">Pricing &amp; conjoint</li>
+          <li data-i18n="svc.1.li1">Atención y amabilidad</li>
+          <li data-i18n="svc.1.li2">Cumplimiento de protocolos</li>
+          <li data-i18n="svc.1.li3">Tiempo de espera</li>
+          <li data-i18n="svc.1.li4">Técnicas de venta</li>
+          <li data-i18n="svc.1.li5">Imagen y orden del punto</li>
+          <li data-i18n="svc.1.li6">Experiencia de compra</li>
         </ul>
       </div>
       <div class="service">
         <div class="service__num">/ 02</div>
         <div class="service__icon"><div class="icon-ms"></div></div>
-        <h3 class="service__title"><span data-i18n="svc.2.title.a">Investigación</span> <i data-i18n="svc.2.title.b">cualitativa</i></h3>
-        <p class="service__desc" data-i18n="svc.2.desc">Focus groups, etnografías digitales y entrevistas a profundidad — moderación local con marco analítico común.</p>
+        <h3 class="service__title"><span data-i18n="svc.2.title.a">Mystery Shopper</span> <i data-i18n="svc.2.title.b">digital</i></h3>
+        <p class="service__desc" data-i18n="svc.2.desc">Analizamos cómo responde tu empresa en canales digitales y plataformas online.</p>
         <ul class="service__list">
-          <li data-i18n="svc.2.li1">Sesiones presenciales</li>
-          <li data-i18n="svc.2.li2">Comunidades online</li>
-          <li data-i18n="svc.2.li3">Etnografía en hogar</li>
+          <li data-i18n="svc.2.li1">WhatsApp</li>
+          <li data-i18n="svc.2.li2">Redes sociales</li>
+          <li data-i18n="svc.2.li3">Chat web</li>
+          <li data-i18n="svc.2.li4">E-commerce</li>
+          <li data-i18n="svc.2.li5">Formularios de contacto</li>
+          <li data-i18n="svc.2.li6">Tiempo y calidad de respuesta</li>
         </ul>
       </div>
       <div class="service">
         <div class="service__num">/ 03</div>
-        <div class="service__icon"><div class="icon-mb"></div></div>
-        <h3 class="service__title"><span data-i18n="svc.3.title.a">Mystery</span> <i data-i18n="svc.3.title.b">shopping</i></h3>
-        <p class="service__desc" data-i18n="svc.3.desc">Auditoría de experiencia en punto de venta, canales digitales y call centers con KPIs comparables por país.</p>
+        <div class="service__icon"><div class="icon-ma"></div></div>
+        <h3 class="service__title"><span data-i18n="svc.3.title.a">Mystery</span> <i data-i18n="svc.3.title.b">Call</i></h3>
+        <p class="service__desc" data-i18n="svc.3.desc">Evaluamos la experiencia telefónica y la calidad de atención en call centers y líneas de servicio.</p>
         <ul class="service__list">
-          <li data-i18n="svc.3.li1">Retail &amp; HORECA</li>
-          <li data-i18n="svc.3.li2">Banca &amp; servicios</li>
-          <li data-i18n="svc.3.li3">Omnicanal</li>
+          <li data-i18n="svc.3.li1">Guiones comerciales</li>
+          <li data-i18n="svc.3.li2">Resolución de problemas</li>
+          <li data-i18n="svc.3.li3">Calidad del saludo</li>
+          <li data-i18n="svc.3.li4">Manejo de objeciones</li>
+          <li data-i18n="svc.3.li5">Seguimiento al cliente</li>
+          <li data-i18n="svc.3.li6">Conversión comercial</li>
         </ul>
       </div>
       <div class="service">
         <div class="service__num">/ 04</div>
-        <div class="service__icon"><div class="icon-ma"></div></div>
-        <h3 class="service__title"><span data-i18n="svc.4.title.a">Inteligencia</span> <i data-i18n="svc.4.title.b">continua</i></h3>
-        <p class="service__desc" data-i18n="svc.4.desc">Dashboards en vivo, alertas competitivas y reportes mensuales — tu organización no espera, tampoco la data.</p>
+        <div class="service__icon"><div class="icon-mb"></div></div>
+        <h3 class="service__title"><span data-i18n="svc.4.title.a">Auditorías</span> <i data-i18n="svc.4.title.b">omnicanal</i></h3>
+        <p class="service__desc" data-i18n="svc.4.desc">Medimos la consistencia de la experiencia entre canales físicos y digitales.</p>
         <ul class="service__list">
-          <li data-i18n="svc.4.li1">Looker / PowerBI</li>
-          <li data-i18n="svc.4.li2">API de datos</li>
-          <li data-i18n="svc.4.li3">Reportes ejecutivos</li>
+          <li data-i18n="svc.4.li1">Comparación entre sucursales</li>
+          <li data-i18n="svc.4.li2">Benchmark competitivo</li>
+          <li data-i18n="svc.4.li3">Auditorías de cumplimiento</li>
+          <li data-i18n="svc.4.li4">Evaluación de promociones</li>
+          <li data-i18n="svc.4.li5">Estándares de marca</li>
+          <li data-i18n="svc.4.li6">Reportes comparativos regionales</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- BENEFITS                                                              -->
+<!-- ===================================================================== -->
+<section class="section" id="beneficios" data-screen-label="05 Benefits">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__tag" data-i18n="ben.tag">Beneficios</div>
+      <h2 class="section__title">
+        <span data-i18n="ben.title.a">Lo que puedes</span> <i data-i18n="ben.title.b">descubrir</i> <span data-i18n="ben.title.c">con un Mystery Shopper.</span>
+      </h2>
+    </div>
+
+    <div class="benefits">
+      <div class="benefits__card">
+        <h3 class="benefits__t"><span class="slash">/ </span><span data-i18n="ben.1.t">Calidad real de atención</span></h3>
+        <p class="benefits__d" data-i18n="ben.1.d">Conoce cómo tratan realmente a tus clientes cuando no saben que están siendo evaluados.</p>
+      </div>
+      <div class="benefits__card">
+        <h3 class="benefits__t"><span class="slash">/ </span><span data-i18n="ben.2.t">Cumplimiento operativo</span></h3>
+        <p class="benefits__d" data-i18n="ben.2.d">Verifica si cada sucursal sigue los protocolos y estándares establecidos.</p>
+      </div>
+      <div class="benefits__card">
+        <h3 class="benefits__t"><span class="slash">/ </span><span data-i18n="ben.3.t">Oportunidades de venta</span></h3>
+        <p class="benefits__d" data-i18n="ben.3.d">Detecta errores que afectan conversión, ticket promedio y experiencia de compra.</p>
+      </div>
+      <div class="benefits__card">
+        <h3 class="benefits__t"><span class="slash">/ </span><span data-i18n="ben.4.t">Comparación entre sucursales</span></h3>
+        <p class="benefits__d" data-i18n="ben.4.d">Identifica cuáles puntos destacan y cuáles necesitan intervención inmediata.</p>
+      </div>
+      <div class="benefits__card">
+        <h3 class="benefits__t"><span class="slash">/ </span><span data-i18n="ben.5.t">Evaluación competitiva</span></h3>
+        <p class="benefits__d" data-i18n="ben.5.d">Analiza cómo atiende tu competencia y encuentra ventajas para diferenciarte.</p>
       </div>
     </div>
   </div>
@@ -1630,50 +1820,50 @@ body::before {
 <!-- ===================================================================== -->
 <!-- PROCESS                                                               -->
 <!-- ===================================================================== -->
-<section class="section section--process" id="proceso" data-screen-label="04 Process">
+<section class="section section--process" id="proceso" data-screen-label="06 Process">
   <div class="container">
     <div class="section__head">
       <div class="section__tag" data-i18n="proc.tag">Proceso</div>
       <h2 class="section__title">
-        <span data-i18n="proc.title.a">De la pregunta a la decisión,</span> <i data-i18n="proc.title.b">en cinco pasos.</i>
+        <span data-i18n="proc.title.a">Así funciona el</span> <i data-i18n="proc.title.b">Mystery Shopper.</i>
       </h2>
     </div>
-    <p class="process__intro" data-i18n="proc.intro">Cada estudio sigue el mismo camino — sin importar país, idioma o industria. Por eso podemos prometer tiempos firmes y data comparable.</p>
+    <p class="process__intro" data-i18n="proc.intro">Cada evaluación sigue el mismo camino — sin importar país, sucursal o canal. Así garantizamos resultados comparables y tiempos firmes.</p>
 
     <ol class="process">
       <li class="process__step">
         <div class="process__num">01</div>
         <div class="process__node"></div>
-        <h4 class="process__t" data-i18n="proc.1.t">Kickoff</h4>
-        <p class="process__d" data-i18n="proc.1.d">Briefing, objetivos de decisión y diseño muestral por país.</p>
+        <h4 class="process__t" data-i18n="proc.1.t">Definimos objetivos</h4>
+        <p class="process__d" data-i18n="proc.1.d">Diseñamos escenarios de evaluación alineados a tus procesos, protocolos y metas comerciales.</p>
         <div class="process__time" data-i18n="proc.1.time">Día 1–3</div>
       </li>
       <li class="process__step">
         <div class="process__num">02</div>
         <div class="process__node"></div>
-        <h4 class="process__t" data-i18n="proc.2.t">Diseño</h4>
-        <p class="process__d" data-i18n="proc.2.d">Cuestionario maestro, traducción cultural y piloto rápido.</p>
+        <h4 class="process__t" data-i18n="proc.2.t">Creamos perfiles de shopper</h4>
+        <p class="process__d" data-i18n="proc.2.d">Seleccionamos evaluadores según el tipo de cliente que deseas analizar.</p>
         <div class="process__time" data-i18n="proc.2.time">Día 4–7</div>
       </li>
       <li class="process__step">
         <div class="process__num">03</div>
         <div class="process__node"></div>
-        <h4 class="process__t" data-i18n="proc.3.t">Campo</h4>
-        <p class="process__d" data-i18n="proc.3.d">Equipos locales en simultáneo, monitoreo 24/7 y triple validación.</p>
+        <h4 class="process__t" data-i18n="proc.3.t">Ejecutamos visitas y contactos</h4>
+        <p class="process__d" data-i18n="proc.3.d">Realizamos evaluaciones presenciales, digitales o telefónicas sin alterar la operación.</p>
         <div class="process__time" data-i18n="proc.3.time">Día 8–18</div>
       </li>
       <li class="process__step">
         <div class="process__num">04</div>
         <div class="process__node"></div>
-        <h4 class="process__t" data-i18n="proc.4.t">Análisis</h4>
-        <p class="process__d" data-i18n="proc.4.d">Ponderación regional, cruces estratégicos y lectura de negocio.</p>
+        <h4 class="process__t" data-i18n="proc.4.t">Validamos evidencia</h4>
+        <p class="process__d" data-i18n="proc.4.d">Auditamos respuestas, tiempos, fotografías, audios y cumplimiento de criterios.</p>
         <div class="process__time" data-i18n="proc.4.time">Día 19–22</div>
       </li>
       <li class="process__step">
         <div class="process__num">05</div>
         <div class="process__node process__node--end"></div>
-        <h4 class="process__t" data-i18n="proc.5.t">Entrega</h4>
-        <p class="process__d" data-i18n="proc.5.d">Reporte ejecutivo, dashboard en vivo y sesión de trabajo final.</p>
+        <h4 class="process__t" data-i18n="proc.5.t">Entregamos hallazgos accionables</h4>
+        <p class="process__d" data-i18n="proc.5.d">Recibes reportes claros, indicadores comparativos y recomendaciones estratégicas.</p>
         <div class="process__time" data-i18n="proc.5.time">Día 23–25</div>
       </li>
     </ol>
@@ -1683,39 +1873,38 @@ body::before {
 <!-- ===================================================================== -->
 <!-- APPROACH                                                              -->
 <!-- ===================================================================== -->
-<section class="section" id="enfoque" data-screen-label="05 Approach">
+<section class="section" id="enfoque" data-screen-label="07 Approach">
   <div class="container">
     <div class="section__head">
       <div class="section__tag" data-i18n="app.tag">Enfoque</div>
       <h2 class="section__title">
-        <span data-i18n="app.title.a">El equipo está</span> <i data-i18n="app.title.b">donde está</i> <span data-i18n="app.title.c">el dato.</span>
+        <span data-i18n="app.title.a">Más que evaluar,</span> <i data-i18n="app.title.b">entender</i> <span data-i18n="app.title.c">lo que vive tu cliente.</span>
       </h2>
     </div>
 
     <div class="approach">
       <p class="approach__lead" data-i18n="app.lead">
-        No vendemos paneles ni subcontratamos campo. Cada ciudad donde aparece un
-        <i>punto</i> en el mapa tiene un <span class="underline">coordinador propio</span>,
-        protocolos auditados y rotación supervisada — porque la calidad de una
-        decisión se construye al recolectar la primera respuesta, no al
-        graficar la última.
+        No trabajamos con evaluaciones improvisadas. Contamos con
+        <span class="underline">shoppers entrenados</span>, protocolos estandarizados
+        y supervisión regional — porque cada visita debe convertirse en evidencia útil,
+        no en una anécdota.
       </p>
       <div class="approach__cols">
         <div class="approach__col">
-          <h4 data-i18n="app.c1.t">/ Calidad de campo</h4>
-          <p data-i18n="app.c1.d">Triple validación por respondente: geolocalización, audio y supervisión back-office en menos de 24 horas.</p>
+          <h4 data-i18n="app.c1.t">/ Shoppers entrenados</h4>
+          <p data-i18n="app.c1.d">Selección por perfil, briefing por escenario y simulacros antes de cada operativo. No improvisamos.</p>
         </div>
         <div class="approach__col">
-          <h4 data-i18n="app.c2.t">/ Comparabilidad</h4>
-          <p data-i18n="app.c2.d">Cuestionarios maestros traducidos y adaptados localmente; resultados ponderados a métricas regionales unificadas.</p>
+          <h4 data-i18n="app.c2.t">/ Protocolos estandarizados</h4>
+          <p data-i18n="app.c2.d">Cuestionarios maestros adaptados localmente; KPIs comparables entre sucursales, canales y países.</p>
         </div>
         <div class="approach__col">
-          <h4 data-i18n="app.c3.t">/ Tiempos</h4>
-          <p data-i18n="app.c3.d">Operativos paralelos en los 7 países permiten cerrar levantamientos regionales en 18–25 días, no en 3 meses.</p>
+          <h4 data-i18n="app.c3.t">/ Evidencia auditable</h4>
+          <p data-i18n="app.c3.d">Fotos, audios, geolocalización y timestamps validados en menos de 24 horas. Auditoría sin discusión.</p>
         </div>
         <div class="approach__col">
           <h4 data-i18n="app.c4.t">/ Confidencialidad</h4>
-          <p data-i18n="app.c4.d">Cumplimos GDPR, LGPD y normativas locales de protección de datos. NDA y data clean-room disponibles.</p>
+          <p data-i18n="app.c4.d">Cumplimos GDPR, LGPD y normativas locales. Cada shopper firma NDA; los datos de clientes evaluados nunca se exponen.</p>
         </div>
       </div>
     </div>
@@ -1723,9 +1912,36 @@ body::before {
 </section>
 
 <!-- ===================================================================== -->
+<!-- INDUSTRIES                                                            -->
+<!-- ===================================================================== -->
+<section class="section" id="industrias" data-screen-label="08 Industries">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__tag" data-i18n="ind.tag">Industrias</div>
+      <h2 class="section__title">
+        <span data-i18n="ind.title.a">Industrias</span> <i data-i18n="ind.title.b">donde</i> <span data-i18n="ind.title.c">aplicamos Mystery Shopping.</span>
+      </h2>
+    </div>
+
+    <div class="industries">
+      <span class="industries__chip" data-i18n="ind.1">Retail</span>
+      <span class="industries__chip" data-i18n="ind.2">Restaurantes y cafeterías</span>
+      <span class="industries__chip" data-i18n="ind.3">Bancos y financieras</span>
+      <span class="industries__chip" data-i18n="ind.4">Clínicas y hospitales</span>
+      <span class="industries__chip" data-i18n="ind.5">Hoteles</span>
+      <span class="industries__chip" data-i18n="ind.6">Telecomunicaciones</span>
+      <span class="industries__chip" data-i18n="ind.7">Automotriz</span>
+      <span class="industries__chip" data-i18n="ind.8">Supermercados</span>
+      <span class="industries__chip" data-i18n="ind.9">Centros comerciales</span>
+      <span class="industries__chip" data-i18n="ind.10">Servicios profesionales</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
 <!-- COVERAGE GRID                                                         -->
 <!-- ===================================================================== -->
-<section class="section" id="ciudades" data-screen-label="06 Cities">
+<section class="section" id="ciudades" data-screen-label="09 Cities">
   <div class="container">
     <div class="section__head">
       <div class="section__tag" data-i18n="cit.tag">Ciudades</div>
@@ -1748,16 +1964,16 @@ body::before {
 <!-- ===================================================================== -->
 <!-- CTA                                                                   -->
 <!-- ===================================================================== -->
-<section id="cta" data-screen-label="07 CTA">
+<section id="cta" data-screen-label="10 CTA">
   <div class="cta">
-    <h2 class="cta__title"><span data-i18n="cta.title.a">¿Listos para tomar decisiones</span><br /><i data-i18n="cta.title.b">basadas en evidencia?</i></h2>
-    <p class="cta__sub" data-i18n="cta.sub">Cuéntanos tu pregunta de negocio. Te respondemos con un plan de campo en 48 horas — no con una presentación de ventas.</p>
+    <h2 class="cta__title"><span data-i18n="cta.title.a">Descubre lo que realmente</span><br /><i data-i18n="cta.title.b">vive tu cliente.</i></h2>
+    <p class="cta__sub" data-i18n="cta.sub">Obtén una evaluación profesional de tu experiencia de servicio y recibe información clara para tomar decisiones — te respondemos con un plan concreto en menos de 48 horas hábiles.</p>
     <div class="cta__buttons">
       <button type="button" class="btn btn--primary" data-open-contact>
-        <span data-i18n="cta.btn1">Solicitar plan en 48h</span>
+        <span data-i18n="cta.btn1">Solicitar cotización</span>
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </button>
-      <a href="mailto:info@innvestiga.com" class="btn btn--ghost" data-i18n="cta.btn2">Hablar con un experto</a>
+      <a href="mailto:info@innvestiga.com" class="btn btn--ghost" data-i18n="cta.btn2">Hablar con un especialista</a>
     </div>
   </div>
 </section>
@@ -1770,7 +1986,7 @@ body::before {
     <div class="footer__grid">
       <div>
         <img src="assets/brand/innvestiga-logo.png" alt="Innvestiga" class="footer__logo" />
-        <div class="footer__tag" data-i18n="ft.tag">Market specialists · 7 países · est. 2014</div>
+        <div class="footer__tag" data-i18n="ft.tag">Especialistas en Mystery Shopping y experiencia del cliente · 7 países · est. 2014</div>
       </div>
       <div class="footer__col">
         <h5 data-i18n="ft.h1">Cobertura</h5>
@@ -1784,10 +2000,10 @@ body::before {
       </div>
       <div class="footer__col">
         <h5 data-i18n="ft.h2">Servicios</h5>
-        <a href="#servicios" data-i18n="ft.svc1">Cuantitativa</a>
-        <a href="#servicios" data-i18n="ft.svc2">Cualitativa</a>
-        <a href="#servicios" data-i18n="ft.svc3">Mystery shopping</a>
-        <a href="#servicios" data-i18n="ft.svc4">Inteligencia continua</a>
+        <a href="#servicios" data-i18n="ft.svc1">Presencial</a>
+        <a href="#servicios" data-i18n="ft.svc2">Digital</a>
+        <a href="#servicios" data-i18n="ft.svc3">Mystery Call</a>
+        <a href="#servicios" data-i18n="ft.svc4">Omnicanal</a>
       </div>
       <div class="footer__col">
         <h5 data-i18n="ft.h3">Contacto</h5>
@@ -1819,36 +2035,36 @@ body::before {
    =================================================================== */
 window.INNV_CITIES = [
   // GUATEMALA
-  { id: "gua-gt",     city: "Ciudad de Guatemala", country: "Guatemala",      code: "GT", lat: 14.6349, lng: -90.5069, img: null,                                 hub: true,  note: "Sede regional Norte" },
-  { id: "gua-ant",    city: "Antigua",             country: "Guatemala",      code: "GT", lat: 14.5586, lng: -90.7295, img: "assets/cities/guaAntigua.jpg",       hub: false, note: "Centro turístico colonial" },
-  { id: "gua-liv",    city: "Lívingston",          country: "Guatemala",      code: "GT", lat: 15.8316, lng: -88.7484, img: "assets/cities/guaLivingston.jpg",    hub: false, note: "Caribe garífuna" },
-  { id: "gua-xela",   city: "Quetzaltenango",      country: "Guatemala",      code: "GT", lat: 14.8333, lng: -91.5167, img: "assets/cities/guaXela.jpg",          hub: false, note: "Altiplano occidental" },
+  { id: "gua-gt",     city: "Ciudad de Guatemala", country: "Guatemala",      code: "GT", lat: 14.6349, lng: -90.5069, img: null,                                 hub: true,  note: "Sede regional Norte · cobertura completa" },
+  { id: "gua-ant",    city: "Antigua",             country: "Guatemala",      code: "GT", lat: 14.5586, lng: -90.7295, img: "assets/cities/guaAntigua.jpg",       hub: false, note: "Plaza turística · hospitality & retail" },
+  { id: "gua-liv",    city: "Lívingston",          country: "Guatemala",      code: "GT", lat: 15.8316, lng: -88.7484, img: "assets/cities/guaLivingston.jpg",    hub: false, note: "Costa caribe · hospitality, HORECA" },
+  { id: "gua-xela",   city: "Quetzaltenango",      country: "Guatemala",      code: "GT", lat: 14.8333, lng: -91.5167, img: "assets/cities/guaXela.jpg",          hub: false, note: "Altiplano · retail & banca" },
 
   // EL SALVADOR
-  { id: "sv-ss",      city: "San Salvador",        country: "El Salvador",    code: "SV", lat: 13.6929, lng: -89.2182, img: "assets/cities/svSalvadorDelMundo.jpg", hub: true,  note: "Sede regional Sur" },
-  { id: "sv-ataco",   city: "Concepción de Ataco", country: "El Salvador",    code: "SV", lat: 13.8703, lng: -89.8497, img: "assets/cities/svAtaco.png",          hub: false, note: "Ruta de las Flores" },
-  { id: "sv-libertad",city: "La Libertad",         country: "El Salvador",    code: "SV", lat: 13.4883, lng: -89.3222, img: "assets/cities/svSurf.webp",          hub: false, note: "Costa del Pacífico" },
+  { id: "sv-ss",      city: "San Salvador",        country: "El Salvador",    code: "SV", lat: 13.6929, lng: -89.2182, img: "assets/cities/svSalvadorDelMundo.jpg", hub: true,  note: "Sede regional Sur · cobertura completa" },
+  { id: "sv-ataco",   city: "Concepción de Ataco", country: "El Salvador",    code: "SV", lat: 13.8703, lng: -89.8497, img: "assets/cities/svAtaco.png",          hub: false, note: "Plaza turística · HORECA, retail" },
+  { id: "sv-libertad",city: "La Libertad",         country: "El Salvador",    code: "SV", lat: 13.4883, lng: -89.3222, img: "assets/cities/svSurf.webp",          hub: false, note: "Costa Pacífico · hospitality, HORECA" },
 
   // HONDURAS
-  { id: "hn-tgu",     city: "Tegucigalpa",         country: "Honduras",       code: "HN", lat: 14.0723, lng: -87.1921, img: "assets/cities/honTegu.jpg",          hub: false, note: "Capital y Distrito Central" },
-  { id: "hn-tgu2",    city: "Tegucigalpa Centro",  country: "Honduras",       code: "HN", lat: 14.0931, lng: -87.2010, img: "assets/cities/honTeguc.jpg",         hub: false, note: "Núcleo histórico" },
+  { id: "hn-tgu",     city: "Tegucigalpa",         country: "Honduras",       code: "HN", lat: 14.0723, lng: -87.1921, img: "assets/cities/honTegu.jpg",          hub: false, note: "Capital · retail, banca, servicios" },
+  { id: "hn-tgu2",    city: "Tegucigalpa Centro",  country: "Honduras",       code: "HN", lat: 14.0931, lng: -87.2010, img: "assets/cities/honTeguc.jpg",         hub: false, note: "Centro histórico · retail & HORECA" },
 
   // MÉXICO (CHIAPAS)
-  { id: "mx-txg",     city: "Tuxtla Gutiérrez",    country: "México",         code: "MX", lat: 16.7569, lng: -93.1292, img: "assets/cities/mexTuxtla.jpg",        hub: false, note: "Capital de Chiapas" },
-  { id: "mx-tap",     city: "Tapachula",           country: "México",         code: "MX", lat: 14.9020, lng: -92.2620, img: "assets/cities/mexTapachula.jpeg",    hub: false, note: "Frontera sur" },
-  { id: "mx-scc",     city: "San Cristóbal",       country: "México",         code: "MX", lat: 16.7370, lng: -92.6376, img: "assets/cities/mexCasaDeLaCultura.jpg", hub: false, note: "Pueblo mágico colonial" },
+  { id: "mx-txg",     city: "Tuxtla Gutiérrez",    country: "México",         code: "MX", lat: 16.7569, lng: -93.1292, img: "assets/cities/mexTuxtla.jpg",        hub: false, note: "Capital de Chiapas · cobertura completa" },
+  { id: "mx-tap",     city: "Tapachula",           country: "México",         code: "MX", lat: 14.9020, lng: -92.2620, img: "assets/cities/mexTapachula.jpeg",    hub: false, note: "Frontera sur · retail, logística, banca" },
+  { id: "mx-scc",     city: "San Cristóbal",       country: "México",         code: "MX", lat: 16.7370, lng: -92.6376, img: "assets/cities/mexCasaDeLaCultura.jpg", hub: false, note: "Plaza turística · hospitality, retail" },
 
   // COSTA RICA
-  { id: "cr-ala",     city: "Alajuela",            country: "Costa Rica",     code: "CR", lat: 10.0162, lng: -84.2117, img: "assets/cities/criAlajuela.jpg",      hub: false, note: "Valle central" },
-  { id: "cr-her",     city: "Heredia",             country: "Costa Rica",     code: "CR", lat: 9.9989,  lng: -84.1166, img: "assets/cities/criHeredia.jpg",       hub: false, note: "Ciudad de las flores" },
-  { id: "cr-pun",     city: "Puntarenas",          country: "Costa Rica",     code: "CR", lat: 9.9778,  lng: -84.8294, img: "assets/cities/criPuntarenas.jpg",    hub: false, note: "Pacífico central" },
+  { id: "cr-ala",     city: "Alajuela",            country: "Costa Rica",     code: "CR", lat: 10.0162, lng: -84.2117, img: "assets/cities/criAlajuela.jpg",      hub: false, note: "Valle Central · retail, banca, servicios" },
+  { id: "cr-her",     city: "Heredia",             country: "Costa Rica",     code: "CR", lat: 9.9989,  lng: -84.1166, img: "assets/cities/criHeredia.jpg",       hub: false, note: "Valle Central · retail & servicios" },
+  { id: "cr-pun",     city: "Puntarenas",          country: "Costa Rica",     code: "CR", lat: 9.9778,  lng: -84.8294, img: "assets/cities/criPuntarenas.jpg",    hub: false, note: "Costa Pacífico · hospitality, HORECA" },
 
   // NICARAGUA
-  { id: "ni-mga",     city: "Managua",             country: "Nicaragua",      code: "NI", lat: 12.1140, lng: -86.2362, img: null,                                 hub: false, note: "Operativo activo" },
+  { id: "ni-mga",     city: "Managua",             country: "Nicaragua",      code: "NI", lat: 12.1140, lng: -86.2362, img: null,                                 hub: false, note: "Capital · retail, banca, servicios" },
 
   // REPÚBLICA DOMINICANA
-  { id: "do-sdq",     city: "Santo Domingo",       country: "Rep. Dominicana", code: "DO", lat: 18.4861, lng: -69.9312, img: "assets/cities/domSantoDom.jpg",     hub: true,  note: "Sede Caribe" },
-  { id: "do-pm",      city: "Plaza Monumental",    country: "Rep. Dominicana", code: "DO", lat: 19.4517, lng: -70.6970, img: "assets/cities/domPlazaMonu.jpg",    hub: false, note: "Santiago de los Caballeros" },
+  { id: "do-sdq",     city: "Santo Domingo",       country: "Rep. Dominicana", code: "DO", lat: 18.4861, lng: -69.9312, img: "assets/cities/domSantoDom.jpg",     hub: true,  note: "Sede Caribe · cobertura completa" },
+  { id: "do-pm",      city: "Plaza Monumental",    country: "Rep. Dominicana", code: "DO", lat: 19.4517, lng: -70.6970, img: "assets/cities/domPlazaMonu.jpg",    hub: false, note: "Santiago · retail, banca, hospitality" },
 ];
 
 window.INNV_COUNTRIES = [
@@ -1875,24 +2091,24 @@ window.INNV_COUNTRIES = [
       "nav.enfoque":   "Enfoque",
       "nav.ciudades":  "Ciudades",
       "nav.cliente":   "Área cliente",
-      "nav.cta":       "Cotizar proyecto",
+      "nav.cta":       "Solicitar evaluación",
 
       "hero.eyebrow":   "Operativo en 7 países",
-      "hero.title1":    "Inteligencia",
-      "hero.title2":    "de mercado,",
-      "hero.title3":    "sin fronteras",
-      "hero.sub":       "Investigamos comportamientos, mercados y experiencias de marca en Centroamérica, el sur de México y el Caribe — con equipo propio en cada país y una metodología unificada que entrega data comparable, no improvisada.",
-      "hero.cta1":      "Agendar una sesión",
-      "hero.cta2":      "Ver cobertura",
-      "hero.stat1.num": "7",
-      "hero.stat1.unit":"países",
-      "hero.stat1.lbl": "Regional",
-      "hero.stat2.num": "16",
-      "hero.stat2.unit":"ciudades",
-      "hero.stat2.lbl": "Activas",
-      "hero.stat3.num": "12",
-      "hero.stat3.unit":"años",
-      "hero.stat3.lbl": "En campo",
+      "hero.title1":    "Mystery Shopping",
+      "hero.title2":    "que revela",
+      "hero.title3":    "lo que vive tu cliente",
+      "hero.sub":       "Evaluamos experiencias reales en puntos de venta, call centers, canales digitales y procesos de atención en Centroamérica y el Caribe — descubre cómo te atienden cuando nadie sabe que estás observando.",
+      "hero.cta1":      "Solicitar evaluación",
+      "hero.cta2":      "Ver cobertura regional",
+      "hero.stat1.num": "12",
+      "hero.stat1.unit":"años",
+      "hero.stat1.lbl": "En campo",
+      "hero.stat2.num": "22",
+      "hero.stat2.unit":"industrias",
+      "hero.stat2.lbl": "Atendidas",
+      "hero.stat3.num": "4",
+      "hero.stat3.unit":"idiomas",
+      "hero.stat3.lbl": "De campo",
 
       "map.hint":          "Toca un punto del mapa para explorar la ciudad",
       "map.legend":        "● Cobertura activa   ◉ Hub regional",
@@ -1901,86 +2117,98 @@ window.INNV_COUNTRIES = [
       "map.empty.note":    "Selecciona una ciudad del mapa.",
       "map.close":         "Cerrar",
 
-      "strip.lbl1": "Encuestadores en campo",
-      "strip.lbl2": "Estudios entregados",
-      "strip.lbl3": "Industrias atendidas",
-      "strip.lbl4": "Idiomas de campo",
+      "strip.lbl1": "Países operativos",
+      "strip.lbl2": "Ciudades activas",
+      "strip.lbl3": "Evaluaciones realizadas",
+      "strip.lbl4": "Shoppers en campo",
 
       "svc.tag":   "Servicios",
-      "svc.title.a": "Cuatro disciplinas,",
-      "svc.title.b": "una sola",
-      "svc.title.c": "certeza.",
-      "svc.1.title.a": "Investigación",
-      "svc.1.title.b": "cuantitativa",
-      "svc.1.desc":  "Estudios CATI, CAPI y CAWI con muestras estadísticamente sólidas y trazables hasta cada respondente.",
-      "svc.1.li1":   "Tracking de marca",
-      "svc.1.li2":   "Segmentación",
-      "svc.1.li3":   "Pricing & conjoint",
-      "svc.2.title.a": "Investigación",
-      "svc.2.title.b": "cualitativa",
-      "svc.2.desc":  "Focus groups, etnografías digitales y entrevistas a profundidad — moderación local con marco analítico común.",
-      "svc.2.li1":   "Sesiones presenciales",
-      "svc.2.li2":   "Comunidades online",
-      "svc.2.li3":   "Etnografía en hogar",
+      "svc.title.a": "Cuatro formas de",
+      "svc.title.b": "evaluar",
+      "svc.title.c": "la experiencia.",
+      "svc.1.title.a": "Mystery Shopper",
+      "svc.1.title.b": "presencial",
+      "svc.1.desc":  "Evaluamos la experiencia real dentro de sucursales, tiendas, restaurantes, bancos y puntos de servicio.",
+      "svc.1.li1":   "Atención y amabilidad",
+      "svc.1.li2":   "Cumplimiento de protocolos",
+      "svc.1.li3":   "Tiempo de espera",
+      "svc.1.li4":   "Técnicas de venta",
+      "svc.1.li5":   "Imagen y orden del punto",
+      "svc.1.li6":   "Experiencia de compra",
+      "svc.2.title.a": "Mystery Shopper",
+      "svc.2.title.b": "digital",
+      "svc.2.desc":  "Analizamos cómo responde tu empresa en canales digitales y plataformas online.",
+      "svc.2.li1":   "WhatsApp",
+      "svc.2.li2":   "Redes sociales",
+      "svc.2.li3":   "Chat web",
+      "svc.2.li4":   "E-commerce",
+      "svc.2.li5":   "Formularios de contacto",
+      "svc.2.li6":   "Tiempo y calidad de respuesta",
       "svc.3.title.a": "Mystery",
-      "svc.3.title.b": "shopping",
-      "svc.3.desc":  "Auditoría de experiencia en punto de venta, canales digitales y call centers con KPIs comparables por país.",
-      "svc.3.li1":   "Retail & HORECA",
-      "svc.3.li2":   "Banca & servicios",
-      "svc.3.li3":   "Omnicanal",
-      "svc.4.title.a": "Inteligencia",
-      "svc.4.title.b": "continua",
-      "svc.4.desc":  "Dashboards en vivo, alertas competitivas y reportes mensuales — tu organización no espera, tampoco la data.",
-      "svc.4.li1":   "Looker / PowerBI",
-      "svc.4.li2":   "API de datos",
-      "svc.4.li3":   "Reportes ejecutivos",
+      "svc.3.title.b": "Call",
+      "svc.3.desc":  "Evaluamos la experiencia telefónica y la calidad de atención en call centers y líneas de servicio.",
+      "svc.3.li1":   "Guiones comerciales",
+      "svc.3.li2":   "Resolución de problemas",
+      "svc.3.li3":   "Calidad del saludo",
+      "svc.3.li4":   "Manejo de objeciones",
+      "svc.3.li5":   "Seguimiento al cliente",
+      "svc.3.li6":   "Conversión comercial",
+      "svc.4.title.a": "Auditorías",
+      "svc.4.title.b": "omnicanal",
+      "svc.4.desc":  "Medimos la consistencia de la experiencia entre canales físicos y digitales.",
+      "svc.4.li1":   "Comparación entre sucursales",
+      "svc.4.li2":   "Benchmark competitivo",
+      "svc.4.li3":   "Auditorías de cumplimiento",
+      "svc.4.li4":   "Evaluación de promociones",
+      "svc.4.li5":   "Estándares de marca",
+      "svc.4.li6":   "Reportes comparativos regionales",
 
       "proc.tag":     "Proceso",
-      "proc.title.a": "De la pregunta a la decisión,",
-      "proc.title.b": "en cinco pasos.",
-      "proc.intro":   "Cada estudio sigue el mismo camino — sin importar país, idioma o industria. Por eso podemos prometer tiempos firmes y data comparable.",
-      "proc.1.t":     "Kickoff",
-      "proc.1.d":     "Briefing, objetivos de decisión y diseño muestral por país.",
+      "proc.title.a": "Así funciona el",
+      "proc.title.b": "Mystery Shopper.",
+      "proc.intro":   "Cada evaluación sigue el mismo camino — sin importar país, sucursal o canal. Así garantizamos resultados comparables y tiempos firmes.",
+      "proc.1.t":     "Definimos objetivos",
+      "proc.1.d":     "Diseñamos escenarios de evaluación alineados a tus procesos, protocolos y metas comerciales.",
       "proc.1.time":  "Día 1–3",
-      "proc.2.t":     "Diseño",
-      "proc.2.d":     "Cuestionario maestro, traducción cultural y piloto rápido.",
+      "proc.2.t":     "Creamos perfiles de shopper",
+      "proc.2.d":     "Seleccionamos evaluadores según el tipo de cliente que deseas analizar.",
       "proc.2.time":  "Día 4–7",
-      "proc.3.t":     "Campo",
-      "proc.3.d":     "Equipos locales en simultáneo, monitoreo 24/7 y triple validación.",
+      "proc.3.t":     "Ejecutamos visitas y contactos",
+      "proc.3.d":     "Realizamos evaluaciones presenciales, digitales o telefónicas sin alterar la operación.",
       "proc.3.time":  "Día 8–18",
-      "proc.4.t":     "Análisis",
-      "proc.4.d":     "Ponderación regional, cruces estratégicos y lectura de negocio.",
+      "proc.4.t":     "Validamos evidencia",
+      "proc.4.d":     "Auditamos respuestas, tiempos, fotografías, audios y cumplimiento de criterios.",
       "proc.4.time":  "Día 19–22",
-      "proc.5.t":     "Entrega",
-      "proc.5.d":     "Reporte ejecutivo, dashboard en vivo y sesión de trabajo final.",
+      "proc.5.t":     "Entregamos hallazgos accionables",
+      "proc.5.d":     "Recibes reportes claros, indicadores comparativos y recomendaciones estratégicas.",
       "proc.5.time":  "Día 23–25",
 
       "app.tag":     "Enfoque",
-      "app.title.a": "El equipo está",
-      "app.title.b": "donde está",
-      "app.title.c": "el dato.",
-      "app.lead":    "No vendemos paneles ni subcontratamos campo. Cada ciudad donde aparece un <i>punto</i> en el mapa tiene un <span class=\"underline\">coordinador propio</span>, protocolos auditados y rotación supervisada — porque la calidad de una decisión se construye al recolectar la primera respuesta, no al graficar la última.",
-      "app.c1.t":    "/ Calidad de campo",
-      "app.c1.d":    "Triple validación por respondente: geolocalización, audio y supervisión back-office en menos de 24 horas.",
-      "app.c2.t":    "/ Comparabilidad",
-      "app.c2.d":    "Cuestionarios maestros traducidos y adaptados localmente; resultados ponderados a métricas regionales unificadas.",
-      "app.c3.t":    "/ Tiempos",
-      "app.c3.d":    "Operativos paralelos en los 7 países permiten cerrar levantamientos regionales en 18–25 días, no en 3 meses.",
+      "app.title.a": "Más que evaluar,",
+      "app.title.b": "entender",
+      "app.title.c": "lo que vive tu cliente.",
+      "app.lead":    "No trabajamos con evaluaciones improvisadas. Contamos con <span class=\"underline\">shoppers entrenados</span>, protocolos estandarizados y supervisión regional — porque cada visita debe convertirse en evidencia útil, no en una anécdota.",
+      "app.c1.t":    "/ Shoppers entrenados",
+      "app.c1.d":    "Selección por perfil, briefing por escenario y simulacros antes de cada operativo. No improvisamos.",
+      "app.c2.t":    "/ Protocolos estandarizados",
+      "app.c2.d":    "Cuestionarios maestros adaptados localmente; KPIs comparables entre sucursales, canales y países.",
+      "app.c3.t":    "/ Evidencia auditable",
+      "app.c3.d":    "Fotos, audios, geolocalización y timestamps validados en menos de 24 horas. Auditoría sin discusión.",
       "app.c4.t":    "/ Confidencialidad",
-      "app.c4.d":    "Cumplimos GDPR, LGPD y normativas locales de protección de datos. NDA y data clean-room disponibles.",
+      "app.c4.d":    "Cumplimos GDPR, LGPD y normativas locales. Cada shopper firma NDA; los datos de clientes evaluados nunca se exponen.",
 
       "cit.tag":     "Ciudades",
       "cit.title.a": "16 ciudades donde el equipo",
       "cit.title.b": "ya está.",
       "cit.all":     "Todas",
 
-      "cta.title.a": "¿Listos para tomar decisiones",
-      "cta.title.b": "basadas en evidencia?",
-      "cta.sub":     "Cuéntanos tu pregunta de negocio. Te respondemos con un plan de campo en 48 horas — no con una presentación de ventas.",
-      "cta.btn1":    "Solicitar plan en 48h",
-      "cta.btn2":    "Hablar con un experto",
+      "cta.title.a": "Descubre lo que realmente",
+      "cta.title.b": "vive tu cliente.",
+      "cta.sub":     "Obtén una evaluación profesional de tu experiencia de servicio y recibe información clara para tomar decisiones — te respondemos con un plan concreto en menos de 48 horas hábiles.",
+      "cta.btn1":    "Solicitar cotización",
+      "cta.btn2":    "Hablar con un especialista",
 
-      "ft.tag":      "Market specialists · 7 países · est. 2014",
+      "ft.tag":      "Especialistas en Mystery Shopping y experiencia del cliente · 7 países · est. 2014",
       "ft.h1":       "Cobertura",
       "ft.h2":       "Servicios",
       "ft.h3":       "Contacto",
@@ -1991,14 +2219,14 @@ window.INNV_COUNTRIES = [
       "ft.legal.nda": "NDA disponible",
       "ft.copy":     "© 2026 Innvestiga · Todos los derechos reservados",
       "ft.made":     "Hecho con data y café · GT · SV",
-      "ft.svc1":     "Cuantitativa",
-      "ft.svc2":     "Cualitativa",
-      "ft.svc3":     "Mystery shopping",
-      "ft.svc4":     "Inteligencia continua",
+      "ft.svc1":     "Presencial",
+      "ft.svc2":     "Digital",
+      "ft.svc3":     "Mystery Call",
+      "ft.svc4":     "Omnicanal",
       "ft.contact.loc": "Guatemala · San Salvador",
 
-      "form.title":  "Cotizar un proyecto",
-      "form.sub":    "Respondemos con un plan de campo concreto en menos de 48 horas hábiles.",
+      "form.title":  "Solicitar evaluación",
+      "form.sub":    "Te respondemos con un plan concreto de Mystery Shopper en menos de 48 horas hábiles.",
       "form.name":   "Nombre",
       "form.namePh": "Tu nombre completo",
       "form.company":"Empresa",
@@ -2007,15 +2235,15 @@ window.INNV_COUNTRIES = [
       "form.emailPh":"tu@empresa.com",
       "form.country":"País de interés",
       "form.countryAll":"Todos / Regional",
-      "form.type":   "Tipo de estudio",
+      "form.type":   "Tipo de evaluación",
       "form.typeChoose":"Selecciona…",
-      "form.type.quant":"Cuantitativo",
-      "form.type.qual":"Cualitativo",
-      "form.type.mys": "Mystery shopping",
-      "form.type.cont":"Inteligencia continua",
+      "form.type.presencial":"Presencial",
+      "form.type.digital":   "Digital",
+      "form.type.call":      "Mystery Call",
+      "form.type.omnicanal": "Auditoría omnicanal",
       "form.type.other":"Otro / No estoy seguro",
-      "form.msg":    "Cuéntanos brevemente tu pregunta de negocio",
-      "form.msgPh":  "Ej. \"Queremos entender por qué cae nuestro NPS en el canal joven en CA-4\"",
+      "form.msg":    "Cuéntanos brevemente qué quieres evaluar",
+      "form.msgPh":  "Ej. \"Queremos auditar la atención en 30 sucursales antes del Q4\"",
       "form.submit": "Enviar — plan en 48h",
       "form.sending":"Enviando…",
       "form.success.t":"Gracias.",
@@ -2023,6 +2251,43 @@ window.INNV_COUNTRIES = [
       "form.success.btn":"Cerrar",
       "form.close":  "Cerrar formulario",
       "form.privacy":"Tus datos se tratan bajo nuestra política de privacidad. Nunca los compartimos.",
+
+      "wd.tag":     "¿Qué hacemos?",
+      "wd.title.a": "Mystery Shopping",
+      "wd.title.b": "con enfoque",
+      "wd.title.c": "estratégico.",
+      "wd.lead":    "No solo recopilamos observaciones: convertimos experiencias reales en información accionable para mejorar ventas, atención y fidelización.",
+      "wd.body":    "Evaluamos cada punto de contacto entre tu marca y tus clientes — para detectar oportunidades, inconsistencias y riesgos operativos.",
+
+      "ben.tag":     "Beneficios",
+      "ben.title.a": "Lo que puedes",
+      "ben.title.b": "descubrir",
+      "ben.title.c": "con un Mystery Shopper.",
+      "ben.1.t":     "Calidad real de atención",
+      "ben.1.d":     "Conoce cómo tratan realmente a tus clientes cuando no saben que están siendo evaluados.",
+      "ben.2.t":     "Cumplimiento operativo",
+      "ben.2.d":     "Verifica si cada sucursal sigue los protocolos y estándares establecidos.",
+      "ben.3.t":     "Oportunidades de venta",
+      "ben.3.d":     "Detecta errores que afectan conversión, ticket promedio y experiencia de compra.",
+      "ben.4.t":     "Comparación entre sucursales",
+      "ben.4.d":     "Identifica cuáles puntos destacan y cuáles necesitan intervención inmediata.",
+      "ben.5.t":     "Evaluación competitiva",
+      "ben.5.d":     "Analiza cómo atiende tu competencia y encuentra ventajas para diferenciarte.",
+
+      "ind.tag":     "Industrias",
+      "ind.title.a": "Industrias",
+      "ind.title.b": "donde",
+      "ind.title.c": "aplicamos Mystery Shopping.",
+      "ind.1":  "Retail",
+      "ind.2":  "Restaurantes y cafeterías",
+      "ind.3":  "Bancos y financieras",
+      "ind.4":  "Clínicas y hospitales",
+      "ind.5":  "Hoteles",
+      "ind.6":  "Telecomunicaciones",
+      "ind.7":  "Automotriz",
+      "ind.8":  "Supermercados",
+      "ind.9":  "Centros comerciales",
+      "ind.10": "Servicios profesionales",
 
       "menu.open":  "Menú",
       "menu.close": "Cerrar",
@@ -2035,24 +2300,24 @@ window.INNV_COUNTRIES = [
       "nav.enfoque":   "Approach",
       "nav.ciudades":  "Cities",
       "nav.cliente":   "Client area",
-      "nav.cta":       "Request a quote",
+      "nav.cta":       "Request evaluation",
 
       "hero.eyebrow":   "Active in 7 countries",
-      "hero.title1":    "Market",
-      "hero.title2":    "intelligence,",
-      "hero.title3":    "without borders",
-      "hero.sub":       "We research behaviors, markets and brand experiences across Central America, southern Mexico and the Caribbean — with in-house teams in every country and a unified methodology that delivers comparable data, not improvised numbers.",
-      "hero.cta1":      "Book a session",
-      "hero.cta2":      "See coverage",
-      "hero.stat1.num": "7",
-      "hero.stat1.unit":"countries",
-      "hero.stat1.lbl": "Regional",
-      "hero.stat2.num": "16",
-      "hero.stat2.unit":"cities",
-      "hero.stat2.lbl": "Coverage",
-      "hero.stat3.num": "12",
-      "hero.stat3.unit":"years",
-      "hero.stat3.lbl": "In the field",
+      "hero.title1":    "Mystery Shopping",
+      "hero.title2":    "that reveals",
+      "hero.title3":    "what your customers actually live",
+      "hero.sub":       "We evaluate real experiences at points of sale, call centers, digital channels and service processes across Central America and the Caribbean — discover how your customers are treated when no one knows they're being watched.",
+      "hero.cta1":      "Request evaluation",
+      "hero.cta2":      "See regional coverage",
+      "hero.stat1.num": "12",
+      "hero.stat1.unit":"years",
+      "hero.stat1.lbl": "In the field",
+      "hero.stat2.num": "22",
+      "hero.stat2.unit":"industries",
+      "hero.stat2.lbl": "Served",
+      "hero.stat3.num": "4",
+      "hero.stat3.unit":"languages",
+      "hero.stat3.lbl": "In field",
 
       "map.hint":          "Tap a point on the map to explore the city",
       "map.legend":        "● Active coverage   ◉ Regional hub",
@@ -2061,86 +2326,98 @@ window.INNV_COUNTRIES = [
       "map.empty.note":    "Select a city from the map.",
       "map.close":         "Close",
 
-      "strip.lbl1": "Field interviewers",
-      "strip.lbl2": "Studies delivered",
-      "strip.lbl3": "Industries served",
-      "strip.lbl4": "Field languages",
+      "strip.lbl1": "Active countries",
+      "strip.lbl2": "Active cities",
+      "strip.lbl3": "Evaluations completed",
+      "strip.lbl4": "Shoppers in the field",
 
       "svc.tag":   "Services",
-      "svc.title.a": "Four disciplines,",
-      "svc.title.b": "one",
-      "svc.title.c": "certainty.",
-      "svc.1.title.a": "Quantitative",
-      "svc.1.title.b": "research",
-      "svc.1.desc":  "CATI, CAPI and CAWI studies with statistically sound samples — every response traceable to the respondent.",
-      "svc.1.li1":   "Brand tracking",
-      "svc.1.li2":   "Segmentation",
-      "svc.1.li3":   "Pricing & conjoint",
-      "svc.2.title.a": "Qualitative",
-      "svc.2.title.b": "research",
-      "svc.2.desc":  "Focus groups, digital ethnographies and in-depth interviews — local moderation under a shared analytical frame.",
-      "svc.2.li1":   "In-person sessions",
-      "svc.2.li2":   "Online communities",
-      "svc.2.li3":   "In-home ethnography",
+      "svc.title.a": "Four ways to",
+      "svc.title.b": "evaluate",
+      "svc.title.c": "the experience.",
+      "svc.1.title.a": "In-person",
+      "svc.1.title.b": "mystery shopper",
+      "svc.1.desc":  "We evaluate the real experience inside branches, stores, restaurants, banks and service points.",
+      "svc.1.li1":   "Service & warmth",
+      "svc.1.li2":   "Protocol compliance",
+      "svc.1.li3":   "Wait time",
+      "svc.1.li4":   "Sales technique",
+      "svc.1.li5":   "Store image & order",
+      "svc.1.li6":   "Purchase experience",
+      "svc.2.title.a": "Digital",
+      "svc.2.title.b": "mystery shopper",
+      "svc.2.desc":  "We test how your company responds across digital channels and online platforms.",
+      "svc.2.li1":   "WhatsApp",
+      "svc.2.li2":   "Social media",
+      "svc.2.li3":   "Web chat",
+      "svc.2.li4":   "E-commerce",
+      "svc.2.li5":   "Contact forms",
+      "svc.2.li6":   "Response time & quality",
       "svc.3.title.a": "Mystery",
-      "svc.3.title.b": "shopping",
-      "svc.3.desc":  "Experience audits at point of sale, digital channels and call centers — KPIs comparable across countries.",
-      "svc.3.li1":   "Retail & HORECA",
-      "svc.3.li2":   "Banking & services",
-      "svc.3.li3":   "Omnichannel",
-      "svc.4.title.a": "Continuous",
-      "svc.4.title.b": "intelligence",
-      "svc.4.desc":  "Live dashboards, competitive alerts and monthly reports — your business doesn't wait, neither should the data.",
-      "svc.4.li1":   "Looker / PowerBI",
-      "svc.4.li2":   "Data API",
-      "svc.4.li3":   "Executive reports",
+      "svc.3.title.b": "Call",
+      "svc.3.desc":  "We assess phone experience and service quality across call centers and service lines.",
+      "svc.3.li1":   "Sales scripts",
+      "svc.3.li2":   "Problem resolution",
+      "svc.3.li3":   "Greeting quality",
+      "svc.3.li4":   "Objection handling",
+      "svc.3.li5":   "Customer follow-up",
+      "svc.3.li6":   "Sales conversion",
+      "svc.4.title.a": "Omnichannel",
+      "svc.4.title.b": "audits",
+      "svc.4.desc":  "We measure experience consistency across physical and digital channels.",
+      "svc.4.li1":   "Branch comparison",
+      "svc.4.li2":   "Competitive benchmark",
+      "svc.4.li3":   "Compliance audits",
+      "svc.4.li4":   "Promo evaluation",
+      "svc.4.li5":   "Brand standards",
+      "svc.4.li6":   "Regional comparison reports",
 
       "proc.tag":     "Process",
-      "proc.title.a": "From the question to the decision,",
-      "proc.title.b": "in five steps.",
-      "proc.intro":   "Every study follows the same path — regardless of country, language or industry. That's how we can promise firm timelines and comparable data.",
-      "proc.1.t":     "Kickoff",
-      "proc.1.d":     "Briefing, decision goals and per-country sampling design.",
+      "proc.title.a": "How",
+      "proc.title.b": "Mystery Shopping works.",
+      "proc.intro":   "Every evaluation follows the same path — regardless of country, branch or channel. That's how we guarantee comparable results and firm timelines.",
+      "proc.1.t":     "Define objectives",
+      "proc.1.d":     "We design evaluation scenarios aligned to your processes, protocols and commercial goals.",
       "proc.1.time":  "Day 1–3",
-      "proc.2.t":     "Design",
-      "proc.2.d":     "Master questionnaire, cultural translation and quick pilot.",
+      "proc.2.t":     "Build shopper profiles",
+      "proc.2.d":     "We select evaluators based on the customer type you want to analyze.",
       "proc.2.time":  "Day 4–7",
-      "proc.3.t":     "Field",
-      "proc.3.d":     "Local teams running in parallel, 24/7 monitoring and triple validation.",
+      "proc.3.t":     "Run visits & contacts",
+      "proc.3.d":     "We execute in-person, digital or phone evaluations without disrupting operations.",
       "proc.3.time":  "Day 8–18",
-      "proc.4.t":     "Analysis",
-      "proc.4.d":     "Regional weighting, strategic crosstabs and business read.",
+      "proc.4.t":     "Validate evidence",
+      "proc.4.d":     "We audit responses, timings, photos, audio and criteria compliance.",
       "proc.4.time":  "Day 19–22",
-      "proc.5.t":     "Delivery",
-      "proc.5.d":     "Executive report, live dashboard and final working session.",
+      "proc.5.t":     "Deliver actionable findings",
+      "proc.5.d":     "You receive clear reports, comparable indicators and strategic recommendations.",
       "proc.5.time":  "Day 23–25",
 
       "app.tag":     "Approach",
-      "app.title.a": "The team is",
-      "app.title.b": "where the",
-      "app.title.c": "data is.",
-      "app.lead":    "We don't sell panels or subcontract field work. Every city where a <i>point</i> appears on the map has its own <span class=\"underline\">coordinator</span>, audited protocols and supervised rotation — because the quality of a decision is built when the first response is collected, not when the last one is plotted.",
-      "app.c1.t":    "/ Field quality",
-      "app.c1.d":    "Triple validation per respondent: geolocation, audio and back-office review in under 24 hours.",
-      "app.c2.t":    "/ Comparability",
-      "app.c2.d":    "Master questionnaires translated and locally adapted; results weighted to unified regional metrics.",
-      "app.c3.t":    "/ Timelines",
-      "app.c3.d":    "Parallel operations across all 7 countries close regional studies in 18–25 days, not 3 months.",
+      "app.title.a": "More than evaluating —",
+      "app.title.b": "understanding",
+      "app.title.c": "what your customers live.",
+      "app.lead":    "We don't run improvised evaluations. We bring <span class=\"underline\">trained shoppers</span>, standardized protocols and regional supervision — because every visit should become useful evidence, not an anecdote.",
+      "app.c1.t":    "/ Trained shoppers",
+      "app.c1.d":    "Profile-based selection, scenario briefing and dry-runs before every operation. We don't improvise.",
+      "app.c2.t":    "/ Standardized protocols",
+      "app.c2.d":    "Master questionnaires adapted locally; KPIs comparable across branches, channels and countries.",
+      "app.c3.t":    "/ Auditable evidence",
+      "app.c3.d":    "Photos, audio, geolocation and timestamps validated in under 24 hours. No room for argument.",
       "app.c4.t":    "/ Confidentiality",
-      "app.c4.d":    "GDPR, LGPD and local data-protection compliance. NDA and clean-room available.",
+      "app.c4.d":    "GDPR, LGPD and local regulation compliant. Every shopper signs an NDA; evaluated-customer data is never exposed.",
 
       "cit.tag":     "Cities",
       "cit.title.a": "16 cities where the team is",
       "cit.title.b": "already on the ground.",
       "cit.all":     "All",
 
-      "cta.title.a": "Ready to make decisions",
-      "cta.title.b": "backed by evidence?",
-      "cta.sub":     "Tell us your business question. We'll respond with a concrete field plan in 48 hours — not a sales deck.",
-      "cta.btn1":    "Request plan in 48h",
-      "cta.btn2":    "Talk to an expert",
+      "cta.title.a": "Discover what your customers",
+      "cta.title.b": "actually experience.",
+      "cta.sub":     "Get a professional evaluation of your service experience — and clear information you can act on. We respond with a concrete plan within 48 business hours.",
+      "cta.btn1":    "Request a quote",
+      "cta.btn2":    "Talk to a specialist",
 
-      "ft.tag":      "Market specialists · 7 countries · est. 2014",
+      "ft.tag":      "Mystery Shopping & customer experience specialists · 7 countries · est. 2014",
       "ft.h1":       "Coverage",
       "ft.h2":       "Services",
       "ft.h3":       "Contact",
@@ -2151,14 +2428,14 @@ window.INNV_COUNTRIES = [
       "ft.legal.nda": "NDA available",
       "ft.copy":     "© 2026 Innvestiga · All rights reserved",
       "ft.made":     "Made with data and coffee · GT · SV",
-      "ft.svc1":     "Quantitative",
-      "ft.svc2":     "Qualitative",
-      "ft.svc3":     "Mystery shopping",
-      "ft.svc4":     "Continuous intelligence",
+      "ft.svc1":     "In-person",
+      "ft.svc2":     "Digital",
+      "ft.svc3":     "Mystery Call",
+      "ft.svc4":     "Omnichannel",
       "ft.contact.loc": "Guatemala · San Salvador",
 
-      "form.title":  "Request a quote",
-      "form.sub":    "We respond with a concrete field plan within 48 business hours.",
+      "form.title":  "Request evaluation",
+      "form.sub":    "We respond with a concrete Mystery Shopper plan within 48 business hours.",
       "form.name":   "Name",
       "form.namePh": "Your full name",
       "form.company":"Company",
@@ -2167,15 +2444,15 @@ window.INNV_COUNTRIES = [
       "form.emailPh":"you@company.com",
       "form.country":"Country of interest",
       "form.countryAll":"All / Regional",
-      "form.type":   "Study type",
+      "form.type":   "Evaluation type",
       "form.typeChoose":"Choose…",
-      "form.type.quant":"Quantitative",
-      "form.type.qual":"Qualitative",
-      "form.type.mys": "Mystery shopping",
-      "form.type.cont":"Continuous intelligence",
+      "form.type.presencial":"In-person",
+      "form.type.digital":   "Digital",
+      "form.type.call":      "Mystery Call",
+      "form.type.omnicanal": "Omnichannel audit",
       "form.type.other":"Other / Not sure yet",
-      "form.msg":    "Briefly, what's your business question?",
-      "form.msgPh":  "e.g. \"We want to understand why our NPS drops in the youth channel across CA-4\"",
+      "form.msg":    "Briefly, what do you want to evaluate?",
+      "form.msgPh":  "e.g. \"We want to audit service across 30 branches before Q4\"",
       "form.submit": "Send — plan in 48h",
       "form.sending":"Sending…",
       "form.success.t":"Thank you.",
@@ -2183,6 +2460,43 @@ window.INNV_COUNTRIES = [
       "form.success.btn":"Close",
       "form.close":  "Close form",
       "form.privacy":"Your data is handled under our privacy policy. We never share it.",
+
+      "wd.tag":     "What we do",
+      "wd.title.a": "Mystery Shopping",
+      "wd.title.b": "with strategic",
+      "wd.title.c": "focus.",
+      "wd.lead":    "We don't just collect observations: we turn real experiences into actionable insight to lift sales, service and loyalty.",
+      "wd.body":    "We evaluate every point of contact between your brand and your customers — to surface opportunities, inconsistencies and operational risk.",
+
+      "ben.tag":     "Benefits",
+      "ben.title.a": "What you can",
+      "ben.title.b": "uncover",
+      "ben.title.c": "with Mystery Shopping.",
+      "ben.1.t":     "Real service quality",
+      "ben.1.d":     "See how your customers are actually treated when no one knows they're being evaluated.",
+      "ben.2.t":     "Operational compliance",
+      "ben.2.d":     "Verify whether each location follows the protocols and standards you set.",
+      "ben.3.t":     "Sales opportunities",
+      "ben.3.d":     "Catch errors that hurt conversion, average ticket and the purchase experience.",
+      "ben.4.t":     "Branch comparison",
+      "ben.4.d":     "Identify which points stand out and which need immediate intervention.",
+      "ben.5.t":     "Competitive evaluation",
+      "ben.5.d":     "See how the competition serves customers and find advantages to set yourself apart.",
+
+      "ind.tag":     "Industries",
+      "ind.title.a": "Industries",
+      "ind.title.b": "where",
+      "ind.title.c": "we apply Mystery Shopping.",
+      "ind.1":  "Retail",
+      "ind.2":  "Restaurants & cafés",
+      "ind.3":  "Banks & financial",
+      "ind.4":  "Clinics & hospitals",
+      "ind.5":  "Hotels",
+      "ind.6":  "Telecom",
+      "ind.7":  "Automotive",
+      "ind.8":  "Supermarkets",
+      "ind.9":  "Shopping malls",
+      "ind.10": "Professional services",
 
       "menu.open":  "Menu",
       "menu.close": "Close",
@@ -2435,11 +2749,11 @@ window.INNV_COUNTRIES = [
                 <span class="field__lbl" data-i18n="form.type"></span>
                 <select name="type">
                   <option value="" data-i18n="form.typeChoose"></option>
-                  <option value="quant" data-i18n="form.type.quant"></option>
-                  <option value="qual"  data-i18n="form.type.qual"></option>
-                  <option value="mys"   data-i18n="form.type.mys"></option>
-                  <option value="cont"  data-i18n="form.type.cont"></option>
-                  <option value="other" data-i18n="form.type.other"></option>
+                  <option value="presencial" data-i18n="form.type.presencial"></option>
+                  <option value="digital"    data-i18n="form.type.digital"></option>
+                  <option value="call"       data-i18n="form.type.call"></option>
+                  <option value="omnicanal"  data-i18n="form.type.omnicanal"></option>
+                  <option value="other"      data-i18n="form.type.other"></option>
                 </select>
               </label>
             </div>
