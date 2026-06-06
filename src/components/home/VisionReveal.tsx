@@ -62,7 +62,7 @@ export default function VisionReveal() {
       {/* Decorative elements */}
       <div className="absolute top-12 left-12 w-px h-20 bg-gradient-to-b from-primary/30 to-transparent" />
       <div className="absolute bottom-12 right-12 w-px h-20 bg-gradient-to-t from-primary/30 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vh] rounded-full bg-primary/[0.04] blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vh] rounded-full bg-primary/[0.015] blur-[120px] pointer-events-none" />
 
       <div className="min-h-screen flex items-center justify-center px-8 md:px-16 lg:px-24 py-32">
         <div className="text-center max-w-[1100px] mx-auto">

@@ -47,14 +47,14 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center overflow-hidden bg-bg"
     >
       {/* ─── Atmospheric layers ─── */}
-      <div className="hero-glow absolute -top-[20vh] -right-[10vw] w-[70vw] h-[70vh] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.10)_0%,transparent_70%)] blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-[20vh] -left-[10vw] w-[50vw] h-[50vh] rounded-full bg-[radial-gradient(circle,rgba(30,64,175,0.06)_0%,transparent_70%)] blur-3xl pointer-events-none" />
+      <div className="hero-glow absolute -top-[20vh] -right-[10vw] w-[70vw] h-[70vh] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.05)_0%,transparent_70%)] blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-[20vh] -left-[10vw] w-[50vw] h-[50vh] rounded-full bg-[radial-gradient(circle,rgba(30,64,175,0.03)_0%,transparent_70%)] blur-3xl pointer-events-none" />
       <div className="absolute inset-0 gradient-mesh pointer-events-none" />
 
       {/* ─── SVG Map — large background element ─── */}
       <div className="absolute inset-0 flex items-center justify-end pointer-events-none">
         <motion.div
-          className="w-[75vw] lg:w-[60vw] h-[80vh] mr-[-5vw] opacity-60 lg:opacity-80"
+          className="w-[75vw] lg:w-[60vw] h-[80vh] mr-[-5vw] opacity-30 lg:opacity-45"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}

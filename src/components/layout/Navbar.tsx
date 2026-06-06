@@ -36,7 +36,7 @@ export default function Navbar() {
           flex items-center justify-between
           transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
           ${scrolled
-            ? "bg-surface/80 backdrop-blur-2xl border border-border shadow-[0_8px_24px_rgba(15,23,42,0.08)]"
+            ? "bg-surface/95 backdrop-blur-2xl border border-border shadow-[0_8px_24px_rgba(15,23,42,0.10)]"
             : "bg-transparent border border-transparent"
           }
           ${hidden && !menuOpen ? "-translate-y-[150%] opacity-0" : ""}

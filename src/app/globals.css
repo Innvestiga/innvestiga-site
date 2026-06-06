@@ -5,7 +5,7 @@
   /* ─── Surfaces ─── */
   --color-bg: #f8fafc;          /* page background */
   --color-surface: #ffffff;     /* cards / panels */
-  --color-surface-alt: #f1f5f9; /* alternating sections */
+  --color-surface-alt: #eaeef4; /* alternating sections (clearly distinct from bg) */
   --color-border: #e2e8f0;      /* hairlines / dividers */
 
   /* ─── Text ─── */

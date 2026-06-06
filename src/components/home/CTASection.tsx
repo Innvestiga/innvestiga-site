@@ -32,8 +32,7 @@ export default function CTASection() {
       className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-surface-alt"
     >
       {/* Multi-layer atmospheric glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(800px_circle_at_50%_50%,rgba(37,99,235,0.08),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(400px_circle_at_30%_60%,rgba(30,64,175,0.06),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(800px_circle_at_50%_50%,rgba(37,99,235,0.04),transparent_60%)]" />
 
       {/* Dot grid */}
       <div className="absolute inset-0 dot-grid opacity-15 pointer-events-none" />

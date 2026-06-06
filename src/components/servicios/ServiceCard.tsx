@@ -8,23 +8,14 @@ interface ServiceCardProps {
   width?: string;
 }
 
-const cardGradients = [
-  "from-primary/[0.06] via-transparent to-surface-alt/80",
-  "from-surface-alt/80 via-transparent to-primary/[0.04]",
-  "from-transparent via-primary/[0.03] to-surface-alt/60",
-];
-
 export default function ServiceCard({ service, width }: ServiceCardProps) {
-  const idx = parseInt(service.number) - 1;
-  const gradient = cardGradients[idx] || cardGradients[0];
-
   return (
     <Link
       href={`/servicios/${service.slug}`}
       className="group block flex-shrink-0 snap-center"
       style={{ width: width || "85vw" }}
     >
-      <div className={`relative h-[60vh] md:h-[70vh] rounded-2xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-700 p-8 md:p-12 flex flex-col justify-between bg-gradient-to-br ${gradient}`}>
+      <div className="relative h-[60vh] md:h-[70vh] rounded-2xl overflow-hidden bg-surface border border-border shadow-[0_1px_3px_rgba(15,23,42,0.06),0_12px_32px_rgba(15,23,42,0.08)] hover:border-primary/40 hover:shadow-[0_1px_3px_rgba(15,23,42,0.08),0_20px_48px_rgba(30,64,175,0.12)] transition-all duration-700 p-8 md:p-12 flex flex-col justify-between">
         {/* Background mesh */}
         <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
 
