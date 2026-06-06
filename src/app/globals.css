@@ -1,0 +1,157 @@
+@import "tailwindcss";
+/* v3 — light theme (blue / slate). Legacy gold/midnight tokens remapped to the
+   new palette so existing utility classes auto-convert. */
+@theme inline {
+  /* ─── Surfaces ─── */
+  --color-bg: #f8fafc;          /* page background */
+  --color-surface: #ffffff;     /* cards / panels */
+  --color-surface-alt: #f1f5f9; /* alternating sections */
+  --color-border: #e2e8f0;      /* hairlines / dividers */
+
+  /* ─── Text ─── */
+  --color-ink: #1f2937;         /* headings / strong */
+  --color-body: #4b5563;        /* secondary text */
+  --color-muted: #6b7280;       /* tertiary / captions */
+
+  /* ─── Brand blue ─── */
+  --color-primary: #1e40af;       /* primary actions */
+  --color-primary-hover: #2563eb; /* hover / accent */
+  --color-accent: #2563eb;
+
+  /* ─── Legacy remaps (old classes resolve to the new palette) ─── */
+  --color-midnight: #1f2937;
+  --color-midnight-light: #334155;
+  --color-midnight-deep: #0f172a;
+  --color-gold: #1e40af;
+  --color-gold-light: #2563eb;
+  --color-cream: #f8fafc;
+  --color-white-dim: rgba(31, 41, 55, 0.5);
+  --color-gold-glow: rgba(30, 64, 175, 0.08);
+
+  --font-heading: var(--font-syne), "Syne", sans-serif;
+  --font-body: var(--font-inter), "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+}
+
+/* ─── Custom cursor (fine pointer only) ─── */
+@media (hover: hover) and (pointer: fine) {
+  html, body { cursor: none !important; }
+  a, button, [role="button"] { cursor: none !important; }
+}
+
+/* ─── Selection ─── */
+::selection {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-surface-alt); }
+::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 2px; }
+
+/* ─── Brand gradient text (blue) ─── */
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Text stroke outline (subtle slate on light) ─── */
+.text-outline {
+  -webkit-text-stroke: 2px rgba(31, 41, 55, 0.14);
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Grain overlay (applied via ::after) ─── */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* ─── Card surface (replaces dark glass) ─── */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+/* ─── Dot grid pattern (blue) ─── */
+.dot-grid {
+  background-image: radial-gradient(rgba(30, 64, 175, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ─── Animated gradient mesh (light blue) ─── */
+@keyframes mesh-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-mesh {
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.04) 0%,
+    transparent 30%,
+    rgba(241, 245, 249, 0.6) 50%,
+    transparent 70%,
+    rgba(30, 64, 175, 0.03) 100%
+  );
+  background-size: 200% 200%;
+  animation: mesh-shift 15s ease-in-out infinite;
+}
+
+/* ─── Horizontal rule accent ─── */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  border: none;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Lenis ─── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ─── Scrollbar hide utility ─── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
