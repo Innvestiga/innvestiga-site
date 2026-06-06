@@ -1,0 +1,15 @@
+# Build:  docker compose --env-file .env.local build
+# Run:    docker compose up -d
+services:
+  web:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_EMAILJS_SERVICE_ID: ${NEXT_PUBLIC_EMAILJS_SERVICE_ID}
+        NEXT_PUBLIC_EMAILJS_TEMPLATE_ID: ${NEXT_PUBLIC_EMAILJS_TEMPLATE_ID}
+        NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${NEXT_PUBLIC_EMAILJS_PUBLIC_KEY}
+    image: innvestiga-main-site:latest
+    container_name: innvestiga-main-site
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
