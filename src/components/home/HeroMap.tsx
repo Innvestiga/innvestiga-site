@@ -175,7 +175,7 @@ export default function HeroMap() {
   return (
     <svg
       ref={svgRef}
-      viewBox="0 0 480 260"
+      viewBox="6 10 322 250"
       className="w-full h-full"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="Mapa de cobertura Innvestiga en Centroamérica"
@@ -278,37 +278,8 @@ export default function HeroMap() {
         </g>
       ))}
 
-      {/* ─── Labels ─── */}
-      {mapData.filter((c) => c.id !== "rep-dominicana").map((c) => {
-        // Position label above or below city depending on space
-        const above = c.id !== "el-salvador" && c.id !== "costa-rica";
-        const ly = above ? c.city.y - (c.isHQ ? 18 : 14) : c.city.y + (c.isHQ ? 20 : 16);
-        return (
-          <g key={`label-${c.id}`} className="map-label" opacity="0">
-            <text
-              x={c.city.x} y={ly}
-              textAnchor="middle"
-              fill="rgba(31,41,55,0.7)"
-              fontSize="7"
-              fontWeight="800"
-              fontFamily="var(--font-heading), Syne, sans-serif"
-              letterSpacing="0.12em"
-            >
-              {c.label}
-            </text>
-            <text
-              x={c.city.x} y={ly + 10}
-              textAnchor="middle"
-              fill="rgba(30,64,175,0.5)"
-              fontSize="5"
-              fontWeight="600"
-              letterSpacing="0.05em"
-            >
-              {c.city.name}
-            </text>
-          </g>
-        );
-      })}
+      {/* Country name labels intentionally omitted — keep the map a clean,
+          monochrome data graphic so it never competes with the hero headline. */}
 
       {/* ─── República Dominicana INSET (moved into the empty ocean gap) ─── */}
       <g transform={`translate(${RD_DX},${RD_DY})`}>
@@ -322,12 +293,12 @@ export default function HeroMap() {
         />
         <text
           x="396" y="2"
-          fill="rgba(107,114,128,0.9)"
+          fill="rgba(30,64,175,0.55)"
           fontSize="4"
           fontWeight="700"
-          letterSpacing="0.08em"
+          letterSpacing="0.1em"
         >
-          INSET · REP. DOMINICANA
+          R. DOMINICANA
         </text>
 
         {/* Hispaniola context (Haiti half) */}
@@ -353,30 +324,6 @@ export default function HeroMap() {
           <circle cx={RD.city.x} cy={RD.city.y} r="2" fill="rgba(30,64,175,0.4)" />
         </g>
 
-        {/* RD label */}
-        <g className="map-label" opacity="0">
-          <text
-            x={RD.city.x} y={RD.city.y - 14}
-            textAnchor="middle"
-            fill="rgba(31,41,55,0.7)"
-            fontSize="7"
-            fontWeight="800"
-            fontFamily="var(--font-heading), Syne, sans-serif"
-            letterSpacing="0.12em"
-          >
-            {RD.label}
-          </text>
-          <text
-            x={RD.city.x} y={RD.city.y - 4}
-            textAnchor="middle"
-            fill="rgba(30,64,175,0.5)"
-            fontSize="5"
-            fontWeight="600"
-            letterSpacing="0.05em"
-          >
-            {RD.city.name}
-          </text>
-        </g>
       </g>
 
       {/* HQ badge */}
@@ -387,13 +334,6 @@ export default function HeroMap() {
         </text>
       </g>
 
-      {/* Compass */}
-      <g opacity="0.2" transform="translate(450,230)">
-        <line x1="0" y1="-12" x2="0" y2="12" stroke="rgba(30,64,175,0.6)" strokeWidth="0.5" />
-        <line x1="-12" y1="0" x2="12" y2="0" stroke="rgba(30,64,175,0.6)" strokeWidth="0.5" />
-        <polygon points="0,-14 -2,-10 2,-10" fill="rgba(30,64,175,0.5)" />
-        <text x="0" y="-18" textAnchor="middle" fill="rgba(30,64,175,0.6)" fontSize="5" fontWeight="700">N</text>
-      </g>
     </svg>
   );
 }
