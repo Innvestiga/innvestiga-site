@@ -59,7 +59,8 @@ export default function HeroSection() {
               </motion.div>
 
               <motion.h1
-                className="font-heading normal-case text-[clamp(2.2rem,4.6vw,3.85rem)] font-[800] leading-[1.06] tracking-tight text-ink"
+                style={{ textTransform: "none" }}
+                className="font-heading text-[clamp(2.2rem,4.6vw,3.85rem)] font-[800] leading-[1.08] tracking-tight text-ink"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
