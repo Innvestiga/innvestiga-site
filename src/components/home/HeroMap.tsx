@@ -175,7 +175,7 @@ export default function HeroMap() {
   return (
     <svg
       ref={svgRef}
-      viewBox="6 10 322 250"
+      viewBox="-16 6 384 268"
       className="w-full h-full"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="Mapa de cobertura Innvestiga en Centroamérica"
@@ -278,8 +278,29 @@ export default function HeroMap() {
         </g>
       ))}
 
-      {/* Country name labels intentionally omitted — keep the map a clean,
-          monochrome data graphic so it never competes with the hero headline. */}
+      {/* ─── Country name labels (panel-contained, so they no longer
+              compete with the hero headline) ─── */}
+      {mapData.filter((c) => c.id !== "rep-dominicana").map((c) => {
+        const below = c.id === "el-salvador" || c.id === "costa-rica" || c.id === "panama";
+        const ly = below ? c.city.y + 11 : c.city.y - (c.isHQ ? 15 : 10);
+        return (
+          <text
+            key={`label-${c.id}`}
+            className="map-label"
+            opacity="0"
+            x={c.city.x}
+            y={ly}
+            textAnchor="middle"
+            fill="rgba(31,41,55,0.72)"
+            fontSize="6.5"
+            fontWeight="800"
+            fontFamily="var(--font-heading), Syne, sans-serif"
+            letterSpacing="0.05em"
+          >
+            {c.label}
+          </text>
+        );
+      })}
 
       {/* ─── República Dominicana INSET (moved into the empty ocean gap) ─── */}
       <g transform={`translate(${RD_DX},${RD_DY})`}>

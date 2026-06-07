@@ -4,9 +4,9 @@ import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "@/lib/gsap";
 import Button from "@/components/ui/Button";
-import GlassCard from "@/components/ui/GlassCard";
 import { STATS, CONTACT, PILOT_COUNTRIES } from "@/lib/constants";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import { countries } from "@/data/countries";
 import HeroMap from "./HeroMap";
 
 export default function HeroSection() {
@@ -45,7 +45,7 @@ export default function HeroSection() {
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col lg:flex-row items-center lg:justify-between gap-16 lg:gap-12">
             {/* ── Left: Typography ── */}
-            <div className="flex-1 lg:max-w-[620px]">
+            <div className="flex-1 lg:max-w-[600px]">
               <motion.div
                 className="flex items-center gap-4 mb-8"
                 initial={{ opacity: 0, y: 20 }}
@@ -113,75 +113,72 @@ export default function HeroSection() {
               </motion.div>
             </div>
 
-            {/* ── Right: contained map panel + overlapping stats ── */}
-            <div className="hidden lg:block relative w-[44%] max-w-[540px] flex-shrink-0">
-              <motion.div
-                className="relative rounded-[28px] border border-border bg-gradient-to-br from-[#eef3fc] via-surface to-surface overflow-hidden shadow-[0_1px_3px_rgba(15,23,42,0.05),0_24px_60px_-14px_rgba(30,64,175,0.20)]"
-                initial={{ opacity: 0, scale: 0.96, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {/* Panel header */}
-                <div className="flex items-center justify-between px-6 pt-5">
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                    <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-primary/70">
-                      Cobertura regional
-                    </span>
-                  </div>
-                  <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-muted">
-                    8 países
+            {/* ── Right: coverage panel — map + reach + countries ── */}
+            <motion.div
+              className="hidden lg:flex flex-col w-[46%] max-w-[560px] flex-shrink-0 rounded-[28px] border border-border bg-gradient-to-br from-[#eef3fc] via-surface to-surface overflow-hidden shadow-[0_1px_3px_rgba(15,23,42,0.05),0_24px_60px_-14px_rgba(30,64,175,0.20)]"
+              initial={{ opacity: 0, scale: 0.96, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {/* Panel header */}
+              <div className="flex items-center justify-between px-6 pt-5">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-primary/70">
+                    Cobertura regional
+                  </span>
+                </div>
+                <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-muted">
+                  Centroamérica · Caribe
+                </span>
+              </div>
+
+              {/* Map */}
+              <div className="px-3 pt-1">
+                <div className="aspect-[322/250]">
+                  <HeroMap />
+                </div>
+              </div>
+
+              {/* Footer: reach figures + the actual countries */}
+              <div className="border-t border-border bg-surface/70 px-6 py-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-primary/70">
+                    Nuestro Alcance
                   </span>
                 </div>
 
-                {/* Map */}
-                <div className="px-3 pb-5 pt-1">
-                  <div className="aspect-[322/250]">
-                    <HeroMap />
-                  </div>
+                <div className="grid grid-cols-3 divide-x divide-border mb-5">
+                  {[
+                    { end: STATS.countries, label: "Países", suffix: "" },
+                    { end: STATS.departments, label: "Departamentos", suffix: "" },
+                    { end: STATS.municipalities, label: "Municipios", suffix: "+" },
+                  ].map((s) => (
+                    <div key={s.label} className="flex flex-col items-center text-center px-2">
+                      <AnimatedCounter
+                        end={s.end}
+                        suffix={s.suffix}
+                        className="text-2xl font-heading font-[800] text-primary tracking-tight leading-none"
+                      />
+                      <span className="mt-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-muted">
+                        {s.label}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              </motion.div>
 
-              {/* Stats card overlapping the panel's bottom-left corner */}
-              <motion.div
-                className="absolute -bottom-7 -left-8 w-[252px]"
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <GlassCard gold className="!p-6 space-y-5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                    <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-primary/70">
-                      Nuestro Alcance
+                <div className="flex flex-wrap gap-1.5">
+                  {countries.map((c) => (
+                    <span
+                      key={c.id}
+                      className="text-[9px] font-semibold tracking-wide text-body bg-primary/[0.06] border border-primary/10 px-2.5 py-1 rounded-full"
+                    >
+                      {c.name}
                     </span>
-                  </div>
-
-                  <div className="space-y-4">
-                    {[
-                      { end: STATS.countries, label: "Países", suffix: "" },
-                      { end: STATS.departments, label: "Departamentos", suffix: "" },
-                      { end: STATS.municipalities, label: "Municipios", suffix: "+" },
-                    ].map((stat) => (
-                      <div key={stat.label} className="flex items-baseline justify-between border-b border-border pb-3 last:border-0 last:pb-0">
-                        <AnimatedCounter
-                          end={stat.end}
-                          suffix={stat.suffix}
-                          className="text-[1.7rem] font-heading font-[800] text-primary tracking-tight leading-none"
-                        />
-                        <span className="text-[8px] tracking-[0.3em] uppercase text-muted font-bold">
-                          {stat.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <Button href="/cobertura" variant="ghost" className="text-[9px] px-0 tracking-[0.2em]">
-                    Ver cobertura completa →
-                  </Button>
-                </GlassCard>
-              </motion.div>
-            </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
