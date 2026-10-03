@@ -37,7 +37,7 @@ export default function AnimatedCounter({
           duration,
           ease: "power2.out",
           onUpdate: () => {
-            el.textContent = `${prefix}${Math.round(obj.val)}${suffix}`;
+            el.textContent = `${prefix}${Math.round(obj.val).toLocaleString("en-US")}${suffix}`;
           },
         });
       },

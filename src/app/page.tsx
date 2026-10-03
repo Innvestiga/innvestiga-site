@@ -1,17 +1,22 @@
 import HeroSection from "@/components/home/HeroSection";
-import ESISection from "@/components/home/ESISection";
+import BenefitsSection from "@/components/home/BenefitsSection";
+import ServicesGrid from "@/components/home/ServicesGrid";
+import ProcessSection from "@/components/home/ProcessSection";
 import VisionReveal from "@/components/home/VisionReveal";
-import ServicesCarousel from "@/components/home/ServicesCarousel";
 import CoverageSplit from "@/components/home/CoverageSplit";
 import CTASection from "@/components/home/CTASection";
 
+// Home, benefits first: the ask and the track record, what every audit
+// delivers, the three services, how a visit becomes a decision, the hook,
+// the coverage, the pilot.
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <ESISection />
+      <BenefitsSection />
+      <ServicesGrid />
+      <ProcessSection />
       <VisionReveal />
-      <ServicesCarousel />
       <CoverageSplit />
       <CTASection />
     </>
