@@ -8,7 +8,7 @@ export default function StatsPanel() {
     { label: "Países", value: STATS.countries, suffix: "" },
     { label: "Departamentos", value: STATS.departments, suffix: "" },
     { label: "Municipios", value: STATS.municipalities, suffix: "+" },
-    { label: "Años de experiencia", value: STATS.yearsExperience, suffix: "+" },
+    { label: "Años de experiencia", value: STATS.yearsExperience, suffix: "" },
   ];
 
   return (

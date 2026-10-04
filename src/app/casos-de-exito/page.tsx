@@ -32,7 +32,7 @@ export default function CasosDeExitoPage() {
             Resultados Comprobados
           </motion.span>
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-[800] leading-[0.9] uppercase text-ink"
+            className="text-[clamp(1.6rem,7.5vw,6rem)] font-[800] leading-[0.9] uppercase text-ink"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}

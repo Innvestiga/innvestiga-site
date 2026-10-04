@@ -39,7 +39,7 @@ export default function ServiceCard({ service, width }: ServiceCardProps) {
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-6 h-px bg-gold/50" />
-            <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-gold/70">
+            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gold/70">
               {service.number} — Servicio
             </span>
           </div>
@@ -50,7 +50,7 @@ export default function ServiceCard({ service, width }: ServiceCardProps) {
             {service.shortDescription}
           </p>
 
-          <div className="flex items-center gap-2 mt-8 text-[9px] font-bold tracking-[0.3em] uppercase text-gold/40 group-hover:text-gold group-hover:gap-4 transition-all duration-500">
+          <div className="flex items-center gap-2 mt-8 text-[10px] font-bold tracking-[0.3em] uppercase text-gold/40 group-hover:text-gold group-hover:gap-4 transition-all duration-500">
             <span>Explorar</span>
             <div className="w-4 h-px bg-current transition-all duration-500 group-hover:w-8" />
           </div>

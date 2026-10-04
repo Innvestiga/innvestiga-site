@@ -22,10 +22,10 @@ export default function BlogPost({ post }: BlogPostProps) {
         {/* Header */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-6">
-            <span className="text-[9px] font-bold tracking-widest uppercase text-primary bg-primary/10 px-3 py-1 rounded-full">
+            <span className="text-[10px] font-bold tracking-widest uppercase text-primary bg-primary/10 px-3 py-1 rounded-full">
               {post.category}
             </span>
-            <span className="text-[9px] text-muted tracking-widest">
+            <span className="text-[10px] text-muted tracking-widest">
               {post.readTime}
             </span>
           </div>

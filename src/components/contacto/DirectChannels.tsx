@@ -41,7 +41,7 @@ export default function DirectChannels() {
             >
               <path d={iconPaths[ch.icon]} />
             </svg>
-            <span className="text-[8px] font-bold tracking-[0.3em] uppercase text-muted block mb-2">
+            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-2">
               {ch.label}
             </span>
             <span className="text-[12px] font-bold text-body group-hover:text-ink transition-colors duration-300 break-words block">

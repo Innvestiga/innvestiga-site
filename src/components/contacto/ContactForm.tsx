@@ -59,7 +59,7 @@ export default function ContactForm() {
     "transition-colors duration-300",
   ].join(" ");
 
-  const labelStyles = "block text-[9px] font-bold tracking-[0.3em] uppercase text-muted mb-1";
+  const labelStyles = "block text-[10px] font-bold tracking-[0.3em] uppercase text-muted mb-1";
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
@@ -153,7 +153,7 @@ export default function ContactForm() {
             id="countries"
             type="text"
             name="countries"
-            placeholder="Ej. Perú, Chile, Colombia"
+            placeholder="Ej. Guatemala, El Salvador, Honduras"
             className={inputStyles}
           />
         </div>

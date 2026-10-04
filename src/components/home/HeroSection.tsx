@@ -130,7 +130,7 @@ export default function HeroSection() {
                       suffix={s.suffix}
                       className="text-[1.45rem] sm:text-3xl md:text-4xl font-heading font-[800] text-ink tracking-tight leading-none"
                     />
-                    <span className="mt-2 text-[9px] font-bold uppercase tracking-[0.2em] text-muted">
+                    <span className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-muted">
                       {s.label}
                     </span>
                   </div>
@@ -149,11 +149,11 @@ export default function HeroSection() {
               <div className="flex items-center justify-between px-6 pt-5">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                  <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-primary/70">
+                  <span className="text-[10px] font-bold tracking-[0.35em] uppercase text-primary/70">
                     Cobertura regional
                   </span>
                 </div>
-                <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-muted">
+                <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-muted">
                   Centroamérica · Caribe
                 </span>
               </div>

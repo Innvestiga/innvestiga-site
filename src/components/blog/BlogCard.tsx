@@ -16,10 +16,10 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         <GlassCard className="h-full group hover:border-primary/20 transition-all duration-500">
           <div className="space-y-5">
             <div className="flex items-center gap-3">
-              <span className="text-[8px] font-bold tracking-[0.3em] uppercase text-primary bg-primary/[0.08] px-3 py-1.5 rounded-full border border-primary/10">
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-primary bg-primary/[0.08] px-3 py-1.5 rounded-full border border-primary/10">
                 {post.category}
               </span>
-              <span className="text-[8px] text-muted tracking-[0.2em] font-bold">
+              <span className="text-[10px] text-muted tracking-[0.2em] font-bold">
                 {post.readTime}
               </span>
             </div>
@@ -33,14 +33,14 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             </p>
 
             <div className="flex items-center justify-between pt-5 border-t border-border">
-              <span className="text-[9px] text-muted tracking-[0.15em] font-bold">
+              <span className="text-[10px] text-muted tracking-[0.15em] font-bold">
                 {new Date(post.date).toLocaleDateString("es-GT", {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
                 })}
               </span>
-              <span className="flex items-center gap-2 text-[9px] font-bold tracking-[0.2em] uppercase text-primary/40 group-hover:text-primary transition-colors duration-300">
+              <span className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-primary/40 group-hover:text-primary transition-colors duration-300">
                 <span>Leer</span>
                 <div className="w-3 h-px bg-current group-hover:w-6 transition-all duration-300" />
               </span>

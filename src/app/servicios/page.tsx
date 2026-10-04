@@ -23,7 +23,7 @@ export default function ServiciosPage() {
             Nuestras Soluciones
           </motion.span>
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-[800] leading-[0.9] uppercase max-w-5xl"
+            className="text-[clamp(1.6rem,7.5vw,6rem)] font-[800] leading-[0.9] uppercase max-w-5xl"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -69,22 +69,28 @@ export default function ServiciosPage() {
                     i % 2 !== 0 ? "lg:order-1" : ""
                   }`}
                 >
-                  <div className="relative h-[50vh] rounded-2xl overflow-hidden bg-surface-alt border border-border">
-                    <span className="absolute inset-0 flex items-center justify-center text-[20vw] font-heading font-[800] text-ink/[0.04]">
+                  <div className="relative rounded-2xl overflow-hidden bg-surface border border-border p-8 md:p-10 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_12px_32px_rgba(15,23,42,0.06)]">
+                    <span className="absolute -top-6 -right-2 text-[9rem] font-heading font-[800] leading-none text-primary/[0.06] select-none pointer-events-none">
                       {service.number}
                     </span>
-                    <div className="absolute bottom-8 left-8 right-8">
-                      <div className="grid grid-cols-2 gap-4">
-                        {service.features.slice(0, 4).map((f, j) => (
-                          <div
-                            key={j}
-                            className="flex items-start gap-2 text-[10px] text-muted"
-                          >
-                            <span className="w-1 h-1 bg-gold rounded-full mt-1 flex-shrink-0" />
-                            {f}
-                          </div>
-                        ))}
-                      </div>
+                    <span className="relative text-[10px] font-bold tracking-[0.4em] uppercase text-primary/70 block mb-6">
+                      Qué incluye
+                    </span>
+                    <ul className="relative grid sm:grid-cols-2 gap-x-6 gap-y-4">
+                      {service.features.map((f, j) => (
+                        <li key={j} className="flex items-start gap-3 text-[14px] text-ink leading-snug">
+                          <span className="mt-[7px] w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="relative mt-8 pt-6 border-t border-border grid grid-cols-4 gap-2">
+                      {service.process.map((p) => (
+                        <div key={p.step} className="flex flex-col gap-1">
+                          <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted">0{p.step}</span>
+                          <span className="text-[12px] font-semibold text-ink">{p.title}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

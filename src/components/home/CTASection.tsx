@@ -29,7 +29,7 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-surface-alt"
+      className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-surface-alt border-t border-border"
     >
       {/* Multi-layer atmospheric glow */}
       <div className="absolute inset-0 bg-[radial-gradient(800px_circle_at_50%_50%,rgba(37,99,235,0.04),transparent_60%)]" />
@@ -56,7 +56,7 @@ export default function CTASection() {
         {/* Top decorative line */}
         <div className="w-px h-16 bg-gradient-to-b from-transparent to-primary/40 mx-auto mb-12" />
 
-        <h2 className="font-heading text-5xl md:text-7xl lg:text-[6.5rem] font-[800] uppercase leading-[0.85] tracking-tighter mb-8">
+        <h2 className="font-heading text-[clamp(2.1rem,10vw,6.5rem)] font-[800] uppercase leading-[0.85] tracking-tighter mb-8">
           <span className="text-gold-gradient block">Solicita tu</span>
           <span className="text-ink block">Prueba Piloto</span>
         </h2>

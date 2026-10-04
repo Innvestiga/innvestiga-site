@@ -9,8 +9,7 @@ import { services } from "@/data/services";
 // offer in one screen; the service pages keep the long version.
 export default function ServicesGrid() {
   return (
-    <section className="relative bg-surface-alt overflow-hidden">
-      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-bg to-transparent pointer-events-none" />
+    <section className="relative bg-surface border-t border-border overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 lg:px-24 pt-32 pb-28">
@@ -75,7 +74,7 @@ export default function ServicesGrid() {
                   </ul>
                 </div>
 
-                <div className="relative z-10 flex items-center gap-2 mt-8 text-[9px] font-bold tracking-[0.3em] uppercase text-primary/60 group-hover:text-primary group-hover:gap-4 transition-all duration-500">
+                <div className="relative z-10 flex items-center gap-2 mt-8 text-[10px] font-bold tracking-[0.3em] uppercase text-primary/60 group-hover:text-primary group-hover:gap-4 transition-all duration-500">
                   <span>Explorar</span>
                   <div className="w-4 h-px bg-current transition-all duration-500 group-hover:w-8" />
                 </div>

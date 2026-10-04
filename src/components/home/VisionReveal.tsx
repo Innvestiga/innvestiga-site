@@ -56,7 +56,7 @@ export default function VisionReveal() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden"
+      className="relative overflow-hidden border-t border-border"
       style={{ background: "linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)" }}
     >
       {/* Decorative elements */}

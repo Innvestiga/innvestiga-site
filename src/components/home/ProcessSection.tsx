@@ -9,7 +9,7 @@ const steps = audit.process;
 
 export default function ProcessSection() {
   return (
-    <section className="relative bg-bg overflow-hidden">
+    <section className="relative bg-bg border-t border-border overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none [mask-image:radial-gradient(100%_80%_at_50%_50%,#000,transparent)]" />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 lg:px-24 py-24 md:py-28">

@@ -25,7 +25,7 @@ export default function ContactoPage() {
             Ponte en Contacto
           </motion.span>
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-[800] leading-[0.9] uppercase text-ink"
+            className="text-[clamp(1.6rem,7.5vw,6rem)] font-[800] leading-[0.9] uppercase text-ink"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -54,11 +54,11 @@ export default function ContactoPage() {
       {/* Form + Offices */}
       <section id="prueba-piloto" className="bg-surface-alt py-32">
         <div className="max-w-[1400px] mx-auto px-8 md:px-16 lg:px-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
               <SectionHeading
                 label="Prueba Piloto"
-                title="Solicita tu prueba piloto."
+                title="Cuéntanos sobre tu operación."
                 subtitle="Completa el formulario con los datos de tu operación y nos pondremos en contacto contigo para coordinarla."
                 light
               />
@@ -68,7 +68,7 @@ export default function ContactoPage() {
             <div>
               <SectionHeading
                 label="Oficinas"
-                title="Encuéntranos."
+                title="Nuestras oficinas."
                 light
               />
               <OfficeLocations />

@@ -124,8 +124,8 @@ export default function InteractiveMap({
 
       {/* Country labels (DO handled in the inset group) */}
       {[
-        { id: "mexico-chiapas", x: 30, y: 95, label: "MX" },
-        { id: "guatemala", x: 58, y: 96, label: "GT" },
+        { id: "mexico-chiapas", x: 14, y: 78, label: "MX" },
+        { id: "guatemala", x: 60, y: 100, label: "GT" },
         { id: "el-salvador", x: 84, y: 133, label: "SV" },
         { id: "honduras", x: 135, y: 111, label: "HN" },
         { id: "nicaragua", x: 155, y: 148, label: "NI" },
@@ -137,7 +137,7 @@ export default function InteractiveMap({
           x={label.x}
           y={label.y}
           textAnchor="middle"
-          className="text-[8px] font-bold fill-primary/70 pointer-events-none select-none"
+          className="text-[10px] font-bold fill-primary/70 pointer-events-none select-none"
         >
           {label.label}
         </text>
@@ -179,7 +179,7 @@ export default function InteractiveMap({
           x={432}
           y={33}
           textAnchor="middle"
-          className="text-[8px] font-bold fill-primary/70 pointer-events-none select-none"
+          className="text-[10px] font-bold fill-primary/70 pointer-events-none select-none"
         >
           DO
         </text>

@@ -50,7 +50,7 @@ export default function CoverageSplit() {
                     <span className="text-[11px] font-bold uppercase tracking-wider text-ink block">
                       {country.name}
                     </span>
-                    <span className="text-[9px] text-muted block mt-1 tracking-wider">
+                    <span className="text-[10px] text-muted block mt-1 tracking-wider">
                       {country.departments} depto. · {country.municipalities} mun.
                     </span>
                   </div>
@@ -83,7 +83,7 @@ export default function CoverageSplit() {
               {/* Shadow of the number */}
               <div className="absolute -inset-8 bg-gold/[0.04] rounded-full blur-[60px] -z-10" />
             </div>
-            <span className="text-[9px] font-bold tracking-[0.5em] uppercase text-muted mt-2 block">
+            <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-muted mt-2 block">
               Países
             </span>
 
@@ -93,7 +93,7 @@ export default function CoverageSplit() {
                   end={STATS.departments}
                   className="text-5xl md:text-6xl font-heading font-[800] text-ink block tracking-tight"
                 />
-                <span className="text-[9px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">
+                <span className="text-[10px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">
                   Departamentos
                 </span>
               </div>
@@ -104,7 +104,7 @@ export default function CoverageSplit() {
                   suffix="+"
                   className="text-5xl md:text-6xl font-heading font-[800] text-ink block tracking-tight"
                 />
-                <span className="text-[9px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">
+                <span className="text-[10px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">
                   Municipios
                 </span>
               </div>

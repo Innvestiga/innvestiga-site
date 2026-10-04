@@ -80,12 +80,12 @@ export default function NosotrosPage() {
             Sobre Innvestiga
           </motion.span>
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-[800] leading-[0.9] uppercase"
+            className="text-[clamp(1.6rem,7.5vw,6rem)] font-[800] leading-[0.9] uppercase"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Revelamos lo que
+            Revelamos lo que{" "}
             <br />
             <span className="text-gold-gradient">otros no ven.</span>
           </motion.h1>

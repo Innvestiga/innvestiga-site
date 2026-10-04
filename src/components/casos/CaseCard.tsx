@@ -15,10 +15,10 @@ export default function CaseCard({ study }: { study: CaseStudy }) {
       <GlassCard className="h-full group hover:border-gold/20 transition-all duration-500">
         <div className="space-y-5">
           <div className="flex items-center gap-3">
-            <span className="text-[8px] font-bold tracking-[0.3em] uppercase text-gold bg-gold/[0.08] px-3 py-1.5 rounded-full border border-gold/10">
+            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-gold bg-gold/[0.08] px-3 py-1.5 rounded-full border border-gold/10">
               {study.industry}
             </span>
-            <span className="text-[8px] text-muted tracking-[0.2em] uppercase font-bold">
+            <span className="text-[10px] text-muted tracking-[0.2em] uppercase font-bold">
               {study.country}
             </span>
           </div>
@@ -29,13 +29,13 @@ export default function CaseCard({ study }: { study: CaseStudy }) {
 
           <div className="space-y-4 text-[12px]">
             <div>
-              <span className="text-[8px] font-bold tracking-[0.3em] uppercase text-muted block mb-1.5">
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-1.5">
                 Desafío
               </span>
               <p className="text-body leading-relaxed">{study.challenge}</p>
             </div>
             <div>
-              <span className="text-[8px] font-bold tracking-[0.3em] uppercase text-muted block mb-1.5">
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-1.5">
                 Resultado
               </span>
               <p className="text-body leading-relaxed">{study.result}</p>
@@ -48,7 +48,7 @@ export default function CaseCard({ study }: { study: CaseStudy }) {
                 <span className="text-base font-heading font-[800] text-gold block tracking-tight">
                   {metric.value}
                 </span>
-                <span className="text-[7px] tracking-[0.2em] uppercase text-muted font-bold">
+                <span className="text-[10px] tracking-[0.2em] uppercase text-muted font-bold">
                   {metric.label}
                 </span>
               </div>

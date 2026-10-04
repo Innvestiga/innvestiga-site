@@ -31,7 +31,7 @@ const BADGES = ["Desde 2013", "3ª generación", "Resultados en máx. 3 días"];
 
 export default function BenefitsSection() {
   return (
-    <section className="relative bg-[#f3f6fc] py-24 md:py-32 overflow-hidden">
+    <section className="relative bg-surface-alt border-t border-border py-24 md:py-32 overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none [mask-image:radial-gradient(120%_100%_at_50%_0%,#000,transparent)]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
@@ -100,7 +100,7 @@ export default function BenefitsSection() {
               <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/70">
                 Cada auditoría, en ESI
               </span>
-              <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-muted">
+              <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-muted">
                 Exploración Sistémica
               </span>
             </div>
@@ -109,7 +109,7 @@ export default function BenefitsSection() {
               {ESI_BENEFITS.map((benefit, i) => (
                 <li
                   key={benefit}
-                  className="group flex items-start gap-3 rounded-xl px-2 py-2.5 transition-colors duration-300 hover:bg-[#f3f6fc]"
+                  className="group flex items-start gap-3 rounded-xl px-2 py-2.5 transition-colors duration-300 hover:bg-surface-alt"
                 >
                   <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
                     <svg
@@ -136,7 +136,7 @@ export default function BenefitsSection() {
                 {BADGES.map((b) => (
                   <span
                     key={b}
-                    className="inline-flex items-center rounded-full bg-primary/10 text-primary px-3.5 py-1.5 text-[9px] font-bold tracking-[0.15em] uppercase"
+                    className="inline-flex items-center rounded-full bg-primary/10 text-primary px-3.5 py-1.5 text-[10px] font-bold tracking-[0.15em] uppercase"
                   >
                     {b}
                   </span>

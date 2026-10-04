@@ -28,13 +28,13 @@ export default function SectionHeading({
       {label && (
         <div className={`flex items-center gap-4 mb-6 ${align === "center" ? "justify-center" : ""}`}>
           <div className={`w-10 h-px ${light ? "bg-primary/40" : "bg-primary/40"}`} />
-          <span className="text-[9px] font-bold tracking-[0.5em] uppercase text-primary/70">
+          <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/70">
             {label}
           </span>
         </div>
       )}
       <h2
-        className={`font-heading text-3xl md:text-5xl lg:text-6xl font-[800] leading-[0.88] uppercase tracking-tighter ${
+        className={`font-heading text-[clamp(1.9rem,4vw,3.25rem)] font-[800] leading-[0.88] uppercase tracking-tighter ${
           light ? "text-ink" : "text-ink"
         }`}
       >
