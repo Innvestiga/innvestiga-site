@@ -114,7 +114,7 @@ export default function HeroSection() {
 
               {/* Track record, right under the ask */}
               <motion.div
-                className="grid grid-cols-3 gap-6 mt-12 pt-7 border-t border-border max-w-xl"
+                className="grid grid-cols-3 gap-4 sm:gap-6 mt-12 pt-7 border-t border-border max-w-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.1 }}
@@ -128,7 +128,7 @@ export default function HeroSection() {
                     <AnimatedCounter
                       end={s.end}
                       suffix={s.suffix}
-                      className="text-3xl md:text-4xl font-heading font-[800] text-ink tracking-tight leading-none"
+                      className="text-[1.45rem] sm:text-3xl md:text-4xl font-heading font-[800] text-ink tracking-tight leading-none"
                     />
                     <span className="mt-2 text-[9px] font-bold uppercase tracking-[0.2em] text-muted">
                       {s.label}
