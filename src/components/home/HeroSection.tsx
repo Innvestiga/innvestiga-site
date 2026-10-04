@@ -6,7 +6,6 @@ import { gsap } from "@/lib/gsap";
 import Button from "@/components/ui/Button";
 import { STATS, CONTACT, PILOT_COUNTRIES } from "@/lib/constants";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import { countries } from "@/data/countries";
 import HeroMap from "./HeroMap";
 
 export default function HeroSection() {
@@ -65,8 +64,8 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
-                ¿Sabes realmente cómo es tu{" "}
-                <span className="text-gold-gradient">Experiencia del Cliente</span>?
+                Cierra la brecha entre tus estándares y{" "}
+                <span className="text-gold-gradient">tu cliente</span>.
               </motion.h1>
 
               <motion.p
@@ -85,8 +84,9 @@ export default function HeroSection() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.75 }}
               >
-                Te ayudamos a cerrar esa brecha con auditorías presenciales y nuestra
-                plataforma <span className="text-primary font-semibold">ESI</span>.
+                Auditorías presenciales con clientes misteriosos capacitados y resultados
+                publicados en máximo 3 días en nuestra plataforma{" "}
+                <span className="text-primary font-semibold">ESI</span>.
               </motion.p>
 
               <motion.p
@@ -140,7 +140,7 @@ export default function HeroSection() {
 
             {/* ── Right: coverage panel — map + reach + countries ── */}
             <motion.div
-              className="hidden lg:flex flex-col w-[46%] max-w-[560px] flex-shrink-0 rounded-[28px] border border-border bg-gradient-to-br from-[#eef3fc] via-surface to-surface overflow-hidden shadow-[0_1px_3px_rgba(15,23,42,0.05),0_24px_60px_-14px_rgba(30,64,175,0.20)]"
+              className="flex flex-col w-full lg:w-[46%] max-w-[560px] flex-shrink-0 rounded-[28px] border border-border bg-gradient-to-br from-[#eef3fc] via-surface to-surface overflow-hidden shadow-[0_1px_3px_rgba(15,23,42,0.05),0_24px_60px_-14px_rgba(30,64,175,0.20)]"
               initial={{ opacity: 0, scale: 0.96, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
@@ -159,50 +159,13 @@ export default function HeroSection() {
               </div>
 
               {/* Map */}
-              <div className="px-3 pt-1">
+              <div className="px-3 pt-1 pb-1">
                 <div className="aspect-[322/250]">
                   <HeroMap />
                 </div>
               </div>
 
-              {/* Footer: reach figures + the actual countries */}
-              <div className="border-t border-border bg-surface/70 px-6 py-5">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-primary/70">
-                    Nuestro Alcance
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-3 divide-x divide-border mb-5">
-                  {[
-                    { end: STATS.countries, label: "Países", suffix: "" },
-                    { end: STATS.departments, label: "Departamentos", suffix: "" },
-                    { end: STATS.municipalities, label: "Municipios", suffix: "+" },
-                  ].map((s) => (
-                    <div key={s.label} className="flex flex-col items-center text-center px-2">
-                      <AnimatedCounter
-                        end={s.end}
-                        suffix={s.suffix}
-                        className="text-2xl font-heading font-[800] text-primary tracking-tight leading-none"
-                      />
-                      <span className="mt-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-muted">
-                        {s.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {countries.map((c) => (
-                    <span
-                      key={c.id}
-                      className="text-[9px] font-semibold tracking-wide text-body bg-primary/[0.06] border border-primary/10 px-2.5 py-1 rounded-full"
-                    >
-                      {c.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <div className="h-4" />
             </motion.div>
           </div>
         </div>
