@@ -52,12 +52,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-ink);
 }
 
-/* ─── Custom cursor (fine pointer only) ─── */
-@media (hover: hover) and (pointer: fine) {
-  html, body { cursor: none !important; }
-  a, button, [role="button"] { cursor: none !important; }
-}
-
 /* ─── Selection ─── */
 ::selection {
   background-color: var(--color-primary);

@@ -3,7 +3,6 @@ import { Syne, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 
 const syne = Syne({
@@ -51,7 +50,6 @@ export default function RootLayout({
     <html lang="es" className={`${syne.variable} ${inter.variable}`}>
       <body className="grain min-h-screen overflow-x-hidden bg-bg text-ink font-body">
         <SmoothScrollProvider>
-          <CustomCursor />
           <Navbar />
           <main>{children}</main>
           <Footer />
