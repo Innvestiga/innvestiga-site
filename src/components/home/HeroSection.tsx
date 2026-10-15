@@ -1,13 +1,12 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { gsap } from "@/lib/gsap";
 import Button from "@/components/ui/Button";
-import { STATS, CONTACT } from "@/lib/constants";
-
-const PILOT_COUNTRIES =
-  "El Salvador, Guatemala, Honduras, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas";
+import { STATS } from "@/lib/constants";
+import { COVERAGE, coverageHref } from "@/data/coverage";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import HeroMap from "./HeroMap";
 
@@ -67,8 +66,8 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
-                Cierra la brecha entre tus estándares y{" "}
-                <span className="text-gold-gradient">tu cliente</span>.
+                Descubre lo que realmente pasa en{" "}
+                <span className="text-gold-gradient">cada una de tus sucursales</span>.
               </motion.h1>
 
               <motion.p
@@ -77,8 +76,8 @@ export default function HeroSection() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                Diseñas estándares, capacitas a tu equipo y defines procesos claros… pero
-                ¿realmente sabes lo que está pasando en cada una de tus sucursales?
+                Diseñas estándares, capacitas a tu equipo y defines procesos claros. Una auditoría
+                te muestra si eso ocurre en cada sucursal.
               </motion.p>
 
               <motion.p
@@ -87,9 +86,8 @@ export default function HeroSection() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.75 }}
               >
-                Auditorías presenciales con clientes misteriosos capacitados y resultados
-                publicados en máximo 3 días en nuestra plataforma{" "}
-                <span className="text-primary font-semibold">ESI</span>.
+                Auditorías de experiencia del cliente con cliente misterioso en 8 países de
+                Centroamérica, el Caribe y Chiapas. Evidencia real y resultados en máximo 3 días.
               </motion.p>
 
               <motion.p
@@ -98,7 +96,19 @@ export default function HeroSection() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.85 }}
               >
-                Prueba piloto disponible en {PILOT_COUNTRIES}.
+                Prueba piloto disponible en{" "}
+                {COVERAGE.map((c, i) => (
+                  <span key={c.slug}>
+                    {i > 0 && (i === COVERAGE.length - 1 ? " y " : ", ")}
+                    <Link
+                      href={coverageHref(c)}
+                      className="underline decoration-primary/30 underline-offset-2 hover:text-primary"
+                    >
+                      {c.name}
+                    </Link>
+                  </span>
+                ))}
+                .
               </motion.p>
 
               <motion.div
@@ -108,10 +118,10 @@ export default function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.95 }}
               >
                 <Button href="/contacto" variant="gold">
-                  Solicitar Prueba Piloto
+                  Solicitar prueba piloto
                 </Button>
-                <Button href={CONTACT.portal} external variant="outline">
-                  Ingresar a ESI
+                <Button href="/demo" variant="outline">
+                  Agendar demo
                 </Button>
               </motion.div>
 
@@ -123,14 +133,15 @@ export default function HeroSection() {
                 transition={{ duration: 0.6, delay: 1.1 }}
               >
                 {[
-                  { end: STATS.yearsExperience, suffix: "", label: "Años de experiencia" },
+                  { end: STATS.yearsExperience, label: "años de experiencia" },
+                  { end: STATS.countries, label: "países" },
+                  { end: STATS.municipalities, label: "municipios que podemos evaluar" },
                 ].map((s) => (
                   <div key={s.label} className="flex flex-col">
                     <AnimatedCounter
                       end={s.end}
-                      suffix={s.suffix}
                       className="text-[1.45rem] sm:text-3xl md:text-4xl font-heading font-bold text-ink tracking-tight leading-none"
-                    />
+                    />{" "}
                     <span className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-muted">
                       {s.label}
                     </span>
