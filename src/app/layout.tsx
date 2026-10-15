@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
+import Analytics from "@/components/analytics/Analytics";
 import { OG_IMAGE } from "@/lib/seo";
 import { isProduction, siteUrl } from "@/lib/env";
 
@@ -56,6 +57,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </SmoothScrollProvider>
+        <Analytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       </body>
     </html>
   );
