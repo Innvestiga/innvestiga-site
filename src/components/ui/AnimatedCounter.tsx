@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { startsInView } from "./aboveFold";
 
 interface AnimatedCounterProps {
   end: number;
@@ -28,6 +29,7 @@ export default function AnimatedCounter({
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (startsInView(el.getBoundingClientRect().top, window.innerHeight)) return;
 
     const obj = { val: 0 };
     const render = () => {

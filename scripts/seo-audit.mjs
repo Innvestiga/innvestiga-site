@@ -105,6 +105,17 @@ async function auditPage(path, seen) {
     }
   }
 
+  // A form without method="post" falls back to GET before hydration and
+  // puts personal data in the URL (and in GA4 page_view).
+  for (const [form] of html.matchAll(/<form\b[^>]*>/gi)) {
+    if (!/method="post"/i.test(form)) fail(path, `form without method="post": ${form}`);
+  }
+
+  // Map labels and fills must be visible without the GSAP intro.
+  if (/class="map-(label|fill)"[^>]*opacity="0"|opacity="0"[^>]*class="map-(label|fill)"/.test(html)) {
+    fail(path, "map labels or fills hidden in the server HTML (opacity 0)");
+  }
+
   const text = visibleText(html);
   const head = html.match(/<head>[\s\S]*<\/head>/i)?.[0] ?? "";
   const headText = visibleText(head.replace(/<meta[^>]+content="([^"]*)"[^>]*>/gi, " $1 "));

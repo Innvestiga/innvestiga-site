@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { trackEvent } from "@/lib/analytics";
-import { isBookingScheduledMessage } from "@/lib/booking";
+import { bookingEmbedSrc, isBookingScheduledMessage } from "@/lib/booking";
+import { siteUrl } from "@/lib/env";
 import { CONTACT } from "@/lib/constants";
 
 export default function BookingEmbed({ url }: { url?: string }) {
@@ -30,7 +31,7 @@ export default function BookingEmbed({ url }: { url?: string }) {
     );
   }
 
-  const src = `${url}${url.includes("?") ? "&" : "?"}hide_gdpr_banner=1&locale=es`;
+  const src = bookingEmbedSrc(url, new URL(siteUrl()).hostname);
   return (
     <iframe
       src={src}

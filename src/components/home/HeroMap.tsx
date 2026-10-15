@@ -227,7 +227,7 @@ export default function HeroMap() {
 
       {/* ─── Country fills ─── */}
       {mapData.filter((c) => c.id !== "rep-dominicana").map((c) => (
-        <path key={`fill-${c.id}`} className="map-fill" d={c.d} fill={c.fill} opacity="0" />
+        <path key={`fill-${c.id}`} className="map-fill" d={c.d} fill={c.fill} />
       ))}
 
       {/* ─── Connection arcs from HQ ─── */}
@@ -301,7 +301,6 @@ export default function HeroMap() {
             <a key={`label-${c.id}`} href={`/cobertura/${c.slug}`}>
               <text
                 className="map-label"
-                opacity="0"
                 x={c.city.x}
                 y={ly}
                 textAnchor="middle"
@@ -343,7 +342,7 @@ export default function HeroMap() {
         <path d={haitiPath} fill="rgba(30,64,175,0.04)" stroke="rgba(30,64,175,0.18)" strokeWidth="0.5" />
 
         {/* RD fill */}
-        <path className="map-fill" d={RD.d} fill={RD.fill} opacity="0" />
+        <path className="map-fill" d={RD.d} fill={RD.fill} />
 
         {/* RD outline */}
         <path
@@ -365,7 +364,7 @@ export default function HeroMap() {
       </g>
 
       {/* HQ badge */}
-      <g className="map-label" opacity="0">
+      <g className="map-label">
         <rect x={HQ.x - 18} y={HQ.y + 14} width="36" height="11" rx="5.5" fill="rgba(30,64,175,0.12)" stroke="rgba(30,64,175,0.3)" strokeWidth="0.5" />
         <text x={HQ.x} y={HQ.y + 22} textAnchor="middle" fill="#1e40af" fontSize="5" fontWeight="700" letterSpacing="0.15em">
           SEDE

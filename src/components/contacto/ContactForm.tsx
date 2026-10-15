@@ -72,7 +72,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+    <form ref={formRef} method="post" onSubmit={handleSubmit} className="space-y-5">
       {/* Hidden fields for EmailJS template independence */}
       <input type="hidden" name="title" value="Solicitud de Prueba Piloto" />
       <input ref={messageRef} type="hidden" name="message" />
