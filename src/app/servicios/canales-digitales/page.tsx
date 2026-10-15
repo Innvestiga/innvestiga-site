@@ -19,7 +19,7 @@ export default function CanalesDigitalesPage() {
       <ServiceProcess service={service} />
       <section className="bg-surface-alt py-32 text-center">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-[800] uppercase leading-[0.9] mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold uppercase leading-[0.9] mb-6">
             Optimiza todos tus{" "}
             <span className="text-gold-gradient">canales.</span>
           </h2>

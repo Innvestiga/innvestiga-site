@@ -293,8 +293,8 @@ export default function HeroMap() {
             textAnchor="middle"
             fill="rgba(31,41,55,0.72)"
             fontSize="6.5"
-            fontWeight="800"
-            fontFamily="var(--font-heading), Syne, sans-serif"
+            fontWeight="700"
+            fontFamily="var(--font-heading), Sora, sans-serif"
             letterSpacing="0.05em"
           >
             {c.label}
@@ -350,7 +350,7 @@ export default function HeroMap() {
       {/* HQ badge */}
       <g className="map-label" opacity="0">
         <rect x={HQ.x - 18} y={HQ.y + 14} width="36" height="11" rx="5.5" fill="rgba(30,64,175,0.12)" stroke="rgba(30,64,175,0.3)" strokeWidth="0.5" />
-        <text x={HQ.x} y={HQ.y + 22} textAnchor="middle" fill="#1e40af" fontSize="5" fontWeight="800" letterSpacing="0.15em">
+        <text x={HQ.x} y={HQ.y + 22} textAnchor="middle" fill="#1e40af" fontSize="5" fontWeight="700" letterSpacing="0.15em">
           SEDE
         </text>
       </g>

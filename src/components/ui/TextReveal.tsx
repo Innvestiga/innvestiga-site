@@ -53,7 +53,7 @@ export default function TextReveal({
     <span
       ref={ref}
       className={`
-        font-heading text-[clamp(2rem,8vw,10rem)] font-[800] uppercase leading-[0.95] tracking-tight
+        font-heading text-[clamp(2rem,8vw,10rem)] font-bold uppercase leading-[0.95] tracking-tight
         bg-no-repeat bg-clip-text [-webkit-background-clip:text]
         ${gold
           ? "text-gold/10 bg-[image:linear-gradient(90deg,var(--color-gold),var(--color-gold))]"

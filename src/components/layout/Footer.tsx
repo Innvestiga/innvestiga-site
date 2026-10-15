@@ -14,7 +14,7 @@ export default function Footer() {
         {/* Top row: giant brand + tagline */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
           <div>
-            <span className="font-heading text-3xl md:text-4xl font-[800] tracking-tighter block text-ink">
+            <span className="font-heading text-3xl md:text-4xl font-bold tracking-tighter block text-ink">
               {SITE_NAME}
             </span>
             <span className="text-primary/60 text-[10px] tracking-[0.3em] font-bold uppercase mt-1 block">

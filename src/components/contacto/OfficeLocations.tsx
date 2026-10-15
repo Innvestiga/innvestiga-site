@@ -11,7 +11,7 @@ export default function OfficeLocations() {
           <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary block mb-3">
             {office.country}
           </span>
-          <h3 className="text-xl font-[800] uppercase mb-2 text-ink">{office.city}</h3>
+          <h3 className="text-xl font-bold uppercase mb-2 text-ink">{office.city}</h3>
           <p className="text-sm text-body mb-1">{office.address}</p>
           <p className="text-sm text-muted">{CONTACT.phone}</p>
         </GlassCard>

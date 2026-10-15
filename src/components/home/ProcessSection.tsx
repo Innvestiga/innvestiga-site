@@ -27,7 +27,7 @@ export default function ProcessSection() {
                 Cómo trabajamos
               </span>
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl font-[800] uppercase leading-[0.95] tracking-tight text-ink">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase leading-[0.95] tracking-tight text-ink">
               Cuatro pasos, un{" "}
               <span className="text-gold-gradient">mismo método</span>
             </h2>
@@ -57,10 +57,10 @@ export default function ProcessSection() {
               transition={{ duration: 0.6, delay: 0.25 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               <span className="absolute -top-[2.45rem] left-0 h-3 w-3 rounded-full bg-primary ring-4 ring-bg" />
-              <span className="font-heading font-[800] text-[2.75rem] leading-none text-ink/[0.08]">
+              <span className="font-heading font-bold text-[2.75rem] leading-none text-ink/[0.08]">
                 0{s.step}
               </span>
-              <h3 className="mt-2 font-heading text-xl md:text-2xl font-[800] uppercase tracking-tight text-ink">
+              <h3 className="mt-2 font-heading text-xl md:text-2xl font-bold uppercase tracking-tight text-ink">
                 {s.title}
               </h3>
               <p className="mt-2 text-[14.5px] text-body leading-relaxed">{s.description}</p>

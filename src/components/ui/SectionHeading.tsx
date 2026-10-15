@@ -34,7 +34,7 @@ export default function SectionHeading({
         </div>
       )}
       <h2
-        className={`font-heading text-[clamp(1.9rem,4vw,3.25rem)] font-[800] leading-[0.88] uppercase tracking-tighter ${
+        className={`font-heading text-[clamp(1.9rem,4vw,3.25rem)] font-bold leading-[0.88] uppercase tracking-tighter ${
           light ? "text-ink" : "text-ink"
         }`}
       >

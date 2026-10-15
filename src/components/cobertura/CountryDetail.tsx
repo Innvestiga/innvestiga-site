@@ -34,7 +34,7 @@ export default function CountryDetail({
             </button>
 
             <span className="text-4xl mb-4 block">{country.flag}</span>
-            <h3 className="text-2xl font-[800] uppercase mb-2 text-ink">
+            <h3 className="text-2xl font-bold uppercase mb-2 text-ink">
               {country.name}
             </h3>
             <p className="text-sm text-body leading-relaxed mb-6">
@@ -45,7 +45,7 @@ export default function CountryDetail({
               <div>
                 <AnimatedCounter
                   end={country.departments}
-                  className="text-3xl font-heading font-[800] text-gold block"
+                  className="text-3xl font-heading font-bold text-gold block"
                 />
                 <span className="text-[10px] tracking-widest uppercase text-muted">
                   Departamentos
@@ -54,7 +54,7 @@ export default function CountryDetail({
               <div>
                 <AnimatedCounter
                   end={country.municipalities}
-                  className="text-3xl font-heading font-[800] text-gold block"
+                  className="text-3xl font-heading font-bold text-gold block"
                 />
                 <span className="text-[10px] tracking-widest uppercase text-muted">
                   Municipios

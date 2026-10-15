@@ -31,7 +31,7 @@ export default function ESISection() {
               </span>
             </div>
 
-            <h2 className="font-heading text-4xl md:text-5xl font-[800] uppercase leading-[0.95] tracking-tight text-ink">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase leading-[0.95] tracking-tight text-ink">
               Nuestra Plataforma{" "}
               <span className="text-gold-gradient">ESI</span>
             </h2>

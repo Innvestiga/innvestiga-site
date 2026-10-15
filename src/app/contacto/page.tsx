@@ -25,7 +25,7 @@ export default function ContactoPage() {
             Ponte en Contacto
           </motion.span>
           <motion.h1
-            className="text-[clamp(1.6rem,7.5vw,6rem)] font-[800] leading-[0.9] uppercase text-ink"
+            className="text-[clamp(1.6rem,7.5vw,6rem)] font-bold leading-[0.9] uppercase text-ink"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}

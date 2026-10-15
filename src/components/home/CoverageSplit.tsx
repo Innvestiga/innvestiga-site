@@ -78,7 +78,7 @@ export default function CoverageSplit() {
             <div className="relative inline-block">
               <AnimatedCounter
                 end={STATS.countries}
-                className="text-[22vw] md:text-[16vw] lg:text-[12vw] font-heading font-[800] leading-none text-gold/90 block tracking-tighter"
+                className="text-[22vw] md:text-[16vw] lg:text-[12vw] font-heading font-bold leading-none text-gold/90 block tracking-tighter"
               />
               {/* Shadow of the number */}
               <div className="absolute -inset-8 bg-gold/[0.04] rounded-full blur-[60px] -z-10" />
@@ -91,7 +91,7 @@ export default function CoverageSplit() {
               <div className="relative">
                 <AnimatedCounter
                   end={0}
-                  className="text-5xl md:text-6xl font-heading font-[800] text-ink block tracking-tight"
+                  className="text-5xl md:text-6xl font-heading font-bold text-ink block tracking-tight"
                 />
                 <span className="text-[10px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">
                   Departamentos
@@ -102,7 +102,7 @@ export default function CoverageSplit() {
                 <AnimatedCounter
                   end={STATS.municipalities}
                   suffix="+"
-                  className="text-5xl md:text-6xl font-heading font-[800] text-ink block tracking-tight"
+                  className="text-5xl md:text-6xl font-heading font-bold text-ink block tracking-tight"
                 />
                 <span className="text-[10px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">
                   Municipios

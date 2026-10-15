@@ -18,7 +18,7 @@ interface ButtonProps {
 // "gold" is now the primary blue action.
 const variantStyles: Record<ButtonVariant, string> = {
   gold: [
-    "bg-primary text-white font-[800]",
+    "bg-primary text-white font-bold",
     "shadow-[0_4px_14px_rgba(30,64,175,0.25)]",
     "hover:bg-primary-hover hover:shadow-[0_6px_24px_rgba(37,99,235,0.35)] hover:scale-[1.03]",
     "active:scale-[0.98]",
@@ -32,7 +32,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     "text-muted hover:text-primary",
   ].join(" "),
   white: [
-    "bg-white text-primary font-[800] border border-border",
+    "bg-white text-primary font-bold border border-border",
     "shadow-[0_4px_24px_rgba(15,23,42,0.10)]",
     "hover:border-primary/40 hover:shadow-[0_6px_28px_rgba(30,64,175,0.18)] hover:scale-[1.03]",
     "active:scale-[0.98]",

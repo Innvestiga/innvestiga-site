@@ -25,7 +25,7 @@ export default function ServicesGrid() {
               Soluciones
             </span>
           </div>
-          <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl font-[800] leading-[0.88] uppercase max-w-4xl tracking-tighter text-ink">
+          <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.88] uppercase max-w-4xl tracking-tighter text-ink">
             Servicios que revelan
             <br />
             <span className="text-muted">lo que otros no ven.</span>
@@ -51,12 +51,12 @@ export default function ServicesGrid() {
                   <div className="absolute top-6 right-6 h-12 w-px bg-primary/20 group-hover:h-16 group-hover:bg-primary/40 transition-all duration-500" />
                 </div>
 
-                <span className="relative z-10 text-[4.5rem] font-heading font-[800] leading-none text-ink/[0.06] group-hover:text-primary/[0.1] transition-colors duration-700">
+                <span className="relative z-10 text-[4.5rem] font-heading font-bold leading-none text-ink/[0.06] group-hover:text-primary/[0.1] transition-colors duration-700">
                   {service.number}
                 </span>
 
                 <div className="relative z-10 mt-6 flex-1">
-                  <h3 className="text-2xl md:text-[1.7rem] font-heading font-[800] uppercase leading-[0.95] text-ink group-hover:text-primary transition-colors duration-500">
+                  <h3 className="text-2xl md:text-[1.7rem] font-heading font-bold uppercase leading-[0.95] text-ink group-hover:text-primary transition-colors duration-500">
                     {service.title}
                   </h3>
                   <p className="mt-4 text-[14px] text-body leading-relaxed">

@@ -23,7 +23,7 @@ export default function ServiciosPage() {
             Nuestras Soluciones
           </motion.span>
           <motion.h1
-            className="text-[clamp(1.6rem,7.5vw,6rem)] font-[800] leading-[0.9] uppercase max-w-5xl"
+            className="text-[clamp(1.6rem,7.5vw,6rem)] font-bold leading-[0.9] uppercase max-w-5xl"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -53,7 +53,7 @@ export default function ServiciosPage() {
                   <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gold mb-4 block">
                     {service.number}
                   </span>
-                  <h2 className="text-3xl md:text-5xl font-[800] uppercase leading-[0.9] mb-6">
+                  <h2 className="text-3xl md:text-5xl font-bold uppercase leading-[0.9] mb-6">
                     {service.title}
                   </h2>
                   <p className="text-body leading-relaxed mb-8">
@@ -70,7 +70,7 @@ export default function ServiciosPage() {
                   }`}
                 >
                   <div className="relative rounded-2xl overflow-hidden bg-surface border border-border p-8 md:p-10 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_12px_32px_rgba(15,23,42,0.06)]">
-                    <span className="absolute -top-6 -right-2 text-[9rem] font-heading font-[800] leading-none text-primary/[0.06] select-none pointer-events-none">
+                    <span className="absolute -top-6 -right-2 text-[9rem] font-heading font-bold leading-none text-primary/[0.06] select-none pointer-events-none">
                       {service.number}
                     </span>
                     <span className="relative text-[10px] font-bold tracking-[0.4em] uppercase text-primary/70 block mb-6">
@@ -103,7 +103,7 @@ export default function ServiciosPage() {
       {/* CTA */}
       <section className="bg-surface-alt py-32 text-center">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-[800] uppercase leading-[0.9] mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold uppercase leading-[0.9] mb-6">
             ¿Listo para descubrir lo que{" "}
             <span className="text-gold-gradient">realmente</span> sucede?
           </h2>

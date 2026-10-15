@@ -29,7 +29,7 @@ export default function BlogPost({ post }: BlogPostProps) {
               {post.readTime}
             </span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-[800] uppercase leading-[0.95] mb-6 text-ink">
+          <h1 className="text-3xl md:text-5xl font-bold uppercase leading-[0.95] mb-6 text-ink">
             {post.title}
           </h1>
           <div className="flex items-center gap-4 text-[10px] text-muted tracking-widest uppercase">
@@ -46,7 +46,7 @@ export default function BlogPost({ post }: BlogPostProps) {
         </div>
 
         {/* Content */}
-        <div className="prose prose-lg max-w-none [&_h2]:font-heading [&_h2]:font-[800] [&_h2]:uppercase [&_h2]:text-2xl [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:text-ink [&_h3]:font-heading [&_h3]:font-[700] [&_h3]:uppercase [&_h3]:text-lg [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-ink [&_p]:text-body [&_p]:leading-relaxed [&_li]:text-body [&_strong]:text-ink">
+        <div className="prose prose-lg max-w-none [&_h2]:font-heading [&_h2]:font-bold [&_h2]:uppercase [&_h2]:text-2xl [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:text-ink [&_h3]:font-heading [&_h3]:font-[700] [&_h3]:uppercase [&_h3]:text-lg [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-ink [&_p]:text-body [&_p]:leading-relaxed [&_li]:text-body [&_strong]:text-ink">
           {post.content.split("\n").map((line, i) => {
             const trimmed = line.trim();
             if (!trimmed) return null;

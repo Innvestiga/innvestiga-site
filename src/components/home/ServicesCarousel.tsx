@@ -59,7 +59,7 @@ export default function ServicesCarousel() {
                 Soluciones
               </span>
             </div>
-            <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl font-[800] leading-[0.88] uppercase max-w-4xl tracking-tighter text-ink">
+            <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.88] uppercase max-w-4xl tracking-tighter text-ink">
               Servicios que revelan
               <br />
               <span className="text-muted">lo que otros no ven.</span>

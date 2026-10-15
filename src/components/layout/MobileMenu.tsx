@@ -36,7 +36,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                 <Link
                   href={link.href}
                   onClick={onClose}
-                  className="text-ink text-3xl font-[800] uppercase tracking-tight"
+                  className="text-ink text-3xl font-bold uppercase tracking-tight"
                 >
                   <span className="text-primary/60 text-lg mr-2">
                     {link.number}
@@ -60,7 +60,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                 href={CONTACT.portal}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 bg-primary text-white px-8 py-3 rounded-full text-[10px] font-[900] uppercase tracking-widest"
+                className="mt-4 bg-primary text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest"
               >
                 Acceso Portal
               </a>

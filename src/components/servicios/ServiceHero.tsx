@@ -21,7 +21,7 @@ export default function ServiceHero({ service }: { service: Service }) {
           {service.number} — Servicios
         </motion.span>
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-[800] leading-[0.9] uppercase max-w-4xl"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.9] uppercase max-w-4xl"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}

@@ -24,7 +24,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
               </span>
             </div>
 
-            <h3 className="text-lg font-heading font-[800] uppercase leading-tight tracking-tight text-ink group-hover:text-primary transition-colors duration-300">
+            <h3 className="text-lg font-heading font-bold uppercase leading-tight tracking-tight text-ink group-hover:text-primary transition-colors duration-300">
               {post.title}
             </h3>
 

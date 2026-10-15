@@ -44,9 +44,9 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex-shrink-0 group">
-          <span className="text-lg md:text-xl font-heading font-[800] tracking-tighter text-primary leading-none">
+          <span className="text-lg md:text-xl font-heading font-bold tracking-tighter text-primary leading-none">
             INNVESTIGA
-            <span className="text-primary/60 text-[10px] block font-body tracking-[0.25em] font-light mt-0.5 group-hover:text-primary transition-colors duration-300">
+            <span className="text-primary/60 text-[10px] block font-body tracking-[0.25em] font-normal mt-0.5 group-hover:text-primary transition-colors duration-300">
               MARKET SPECIALIST
             </span>
           </span>
@@ -71,7 +71,7 @@ export default function Navbar() {
             href={CONTACT.portal}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white px-5 py-2.5 rounded-full text-[10px] font-[800] uppercase tracking-widest hover:bg-primary-hover transition-all duration-300 shadow-[0_2px_12px_rgba(30,64,175,0.25)]"
+            className="bg-primary text-white px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary-hover transition-all duration-300 shadow-[0_2px_12px_rgba(30,64,175,0.25)]"
           >
             Acceso
           </a>

@@ -52,7 +52,7 @@ export default function BenefitsSection() {
                 Lo que ganas
               </span>
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl font-[800] uppercase leading-[0.95] tracking-tight text-ink">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase leading-[0.95] tracking-tight text-ink">
               Lo que cambia con un{" "}
               <span className="text-gold-gradient">programa</span>
             </h2>
@@ -67,7 +67,7 @@ export default function BenefitsSection() {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <span className="font-heading font-[800] text-2xl text-primary leading-none pt-0.5">
+                  <span className="font-heading font-bold text-2xl text-primary leading-none pt-0.5">
                     0{i + 1}
                   </span>
                   <div>

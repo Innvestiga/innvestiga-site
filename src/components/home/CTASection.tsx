@@ -43,7 +43,7 @@ export default function CTASection() {
           {[...Array(6)].map((_, i) => (
             <span
               key={i}
-              className="text-[clamp(20vh,40vh,70vh)] font-heading font-[800] text-primary/[0.05] uppercase leading-none px-[3vw] tracking-tighter"
+              className="text-[clamp(20vh,40vh,70vh)] font-heading font-bold text-primary/[0.05] uppercase leading-none px-[3vw] tracking-tighter"
             >
               PRUEBA PILOTO ·
             </span>
@@ -56,12 +56,12 @@ export default function CTASection() {
         {/* Top decorative line */}
         <div className="w-px h-16 bg-gradient-to-b from-transparent to-primary/40 mx-auto mb-12" />
 
-        <h2 className="font-heading text-[clamp(2.1rem,10vw,6.5rem)] font-[800] uppercase leading-[0.85] tracking-tighter mb-8">
+        <h2 className="font-heading text-[clamp(2.1rem,10vw,6.5rem)] font-bold uppercase leading-[0.85] tracking-tighter mb-8">
           <span className="text-gold-gradient block">Solicita tu</span>
           <span className="text-ink block">Prueba Piloto</span>
         </h2>
 
-        <p className="text-body text-[11px] tracking-[0.3em] uppercase mb-12 max-w-sm mx-auto font-light">
+        <p className="text-body text-[11px] tracking-[0.3em] uppercase mb-12 max-w-sm mx-auto font-normal">
           Comprueba en terreno lo que realmente sucede en tus puntos de venta
         </p>
 

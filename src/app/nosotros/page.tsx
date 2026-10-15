@@ -80,7 +80,7 @@ export default function NosotrosPage() {
             Sobre Innvestiga
           </motion.span>
           <motion.h1
-            className="text-[clamp(1.6rem,7.5vw,6rem)] font-[800] leading-[0.9] uppercase"
+            className="text-[clamp(1.6rem,7.5vw,6rem)] font-bold leading-[0.9] uppercase"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -168,7 +168,7 @@ export default function NosotrosPage() {
                     <span className="text-primary text-sm font-bold tracking-widest">
                       {item.step}
                     </span>
-                    <h3 className="text-2xl font-[800] uppercase mt-1 mb-2">
+                    <h3 className="text-2xl font-bold uppercase mt-1 mb-2">
                       {item.title}
                     </h3>
                     <p className="text-sm text-muted leading-relaxed max-w-md inline-block">
@@ -203,7 +203,7 @@ export default function NosotrosPage() {
                 transition={{ delay: i * 0.1 }}
               >
                 <GlassCard className="h-full">
-                  <h3 className="text-lg font-[800] uppercase mb-3">
+                  <h3 className="text-lg font-bold uppercase mb-3">
                     {value.title}
                   </h3>
                   <p className="text-sm text-muted leading-relaxed">

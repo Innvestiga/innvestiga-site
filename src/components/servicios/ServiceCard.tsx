@@ -30,7 +30,7 @@ export default function ServiceCard({ service, width }: ServiceCardProps) {
 
         {/* Service number — large watermark */}
         <div className="relative z-10">
-          <span className="text-[12vw] md:text-[7vw] font-heading font-[800] leading-none text-ink/[0.06] group-hover:text-primary/[0.1] transition-colors duration-700">
+          <span className="text-[12vw] md:text-[7vw] font-heading font-bold leading-none text-ink/[0.06] group-hover:text-primary/[0.1] transition-colors duration-700">
             {service.number}
           </span>
         </div>
@@ -43,7 +43,7 @@ export default function ServiceCard({ service, width }: ServiceCardProps) {
               {service.number} — Servicio
             </span>
           </div>
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-[800] uppercase leading-[0.92] mb-4 text-ink group-hover:text-primary transition-colors duration-500">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold uppercase leading-[0.92] mb-4 text-ink group-hover:text-primary transition-colors duration-500">
             {service.title}
           </h3>
           <p className="text-[13px] text-muted leading-relaxed max-w-md group-hover:text-body transition-colors duration-500">

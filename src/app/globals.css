@@ -28,7 +28,7 @@
   --color-white-dim: rgba(31, 41, 55, 0.5);
   --color-gold-glow: rgba(30, 64, 175, 0.08);
 
-  --font-heading: var(--font-syne), "Syne", sans-serif;
+  --font-heading: var(--font-sora), "Sora", sans-serif;
   --font-body: var(--font-inter), "Inter", sans-serif;
 }
 

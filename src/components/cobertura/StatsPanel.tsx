@@ -17,7 +17,7 @@ export default function StatsPanel() {
           <AnimatedCounter
             end={stat.value}
             suffix={stat.suffix}
-            className="text-4xl md:text-5xl font-heading font-[800] text-gold block"
+            className="text-4xl md:text-5xl font-heading font-bold text-gold block"
           />
           <span className="text-[10px] tracking-[0.3em] uppercase text-muted mt-2 block">
             {stat.label}

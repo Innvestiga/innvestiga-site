@@ -51,7 +51,7 @@ export default function VisionReveal() {
   }, []);
 
   const wordClass =
-    "reveal-word font-heading text-[clamp(1.5rem,3.8vw,4rem)] font-[800] uppercase leading-[1.2] tracking-tight bg-no-repeat [-webkit-background-clip:text] [background-clip:text] inline-block";
+    "reveal-word font-heading text-[clamp(1.5rem,3.8vw,4rem)] font-bold uppercase leading-[1.2] tracking-tight bg-no-repeat [-webkit-background-clip:text] [background-clip:text] inline-block";
 
   return (
     <section

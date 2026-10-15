@@ -62,7 +62,7 @@ export default function HeroSection() {
 
               <motion.h1
                 style={{ textTransform: "none" }}
-                className="font-heading text-[clamp(2.2rem,4.6vw,3.85rem)] font-[800] leading-[1.08] tracking-tight text-ink"
+                className="font-heading text-[clamp(2.2rem,4.6vw,3.85rem)] font-bold leading-[1.08] tracking-tight text-ink"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -129,7 +129,7 @@ export default function HeroSection() {
                     <AnimatedCounter
                       end={s.end}
                       suffix={s.suffix}
-                      className="text-[1.45rem] sm:text-3xl md:text-4xl font-heading font-[800] text-ink tracking-tight leading-none"
+                      className="text-[1.45rem] sm:text-3xl md:text-4xl font-heading font-bold text-ink tracking-tight leading-none"
                     />
                     <span className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-muted">
                       {s.label}
