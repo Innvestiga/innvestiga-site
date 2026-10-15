@@ -90,7 +90,7 @@ export default function CoverageSplit() {
             <div className="flex flex-col gap-10 mt-20">
               <div className="relative">
                 <AnimatedCounter
-                  end={STATS.departments}
+                  end={0}
                   className="text-5xl md:text-6xl font-heading font-[800] text-ink block tracking-tight"
                 />
                 <span className="text-[10px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">

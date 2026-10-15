@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { NAV_LINKS, CONTACT, SITE_NAME, PILOT_COUNTRIES_LIST } from "@/lib/constants";
+import { NAV_LINKS, CONTACT, SITE_NAME } from "@/lib/constants";
+import { COVERAGE } from "@/data/coverage";
+
+const PILOT_COUNTRIES_LIST = COVERAGE.map((c) => c.name);
 
 export default function Footer() {
   return (

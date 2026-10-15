@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
-import { ESI_BENEFITS, CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/lib/constants";
+
+const ESI_BENEFITS: string[] = [];
 import { BENEFIT_ICONS } from "@/lib/benefitIcons";
 
 // What a client gets out of a program. Each line paraphrases the promise of

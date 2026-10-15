@@ -1,7 +1,7 @@
 "use client";
 
 import GlassCard from "@/components/ui/GlassCard";
-import { OFFICES } from "@/lib/constants";
+import { CONTACT, OFFICES } from "@/lib/constants";
 
 export default function OfficeLocations() {
   return (
@@ -13,7 +13,7 @@ export default function OfficeLocations() {
           </span>
           <h3 className="text-xl font-[800] uppercase mb-2 text-ink">{office.city}</h3>
           <p className="text-sm text-body mb-1">{office.address}</p>
-          <p className="text-sm text-muted">{office.phone}</p>
+          <p className="text-sm text-muted">{CONTACT.phone}</p>
         </GlassCard>
       ))}
     </div>

@@ -25,18 +25,6 @@ export interface Country {
   description: string;
 }
 
-export interface CaseStudy {
-  id: string;
-  title: string;
-  industry: string;
-  country: string;
-  challenge: string;
-  solution: string;
-  result: string;
-  metrics: { label: string; value: string }[];
-  image: string;
-}
-
 export interface BlogPost {
   slug: string;
   title: string;
@@ -49,15 +37,24 @@ export interface BlogPost {
   readTime: string;
 }
 
+export interface NavChild {
+  label: string;
+  href: string;
+  /** Rendered smaller, for links the spec demotes (e.g. "Otros estudios"). */
+  minor?: boolean;
+}
+
 export interface NavLink {
   number: string;
   label: string;
   href: string;
+  children?: NavChild[];
 }
 
 export interface Office {
   city: string;
   country: string;
   address: string;
-  phone: string;
+  /** Google Business profile; empty until the client sends it. */
+  googleBusinessUrl: string;
 }

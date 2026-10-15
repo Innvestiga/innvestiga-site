@@ -6,8 +6,7 @@ import { STATS } from "@/lib/constants";
 export default function StatsPanel() {
   const stats = [
     { label: "Países", value: STATS.countries, suffix: "" },
-    { label: "Departamentos", value: STATS.departments, suffix: "" },
-    { label: "Municipios", value: STATS.municipalities, suffix: "+" },
+    { label: "Municipios", value: STATS.municipalities, suffix: "" },
     { label: "Años de experiencia", value: STATS.yearsExperience, suffix: "" },
   ];
 

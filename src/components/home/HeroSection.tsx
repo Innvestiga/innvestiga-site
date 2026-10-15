@@ -4,7 +4,10 @@ import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "@/lib/gsap";
 import Button from "@/components/ui/Button";
-import { STATS, CONTACT, PILOT_COUNTRIES } from "@/lib/constants";
+import { STATS, CONTACT } from "@/lib/constants";
+
+const PILOT_COUNTRIES =
+  "El Salvador, Guatemala, Honduras, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import HeroMap from "./HeroMap";
 
@@ -121,8 +124,6 @@ export default function HeroSection() {
               >
                 {[
                   { end: STATS.yearsExperience, suffix: "", label: "Años de experiencia" },
-                  { end: STATS.completedStudies, suffix: "+", label: "Estudios realizados" },
-                  { end: STATS.activeClients, suffix: "+", label: "Clientes activos" },
                 ].map((s) => (
                   <div key={s.label} className="flex flex-col">
                     <AnimatedCounter
