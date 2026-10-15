@@ -1,140 +1,90 @@
-"use client";
-
 import Link from "next/link";
-import { NAV_LINKS, CONTACT, SITE_NAME } from "@/lib/constants";
-import { COVERAGE } from "@/data/coverage";
+import { CONTACT, NAV_LINKS, OFFICES, SITE_LEGAL_NAME, SITE_TAGLINE } from "@/lib/constants";
+import { SCENARIOS, scenarioHref } from "@/data/scenarios";
+import { COVERAGE, coverageHref } from "@/data/coverage";
+import SocialIcons from "./SocialIcons";
 
-const PILOT_COUNTRIES_LIST = COVERAGE.map((c) => c.name);
+const headingClass = "text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-5";
+const linkClass = "text-[12px] text-body hover:text-primary transition-colors duration-300";
 
+function Column({ title, links }: { title: string; links: { href: string; label: string; external?: boolean }[] }) {
+  return (
+    <div>
+      <span className={headingClass}>{title}</span>
+      <ul className="space-y-3">
+        {links.map((l) => (
+          <li key={l.href}>
+            {l.external ? (
+              <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                {l.label}
+              </a>
+            ) : (
+              <Link href={l.href} className={linkClass}>
+                {l.label}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// The Blog link returns to "Recursos" once its first three real articles
+// are published (spec section A).
 export default function Footer() {
   return (
     <footer className="relative bg-[#e3e8f0] border-t border-[#d5dce6] text-body z-10">
-
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16 lg:px-24 py-24">
-        {/* Top row: giant brand + tagline */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
-          <div>
-            <span className="font-heading text-3xl md:text-4xl font-bold tracking-tighter block text-ink">
-              {SITE_NAME}
-            </span>
-            <span className="text-primary/60 text-[10px] tracking-[0.3em] font-bold uppercase mt-1 block">
-              Inteligencia de Mercado Premium
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] tracking-[0.3em] uppercase text-muted font-bold">
-            {PILOT_COUNTRIES_LIST.map((c, i) => (
-              <span key={c} className="flex items-center gap-3">
-                {i > 0 && <span className="w-1 h-1 rounded-full bg-primary/40" />}
-                <span>{c}</span>
-              </span>
-            ))}
-          </div>
+      <div className="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-24 py-20">
+        <div className="mb-16">
+          <span className="font-heading text-3xl md:text-4xl font-bold tracking-tighter block text-ink">
+            {SITE_LEGAL_NAME}
+          </span>
+          <span className="text-primary/70 text-[10px] tracking-[0.3em] font-bold uppercase mt-2 block">
+            {SITE_TAGLINE}
+          </span>
         </div>
 
-        {/* Link grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-20">
-          <div>
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-5">
-              Navegación
-            </span>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-16">
+          <Column title="Navegación" links={NAV_LINKS.map((l) => ({ href: l.href, label: l.label }))} />
+          <Column
+            title="Servicios"
+            links={[
+              ...SCENARIOS.map((s) => ({ href: scenarioHref(s), label: s.label })),
+              { href: "/servicios/canales-digitales", label: "Canales digitales" },
+            ]}
+          />
+          <Column title="Cobertura" links={COVERAGE.map((c) => ({ href: coverageHref(c), label: c.name }))} />
+          <Column
+            title="Recursos"
+            links={[
+              { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
+              { href: CONTACT.portal, label: "Acceso clientes", external: true },
+            ]}
+          />
+          <div className="col-span-2 md:col-span-1">
+            <span className={headingClass}>Contacto</span>
             <ul className="space-y-3">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-[12px] text-body hover:text-primary transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-5">
-              Servicios
-            </span>
-            <ul className="space-y-3">
-              {[
-                { href: "/servicios/auditorias", label: "Auditorías" },
-                { href: "/servicios/canales-digitales", label: "Canales Digitales" },
-                { href: "/servicios/consumer-insights", label: "Consumer Insights" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-[12px] text-body hover:text-primary transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-5">
-              Recursos
-            </span>
-            <ul className="space-y-3">
-              {[
-                { href: "/casos-de-exito", label: "Casos de Éxito" },
-                { href: "/blog", label: "Blog" },
-                { href: CONTACT.portal, label: "Portal ESI3", external: true },
-              ].map((link) => (
-                <li key={link.href}>
-                  {"external" in link ? (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[12px] text-body hover:text-primary transition-colors duration-300"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      className="text-[12px] text-body hover:text-primary transition-colors duration-300"
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-5">
-              Contacto
-            </span>
-            <ul className="space-y-3">
-              <li className="text-[12px] text-body">{CONTACT.phone}</li>
               <li>
-                <a
-                  href={`mailto:${CONTACT.email}`}
-                  className="text-[12px] text-body hover:text-primary transition-colors duration-300"
-                >
+                <a href={CONTACT.phoneHref} className={linkClass}>
+                  {CONTACT.phone}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${CONTACT.email}`} className={linkClass}>
                   {CONTACT.email}
                 </a>
               </li>
-              <li className="text-[12px] text-body">
-                Guatemala City | San Salvador
-              </li>
+              <li className="text-[12px] text-body">{OFFICES.map((o) => o.city).join(" | ")}</li>
             </ul>
+            <SocialIcons className="mt-5" />
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-border">
-          <p className="text-[10px] text-muted tracking-[0.2em] uppercase">
-            &copy; {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.
-          </p>
-          <p className="text-[10px] text-muted tracking-[0.2em] uppercase">
-            Inteligencia de Mercado Premium — Centroamérica & México
+        <div className="pt-8 border-t border-border">
+          <p className="text-[10px] text-muted tracking-[0.15em] uppercase leading-relaxed">
+            © {new Date().getFullYear()} {SITE_LEGAL_NAME}. Todos los derechos reservados. Auditorías CX con cliente oculto
+            en Mesoamérica y el Caribe.
           </p>
         </div>
       </div>
