@@ -56,13 +56,32 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
+              <Link
+                href="/demo"
+                onClick={onClose}
+                className="border border-primary/40 text-primary px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest"
+              >
+                Agendar demo
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              transition={{
+                duration: 0.4,
+                delay: (NAV_LINKS.length + 1) * 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
               <a
                 href={CONTACT.portal}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 bg-primary text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest"
               >
-                Acceso Portal
+                Acceso clientes
               </a>
             </motion.div>
           </nav>

@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { NAV_LINKS, CONTACT } from "@/lib/constants";
+import { NAV_LINKS, CONTACT, SITE_SUBTITLE } from "@/lib/constants";
 import MobileMenu from "./MobileMenu";
+import NavDropdown from "./NavDropdown";
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -47,26 +48,36 @@ export default function Navbar() {
           <span className="text-lg md:text-xl font-heading font-bold tracking-tighter text-primary leading-none">
             INNVESTIGA
             <span className="text-primary/60 text-[10px] block font-body tracking-[0.25em] font-normal mt-0.5 group-hover:text-primary transition-colors duration-300">
-              MARKET SPECIALIST
+              {SITE_SUBTITLE}
             </span>
           </span>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-7">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="group relative text-body hover:text-ink text-[10px] font-bold uppercase tracking-[0.2em] py-2 transition-colors duration-300"
-            >
-              <span className="text-primary/40 mr-1 group-hover:text-primary/70 transition-colors duration-300">
-                {link.number}
-              </span>
-              {link.label}
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-primary/60 transition-all duration-500 group-hover:w-full" />
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) =>
+            link.children ? (
+              <NavDropdown key={link.href} link={link} />
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="group relative text-body hover:text-ink text-[10px] font-bold uppercase tracking-[0.2em] py-2 transition-colors duration-300"
+              >
+                <span className="text-primary/40 mr-1 group-hover:text-primary/70 transition-colors duration-300">
+                  {link.number}
+                </span>
+                {link.label}
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-primary/60 transition-all duration-500 group-hover:w-full" />
+              </Link>
+            ),
+          )}
+          <Link
+            href="/demo"
+            className="border border-primary/40 text-primary px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/10 hover:border-primary transition-all duration-300"
+          >
+            Agendar demo
+          </Link>
           <a
             href={CONTACT.portal}
             target="_blank"
@@ -77,12 +88,23 @@ export default function Navbar() {
           </a>
         </div>
 
+        {/* Client access stays one tap away on mobile */}
+        <a
+          href={CONTACT.portal}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="lg:hidden ml-auto mr-3 bg-primary text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest"
+        >
+          Acceso clientes
+        </a>
+
         {/* Hamburger */}
         <button
           type="button"
           className="lg:hidden flex flex-col gap-1.5 p-2 relative z-[1001]"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={menuOpen}
         >
           <span
             className={`block w-6 h-px bg-ink transition-all duration-300 origin-center ${
