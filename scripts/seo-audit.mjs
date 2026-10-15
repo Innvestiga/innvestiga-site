@@ -18,7 +18,13 @@ const PENDING_REWRITE = new Set([
 ]);
 
 // Text that must be present in the server HTML (no JS), per path.
-const EXPECT_TEXT = {};
+const EXPECT_TEXT = {
+  "/": [
+    "18 años de experiencia",
+    "1,282 municipios que podemos evaluar",
+    "¿Cuándo fue la última vez que auditaste a tu personal? Hazlo hoy.",
+  ],
+};
 
 const BANNED = [
   /inteligencia de mercado premium/i,
@@ -42,11 +48,13 @@ const failures = [];
 const warnings = [];
 const fail = (path, msg) => (PENDING_REWRITE.has(path) ? warnings : failures).push(`${path}: ${msg}`);
 
-const visibleText = (html) =>
+// tagGap " " approximates rendered text; "" mirrors DOM textContent, which
+// is how a crawler reads words split across adjacent inline elements.
+const visibleText = (html, tagGap = " ") =>
   html
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
+    .replace(/<[^>]+>/g, tagGap)
     .replace(/&nbsp;/g, " ")
     .replace(/&amp;/g, "&")
     .replace(/&#x27;|&#39;/g, "'")
@@ -104,8 +112,9 @@ async function auditPage(path, seen) {
     if (re.test(text) || re.test(headText)) fail(path, `banned text ${re}`);
   }
 
+  const textContent = visibleText(html, "").toLowerCase();
   for (const expected of EXPECT_TEXT[path] ?? []) {
-    if (!text.toLowerCase().includes(expected.toLowerCase())) fail(path, `missing server text "${expected}"`);
+    if (!textContent.includes(expected.toLowerCase())) fail(path, `missing server text "${expected}"`);
   }
 }
 

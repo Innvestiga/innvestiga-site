@@ -1,13 +1,14 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { Fragment, useRef, useEffect } from "react";
 import { gsap } from "@/lib/gsap";
 
-const words = [
-  "¿CUÁNDO", "FUE", "LA", "ÚLTIMA", "VEZ",
-  "QUE", "AUDITASTE", "A", "TU", "PERSONAL?",
-];
-const goldWords = ["HAZLO", "HOY."];
+// Sentence case in the source so the HTML reads as a normal sentence; the
+// word class uppercases it visually.
+const QUESTION = "¿Cuándo fue la última vez que auditaste a tu personal?";
+const CALL = "Hazlo hoy.";
+const words = QUESTION.split(" ");
+const goldWords = CALL.split(" ");
 
 export default function VisionReveal() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -66,34 +67,29 @@ export default function VisionReveal() {
 
       <div className="min-h-screen flex items-center justify-center px-8 md:px-16 lg:px-24 py-32">
         <div className="text-center max-w-[1100px] mx-auto">
-          <div className="flex flex-wrap justify-center items-baseline gap-x-[0.4em] gap-y-[0.15em]">
-            {words.map((word, i) => (
-              <span
-                key={i}
-                className={wordClass}
-                style={{
-                  color: "rgba(31, 41, 55, 0.10)",
-                  backgroundImage: "linear-gradient(90deg, #1f2937, #1f2937)",
-                  backgroundSize: "0% 100%",
-                }}
-              >
-                {word}
-              </span>
-            ))}
-            {goldWords.map((word, i) => (
-              <span
-                key={`gold-${i}`}
-                className={wordClass}
-                style={{
-                  color: "rgba(30, 64, 175, 0.12)",
-                  backgroundImage: "linear-gradient(90deg, #1e40af, #1e40af)",
-                  backgroundSize: "0% 100%",
-                }}
-              >
-                {word}
-              </span>
-            ))}
-          </div>
+          <p className="flex flex-wrap justify-center items-baseline gap-x-[0.4em] gap-y-[0.15em]">
+            {/* A real space after each word keeps the sentence intact in the
+                HTML; flex drops whitespace-only text, so layout is unchanged. */}
+            {[...words, ...goldWords].map((word, i) => {
+              const gold = i >= words.length;
+              return (
+                <Fragment key={i}>
+                  <span
+                    className={wordClass}
+                    style={{
+                      color: gold ? "rgba(30, 64, 175, 0.12)" : "rgba(31, 41, 55, 0.10)",
+                      backgroundImage: gold
+                        ? "linear-gradient(90deg, #1e40af, #1e40af)"
+                        : "linear-gradient(90deg, #1f2937, #1f2937)",
+                      backgroundSize: "0% 100%",
+                    }}
+                  >
+                    {word}
+                  </span>{" "}
+                </Fragment>
+              );
+            })}
+          </p>
         </div>
       </div>
     </section>

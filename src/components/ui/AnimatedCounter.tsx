@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 interface AnimatedCounterProps {
@@ -11,6 +11,10 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
+const format = (n: number) => Math.round(n).toLocaleString("en-US");
+
+// The server HTML carries the final number so crawlers and no-JS readers
+// see it; the count-up runs on the client when the number scrolls in.
 export default function AnimatedCounter({
   end,
   suffix = "",
@@ -19,36 +23,34 @@ export default function AnimatedCounter({
   className = "",
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!ref.current || hasAnimated) return;
-
     const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    const obj = { val: 0 };
+    const render = () => {
+      el.textContent = `${prefix}${format(obj.val)}${suffix}`;
+    };
     const trigger = ScrollTrigger.create({
       trigger: el,
       start: "top 85%",
+      once: true,
       onEnter: () => {
-        setHasAnimated(true);
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: end,
-          duration,
-          ease: "power2.out",
-          onUpdate: () => {
-            el.textContent = `${prefix}${Math.round(obj.val).toLocaleString("en-US")}${suffix}`;
-          },
-        });
+        render();
+        gsap.to(obj, { val: end, duration, ease: "power2.out", onUpdate: render });
       },
     });
 
     return () => trigger.kill();
-  }, [end, suffix, prefix, duration, hasAnimated]);
+  }, [end, suffix, prefix, duration]);
 
   return (
     <span ref={ref} className={className}>
-      {prefix}0{suffix}
+      {prefix}
+      {format(end)}
+      {suffix}
     </span>
   );
 }
