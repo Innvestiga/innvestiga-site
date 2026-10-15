@@ -2,14 +2,10 @@
 
 import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
-import { CONTACT } from "@/lib/constants";
+import DifferenceBlock from "./DifferenceBlock";
 
-const ESI_BENEFITS: string[] = [];
-import { BENEFIT_ICONS } from "@/lib/benefitIcons";
-
-// What a client gets out of a program. Each line paraphrases the promise of
-// one service or ESI feature as it is written on this site (services.ts,
-// ESI_BENEFITS), so nothing here claims more than the service pages do.
+// What a client gets out of an audit. The spec keeps these four lines as
+// they are.
 const OUTCOMES = [
   {
     title: "Fortalezas y áreas de mejora de tus equipos comerciales",
@@ -29,8 +25,6 @@ const OUTCOMES = [
   },
 ];
 
-const BADGES = ["Desde 2013", "3ª generación", "Resultados en máx. 3 días"];
-
 export default function BenefitsSection() {
   return (
     <section className="relative bg-surface-alt border-t border-border py-24 md:py-32 overflow-hidden">
@@ -49,12 +43,12 @@ export default function BenefitsSection() {
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-px bg-primary" />
               <span className="text-[10px] font-bold tracking-[0.45em] uppercase text-primary">
-                Lo que ganas
+                Beneficios
               </span>
             </div>
             <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase leading-[0.95] tracking-tight text-ink">
-              Lo que cambia con un{" "}
-              <span className="text-gold-gradient">programa</span>
+              Lo que ganas con una{" "}
+              <span className="text-gold-gradient">auditoría</span>
             </h2>
 
             <ol className="mt-10 space-y-0 border-t border-border">
@@ -85,70 +79,12 @@ export default function BenefitsSection() {
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Button href="/contacto" variant="gold">
-                Solicitar Prueba Piloto
+                Solicitar prueba piloto
               </Button>
             </div>
           </motion.div>
 
-          {/* ── Right: what every audit delivers in ESI ── */}
-          <motion.div
-            className="lg:col-span-6 rounded-3xl bg-surface border border-border p-6 md:p-8 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_24px_60px_-18px_rgba(30,64,175,0.18)]"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/70">
-                Cada auditoría, en ESI
-              </span>
-              <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-muted">
-                Exploración Sistémica
-              </span>
-            </div>
-
-            <ul className="mt-5 grid sm:grid-cols-2 gap-x-6 gap-y-1">
-              {ESI_BENEFITS.map((benefit, i) => (
-                <li
-                  key={benefit}
-                  className="group flex items-start gap-3 rounded-xl px-2 py-2.5 transition-colors duration-300 hover:bg-surface-alt"
-                >
-                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
-                    <svg
-                      width="15"
-                      height="15"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      {BENEFIT_ICONS[i]}
-                    </svg>
-                  </span>
-                  <span className="text-ink text-[13.5px] font-medium leading-snug">{benefit}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-6 pt-5 border-t border-border flex flex-wrap items-center justify-between gap-4">
-              <div className="flex flex-wrap gap-2">
-                {BADGES.map((b) => (
-                  <span
-                    key={b}
-                    className="inline-flex items-center rounded-full bg-primary/10 text-primary px-3.5 py-1.5 text-[10px] font-bold tracking-[0.15em] uppercase"
-                  >
-                    {b}
-                  </span>
-                ))}
-              </div>
-              <Button href={CONTACT.portal} external variant="outline" className="!px-6 !py-3">
-                Quiero conocer ESI
-              </Button>
-            </div>
-          </motion.div>
+          <DifferenceBlock />
         </div>
       </div>
     </section>

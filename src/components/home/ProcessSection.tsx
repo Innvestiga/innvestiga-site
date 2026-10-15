@@ -32,9 +32,6 @@ export default function ProcessSection() {
               <span className="text-gold-gradient">mismo método</span>
             </h2>
           </div>
-          <p className="text-body text-base md:text-lg leading-relaxed md:max-w-md">
-            {audit.shortDescription}
-          </p>
         </motion.div>
 
         <ol className="relative mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 pt-8">
