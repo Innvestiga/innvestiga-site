@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { STATS } from "@/lib/constants";
-import { countries } from "@/data/countries";
+import { COVERAGE, coverageHref } from "@/data/coverage";
 
 export default function CoverageSplit() {
   return (
@@ -33,27 +33,42 @@ export default function CoverageSplit() {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {countries.map((country, i) => (
+            <h2 className="font-heading text-3xl md:text-5xl font-bold uppercase leading-[0.95] tracking-tight text-ink mb-10">
+              Auditamos en 8 países.{" "}
+              <span className="text-gold-gradient">Podemos evaluar cualquier punto de venta.</span>
+            </h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {COVERAGE.map((country, i) => (
                 <motion.div
-                  key={country.id}
-                  className="group relative p-5 rounded-xl overflow-hidden bg-surface border border-border hover:border-primary/25 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] transition-all duration-500"
+                  key={country.slug}
+                  className={country.priority ? "col-span-2" : ""}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06, duration: 0.5 }}
                 >
-                  {/* Hover glow */}
-                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.04] transition-colors duration-500" />
-                  <div className="relative z-10">
-                    <span className="text-xl mb-2 block">{country.flag}</span>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-ink block">
-                      {country.name}
-                    </span>
-                    <span className="text-[10px] text-muted block mt-1 tracking-wider">
-                      {country.departments} depto. · {country.municipalities} mun.
-                    </span>
-                  </div>
+                  <Link
+                    href={coverageHref(country)}
+                    className={`group relative block h-full rounded-xl overflow-hidden bg-surface border border-border hover:border-primary/25 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] transition-all duration-500 ${
+                      country.priority ? "p-7" : "p-5"
+                    }`}
+                  >
+                    {/* Hover glow */}
+                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.04] transition-colors duration-500" />
+                    <div className="relative z-10">
+                      <span
+                        className={`font-bold uppercase tracking-wider text-ink block ${
+                          country.priority ? "text-base" : "text-[11px]"
+                        }`}
+                      >
+                        {country.name}
+                      </span>
+                      <span className="text-[11px] text-muted block mt-1 tracking-wider">
+                        {country.count.toLocaleString("en-US")} {country.unit}
+                      </span>
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -62,7 +77,7 @@ export default function CoverageSplit() {
               href="/cobertura"
               className="group inline-flex items-center gap-3 mt-10 text-[10px] font-bold tracking-[0.3em] uppercase text-gold/50 hover:text-gold transition-colors duration-300"
             >
-              <span>Ver mapa interactivo</span>
+              <span>Ver cobertura completa</span>
               <div className="w-4 h-px bg-current group-hover:w-8 transition-all duration-300" />
             </Link>
           </motion.div>
@@ -90,18 +105,7 @@ export default function CoverageSplit() {
             <div className="flex flex-col gap-10 mt-20">
               <div className="relative">
                 <AnimatedCounter
-                  end={0}
-                  className="text-5xl md:text-6xl font-heading font-bold text-ink block tracking-tight"
-                />
-                <span className="text-[10px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">
-                  Departamentos
-                </span>
-              </div>
-              <div className="w-16 h-px bg-gold/20 ml-auto lg:mr-0" />
-              <div className="relative">
-                <AnimatedCounter
                   end={STATS.municipalities}
-                  suffix="+"
                   className="text-5xl md:text-6xl font-heading font-bold text-ink block tracking-tight"
                 />
                 <span className="text-[10px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">

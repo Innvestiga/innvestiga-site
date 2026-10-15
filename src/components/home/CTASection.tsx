@@ -3,7 +3,6 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "@/lib/gsap";
 import Button from "@/components/ui/Button";
-import { CONTACT } from "@/lib/constants";
 
 export default function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -38,7 +37,7 @@ export default function CTASection() {
       <div className="absolute inset-0 dot-grid opacity-15 pointer-events-none" />
 
       {/* Scrolling marquee background */}
-      <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none">
+      <div aria-hidden="true" className="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none">
         <div className="cta-marquee flex whitespace-nowrap">
           {[...Array(6)].map((_, i) => (
             <span
@@ -67,10 +66,10 @@ export default function CTASection() {
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Button href="/contacto" variant="gold">
-            Solicitar Prueba Piloto
+            Solicitar prueba piloto
           </Button>
-          <Button href={CONTACT.portal} variant="outline" external>
-            Ingresar a ESI
+          <Button href="/demo" variant="outline">
+            Agendar demo
           </Button>
         </div>
 
