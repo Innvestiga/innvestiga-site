@@ -14,6 +14,16 @@ export default function OfficeLocations() {
           <h3 className="text-xl font-bold uppercase mb-2 text-ink">{office.city}</h3>
           <p className="text-sm text-body mb-1">{office.address}</p>
           <p className="text-sm text-muted">{CONTACT.phone}</p>
+          {office.googleBusinessUrl && (
+            <a
+              href={office.googleBusinessUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block text-sm text-primary"
+            >
+              Ver en Google
+            </a>
+          )}
         </GlassCard>
       ))}
     </div>
