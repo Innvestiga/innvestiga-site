@@ -1,36 +1,62 @@
-import { services } from "@/data/services";
-import ServiceHero from "@/components/servicios/ServiceHero";
-import ServiceProcess from "@/components/servicios/ServiceProcess";
+import PageHero from "@/components/page/PageHero";
+import Section, { Checklist } from "@/components/page/Section";
 import Button from "@/components/ui/Button";
-import type { Metadata } from "next";
+import { services } from "@/data/services";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Consumer Insights",
+const PATH = "/servicios/consumer-insights";
+
+export const metadata = pageMetadata({
+  path: PATH,
+  title: "Inteligencia de Mercado y Estudios a la Medida | Innvestiga",
   description:
-    "Reportes precisos y prácticos para tomar decisiones estratégicas basadas en datos reales del consumidor.",
-};
+    "Además de las auditorías, realizamos inteligencia de mercado, estudios cuantitativos y cualitativos a la medida y mediciones de satisfacción del cliente.",
+});
 
+const service = services.find((s) => s.slug === "consumer-insights")!;
+
+// Demoted page (section E): same URL and content, lower prominence.
 export default function ConsumerInsightsPage() {
-  const service = services.find((s) => s.slug === "consumer-insights")!;
-
   return (
     <>
-      <ServiceHero service={service} />
-      <ServiceProcess service={service} />
-      <section className="bg-surface-alt py-32 text-center">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-bold uppercase leading-[0.9] mb-6">
-            Conoce a tu{" "}
-            <span className="text-gold-gradient">consumidor.</span>
-          </h2>
-          <p className="text-body mb-10">
-            Insights accionables que transforman datos en decisiones estratégicas.
-          </p>
-          <Button href="/contacto" variant="gold">
-            Solicitar Estudio
+      <PageHero
+        crumbs={[
+          { name: "Servicios", path: "/servicios" },
+          { name: "Otros estudios", path: PATH },
+        ]}
+        label="Otros estudios"
+        title="Otros estudios que realizamos."
+        intro={
+          <>
+            <p>
+              Además de las auditorías, realizamos inteligencia de mercado, estudios cuantitativos y cualitativos a la
+              medida y mediciones de satisfacción del cliente.
+            </p>
+            <p>{service.fullDescription}</p>
+          </>
+        }
+      />
+
+      <Section title="Qué incluye" tone="alt">
+        <Checklist items={service.features} />
+      </Section>
+
+      <Section title="Cómo trabajamos">
+        <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {service.process.map((p) => (
+            <li key={p.step}>
+              <span className="font-heading text-4xl font-bold text-ink/10">0{p.step}</span>
+              <h3 className="mt-2 font-heading text-xl font-bold uppercase text-ink">{p.title}</h3>
+              <p className="mt-2 text-[14.5px] text-body leading-relaxed">{p.description}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-12">
+          <Button href="/contacto" variant="outline">
+            Contáctanos
           </Button>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

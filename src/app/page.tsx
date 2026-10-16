@@ -19,6 +19,7 @@ export const metadata = pageMetadata({
   title: "Auditorías CX: Cliente Oculto y Mystery Shopper | Innvestiga",
   description:
     "Auditorías CX con cliente oculto (mystery shopper) en 8 países y 1,282 municipios de Mesoamérica y el Caribe. Resultados en 3 días. Solicita tu prueba piloto.",
+  languages: { es: "/", en: "/en", "x-default": "/" },
 });
 
 // Home, in the order of spec section D: the ask, what an audit gives you,

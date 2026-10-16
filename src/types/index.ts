@@ -16,15 +16,6 @@ export interface ProcessStep {
   description: string;
 }
 
-export interface Country {
-  id: string;
-  name: string;
-  departments: number;
-  municipalities: number;
-  flag: string;
-  description: string;
-}
-
 export interface BlogPost {
   slug: string;
   title: string;

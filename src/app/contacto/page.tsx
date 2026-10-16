@@ -6,11 +6,14 @@ import OfficeLocations from "@/components/contacto/OfficeLocations";
 import DirectChannels from "@/components/contacto/DirectChannels";
 import SectionHeading from "@/components/ui/SectionHeading";
 import WatermarkText from "@/components/ui/WatermarkText";
+import JsonLd from "@/components/seo/JsonLd";
 import { PILOT_SCOPE } from "@/lib/constants";
+import { localBusinessSchemas } from "@/lib/jsonld";
 
 export default function ContactoPage() {
   return (
     <>
+      <JsonLd data={localBusinessSchemas()} />
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-end overflow-hidden bg-bg pb-20 pt-40">
         <WatermarkText text="CONTACTO" className="top-1/2 -translate-y-1/2 left-0" />

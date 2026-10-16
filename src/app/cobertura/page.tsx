@@ -1,85 +1,49 @@
-"use client";
+import PageHero from "@/components/page/PageHero";
+import Section from "@/components/page/Section";
+import CountryLinks from "@/components/page/CountryLinks";
+import CoverageTable from "@/components/page/CoverageTable";
+import PilotCta from "@/components/page/PilotCta";
+import HeroMap from "@/components/home/HeroMap";
+import { pageMetadata } from "@/lib/seo";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import InteractiveMap from "@/components/cobertura/InteractiveMap";
-import CountryDetail from "@/components/cobertura/CountryDetail";
-import StatsPanel from "@/components/cobertura/StatsPanel";
-import SectionHeading from "@/components/ui/SectionHeading";
-import WatermarkText from "@/components/ui/WatermarkText";
-import type { Country } from "@/types";
-import { countries } from "@/data/countries";
+export const metadata = pageMetadata({
+  path: "/cobertura",
+  title: "Cobertura de Auditorías CX en 8 Países y 1,282 Municipios | Innvestiga",
+  description:
+    "Auditorías CX con cliente oculto en El Salvador, Guatemala, Honduras, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas: 1,282 municipios.",
+});
 
 export default function CoberturaPage() {
-  const [selectedCountry, setSelectedCountry] = useState<Country | null>(countries[0]);
-
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end overflow-hidden bg-surface-alt pb-20 pt-40">
-        <WatermarkText
-          text="COBERTURA"
-          className="top-1/2 -translate-y-1/2 left-0"
-        />
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 lg:px-24 w-full">
-          <motion.span
-            className="text-[10px] font-bold tracking-[0.5em] uppercase text-gold mb-6 block"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Presencia Regional
-          </motion.span>
-          <motion.h1
-            className="text-[clamp(1.6rem,7.5vw,6rem)] font-bold leading-[0.9] uppercase text-ink"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            Nuestra{" "}
-            <span className="text-gold-gradient">cobertura.</span>
-          </motion.h1>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="bg-surface py-20">
-        <div className="max-w-[1400px] mx-auto px-8 md:px-16 lg:px-24">
-          <StatsPanel />
-        </div>
-      </section>
-
-      {/* Interactive Map */}
-      <section className="bg-bg py-32">
-        <div className="max-w-[1400px] mx-auto px-8 md:px-16 lg:px-24">
-          <SectionHeading
-            label="Mapa Interactivo"
-            title="Explora nuestra presencia."
-            subtitle="Haz clic en un país para ver los detalles de nuestra cobertura."
-          />
-
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
-            <div className="lg:col-span-3">
-              <InteractiveMap
-                onCountrySelect={setSelectedCountry}
-                selectedCountry={selectedCountry}
-              />
-            </div>
-            <div className="lg:col-span-2">
-              <CountryDetail
-                country={selectedCountry}
-                onClose={() => setSelectedCountry(null)}
-              />
-              {!selectedCountry && (
-                <div className="text-center py-16">
-                  <p className="text-muted text-sm">
-                    Selecciona un país en el mapa
-                  </p>
-                </div>
-              )}
-            </div>
+      <PageHero
+        crumbs={[{ name: "Cobertura", path: "/cobertura" }]}
+        label="Mesoamérica y el Caribe"
+        title="Auditorías CX en 1,282 municipios de Mesoamérica y el Caribe."
+        intro={
+          <p>
+            Estamos presentes en las principales ciudades de El Salvador, Guatemala, Honduras, Nicaragua, Costa Rica,
+            Panamá, República Dominicana y Chiapas, y podemos realizar auditorías en cualquier punto de venta de esta
+            región. Nuestro equipo comercial atiende primero a El Salvador y Guatemala, y la operación de campo llega a
+            todos los países.
+          </p>
+        }
+        aside={
+          <div className="relative aspect-[384/268] w-full max-w-[640px] lg:ml-auto">
+            <HeroMap />
           </div>
-        </div>
-      </section>
+        }
+      />
+
+      <Section title="Dónde podemos evaluar" tone="alt">
+        <CoverageTable />
+      </Section>
+
+      <Section title="Auditamos en 8 países">
+        <CountryLinks />
+      </Section>
+
+      <PilotCta />
     </>
   );
 }

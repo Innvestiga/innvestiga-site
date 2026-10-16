@@ -7,7 +7,8 @@ import { services } from "@/data/services";
 const audit = services[0];
 const steps = audit.process;
 
-export default function ProcessSection() {
+// Reused on /nosotros and /servicios/auditorias with their own heading.
+export default function ProcessSection({ label = "Cómo trabajamos" }: { label?: string }) {
   return (
     <section className="relative bg-bg border-t border-border overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none [mask-image:radial-gradient(100%_80%_at_50%_50%,#000,transparent)]" />
@@ -24,7 +25,7 @@ export default function ProcessSection() {
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-px bg-primary" />
               <span className="text-[10px] font-bold tracking-[0.45em] uppercase text-primary">
-                Cómo trabajamos
+                {label}
               </span>
             </div>
             <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase leading-[0.95] tracking-tight text-ink">

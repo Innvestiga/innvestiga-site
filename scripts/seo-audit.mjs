@@ -7,15 +7,18 @@ const args = process.argv.slice(2);
 const baseIndex = args.indexOf("--base");
 const base = (baseIndex >= 0 ? args[baseIndex + 1] : "http://localhost:3000").replace(/\/+$/, "");
 
-// Pages Milestone 2 rewrites. Empty this set in Milestone 2.
-const PENDING_REWRITE = new Set([
-  "/nosotros",
-  "/servicios",
-  "/servicios/auditorias",
-  "/servicios/canales-digitales",
-  "/servicios/consumer-insights",
-  "/cobertura",
-]);
+// Pages whose failures only warn. Empty since Milestone 2 shipped.
+const PENDING_REWRITE = new Set([]);
+
+const COUNTRY_PATHS = [
+  "/cobertura/el-salvador", "/cobertura/guatemala", "/cobertura/honduras", "/cobertura/nicaragua",
+  "/cobertura/costa-rica", "/cobertura/panama", "/cobertura/republica-dominicana", "/cobertura/chiapas-mexico",
+];
+const SCENARIO_PATHS = [
+  "/servicios/auditorias/proceso-de-ventas", "/servicios/auditorias/garantias",
+  "/servicios/auditorias/reclamos-y-conflictos", "/servicios/auditorias/reparaciones-y-servicio-tecnico",
+  "/servicios/auditorias/devoluciones-y-cambios", "/servicios/auditorias/promociones-y-precios",
+];
 
 // Text that must be present in the server HTML (no JS), per path.
 const EXPECT_TEXT = {
@@ -24,7 +27,57 @@ const EXPECT_TEXT = {
     "1,282 municipios que podemos evaluar",
     "¿Cuándo fue la última vez que auditaste a tu personal? Hazlo hoy.",
   ],
+  "/servicios": ["Auditorías de experiencia del cliente para empresas de retail.", "Auditoría de canales digitales", "Otros estudios"],
+  "/servicios/auditorias": [
+    "Una auditoría con cliente oculto (mystery shopper) es una visita presencial de un auditor capacitado",
+    "Situaciones en las que una auditoría ayuda a una empresa de retail",
+    "Qué evaluamos",
+    "Cómo funciona",
+    "Qué recibes",
+    "Evidencia en video, fotos y audio",
+  ],
+  "/servicios/canales-digitales": ["Auditoría de atención en chat, redes sociales y call center."],
+  "/servicios/consumer-insights": ["Otros estudios que realizamos.", "Además de las auditorías, realizamos inteligencia de mercado"],
+  "/cobertura": [
+    "Auditorías CX en 1,282 municipios de Mesoamérica y el Caribe.",
+    "Podemos evaluar cualquiera de...",
+    "En Costa Rica contamos cantones y en Panamá, distritos.",
+  ],
+  "/nosotros": [
+    "Innvestiga: 18 años de experiencia, especialistas en cliente oculto desde 2013.",
+    "Nuestra historia",
+    "Una experiencia que se nota en cada auditoría",
+    "Datos clave",
+    "Máximo 3 días después de cada visita",
+  ],
+  "/preguntas-frecuentes": ["¿Cuánto cuesta?", "Última actualización"],
+  "/en": ["Find out what really happens in each of your stores.", "municipalities we can evaluate", "Request a pilot", "Book a demo"],
 };
+for (const path of SCENARIO_PATHS) {
+  EXPECT_TEXT[path] = ["Qué situación evaluamos", "Qué verificamos", "Qué decisión te ayuda a tomar", "República Dominicana"];
+}
+for (const path of COUNTRY_PATHS) {
+  EXPECT_TEXT[path] = ["Situaciones que auditamos", "Preguntas frecuentes", "Última actualización", "Proceso de ventas"];
+}
+for (const path of ["/cobertura/el-salvador", "/cobertura/guatemala"]) {
+  EXPECT_TEXT[path].push("Atención comercial en", "Solicita tu prueba piloto en");
+}
+
+// JSON-LD @types each page must carry (section I).
+const EXPECT_SCHEMA = {
+  "/": ["Organization", "WebSite", "FAQPage"],
+  "/nosotros": ["AboutPage", "Organization"],
+  "/servicios/auditorias": ["Service"],
+  "/servicios/canales-digitales": ["Service"],
+  "/preguntas-frecuentes": ["FAQPage"],
+  "/contacto": ["LocalBusiness"],
+};
+for (const path of [...SCENARIO_PATHS, ...COUNTRY_PATHS]) EXPECT_SCHEMA[path] = ["Service", "BreadcrumbList"];
+
+// Pages without breadcrumbs: the two home pages and the conversion pages.
+const NO_BREADCRUMBS = new Set(["/", "/en", "/contacto", "/demo"]);
+
+const LOCALE = { "/en": "en_US" };
 
 const BANNED = [
   /inteligencia de mercado premium/i,
@@ -42,7 +95,10 @@ const BANNED = [
   /market specialist(?!s)/i,
 ];
 
-const REDIRECTS = [["/casos-de-exito", "/servicios/auditorias"]];
+const REDIRECTS = [
+  ["/casos-de-exito", "/servicios/auditorias"],
+  ["/casos-de-exito/cualquier-caso", "/servicios/auditorias"],
+];
 
 const failures = [];
 const warnings = [];
@@ -91,17 +147,30 @@ async function auditPage(path, seen) {
   }
 
   if (!/<link[^>]+rel="canonical"/i.test(html)) fail(path, "missing canonical");
-  if (metaContent(html, "property", "og:locale") !== "es_LA") fail(path, "og:locale is not es_LA");
+  const locale = LOCALE[path] ?? "es_LA";
+  if (metaContent(html, "property", "og:locale") !== locale) fail(path, `og:locale is not ${locale}`);
   if (!metaContent(html, "property", "og:image")) fail(path, "missing og:image");
   if (metaContent(html, "name", "twitter:card") !== "summary_large_image") fail(path, "twitter:card is not summary_large_image");
   if (/<meta[^>]+name="keywords"/i.test(html)) fail(path, "meta keywords present");
   if (/<meta[^>]+name="robots"[^>]+noindex/i.test(html)) fail(path, "indexable page is noindex (is NEXT_PUBLIC_SITE_ENV=production?)");
 
+  const types = new Set();
   for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi)) {
     try {
-      JSON.parse(json);
+      const data = JSON.parse(json);
+      for (const item of [data].flat()) types.add(item["@type"]);
     } catch {
       fail(path, "invalid JSON-LD");
+    }
+  }
+  const expectedTypes = [...(EXPECT_SCHEMA[path] ?? []), ...(NO_BREADCRUMBS.has(path) ? [] : ["BreadcrumbList"])];
+  for (const type of new Set(expectedTypes)) {
+    if (!types.has(type)) fail(path, `missing ${type} JSON-LD`);
+  }
+
+  if (path === "/" || path === "/en") {
+    for (const lang of ["es", "en", "x-default"]) {
+      if (!new RegExp(`<link[^>]+hrefLang="${lang}"`, "i").test(html)) fail(path, `missing hreflang ${lang}`);
     }
   }
 
@@ -139,6 +208,14 @@ async function main() {
   const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
   const paths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
   if (paths.length === 0) failures.push("sitemap.xml lists no URLs");
+
+  const llms = await fetch(`${base}/llms.txt`);
+  const llmsText = await llms.text();
+  if (llms.status !== 200 || !llmsText.startsWith("# Innvestiga")) failures.push(`llms.txt: status ${llms.status}`);
+
+  for (const path of ["/preguntas-frecuentes", "/en", ...COUNTRY_PATHS, ...SCENARIO_PATHS]) {
+    if (!paths.includes(path)) failures.push(`sitemap.xml: missing ${path}`);
+  }
 
   const seen = { titles: new Map(), descs: new Map() };
   for (const path of paths) await auditPage(path, seen);

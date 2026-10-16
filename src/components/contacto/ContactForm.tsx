@@ -44,7 +44,8 @@ function Field({ id, label, ...props }: { id: string; label: string } & React.In
   );
 }
 
-export default function ContactForm() {
+// Country pages preselect their own country.
+export default function ContactForm({ defaultCountry = "" }: { defaultCountry?: string }) {
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
   const messageRef = useRef<HTMLInputElement>(null);
@@ -92,7 +93,7 @@ export default function ContactForm() {
           <label className={labelStyles} htmlFor="country">
             País *
           </label>
-          <select id="country" name="country" required defaultValue="" className={inputStyles}>
+          <select id="country" name="country" required defaultValue={defaultCountry} className={inputStyles}>
             <option value="" disabled>
               Selecciona un país
             </option>

@@ -2,12 +2,22 @@ import Link from "next/link";
 import type { FaqItem } from "@/data/faq";
 
 // Server component; <details> keeps every answer in the HTML.
-export default function HomeFaq({ items, showAllLink = true }: { items: FaqItem[]; showAllLink?: boolean }) {
+export default function HomeFaq({
+  items,
+  showAllLink = true,
+  title = "Preguntas frecuentes",
+  footer,
+}: {
+  items: FaqItem[];
+  showAllLink?: boolean;
+  title?: string;
+  footer?: React.ReactNode;
+}) {
   return (
     <section className="bg-bg border-t border-border py-20 md:py-24">
       <div className="max-w-4xl mx-auto px-6">
         <h2 className="font-heading text-3xl md:text-4xl font-bold uppercase tracking-tight text-ink">
-          Preguntas frecuentes
+          {title}
         </h2>
         <div className="mt-8 divide-y divide-border border-y border-border">
           {items.map((f) => (
@@ -35,6 +45,7 @@ export default function HomeFaq({ items, showAllLink = true }: { items: FaqItem[
             Ver todas las preguntas
           </Link>
         )}
+        {footer && <div className="mt-8">{footer}</div>}
       </div>
     </section>
   );
