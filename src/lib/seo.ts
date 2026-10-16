@@ -12,18 +12,22 @@ interface PageSeo {
   title: string;
   description: string;
   noindex?: boolean;
+  /** Open Graph locale; the site is Spanish except /en. */
+  locale?: "es_LA" | "en_US";
+  /** hreflang alternates, e.g. { es: "/", en: "/en", "x-default": "/" }. */
+  languages?: Record<string, string>;
 }
 
 // One place for per-page SEO. Next replaces (does not merge) nested objects
 // such as openGraph from the layout, so every field is repeated here.
-export function pageMetadata({ path, title, description, noindex }: PageSeo): Metadata {
+export function pageMetadata({ path, title, description, noindex, locale = "es_LA", languages }: PageSeo): Metadata {
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: path, ...(languages ? { languages } : {}) },
     openGraph: {
       type: "website",
-      locale: "es_LA",
+      locale,
       siteName: "Innvestiga",
       url: path,
       title,

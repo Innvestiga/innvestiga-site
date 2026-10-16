@@ -54,6 +54,8 @@ export interface NavLink {
 export interface Office {
   city: string;
   country: string;
+  /** ISO 3166-1 alpha-2, for schema.org addresses. */
+  countryCode: string;
   address: string;
   /** Google Business profile; empty until the client sends it. */
   googleBusinessUrl: string;

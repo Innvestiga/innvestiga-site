@@ -35,12 +35,14 @@ export const OFFICES: Office[] = [
   {
     city: "Guatemala City",
     country: "Guatemala",
+    countryCode: "GT",
     address: "Zona 10, Ciudad de Guatemala",
     googleBusinessUrl: "",
   },
   {
     city: "San Salvador",
     country: "El Salvador",
+    countryCode: "SV",
     address: "San Salvador, El Salvador",
     googleBusinessUrl: "",
   },

@@ -42,3 +42,17 @@ describe("pageMetadata", () => {
     expect(OG_IMAGE).toMatchObject({ url: "/og", width: 1200, height: 630 });
   });
 });
+
+describe("pageMetadata languages", () => {
+  it("adds hreflang alternates and the English locale when asked", () => {
+    const en = pageMetadata({
+      path: "/en",
+      title: "t",
+      description: "d",
+      locale: "en_US",
+      languages: { es: "/", en: "/en", "x-default": "/" },
+    });
+    expect(en.alternates?.languages).toEqual({ es: "/", en: "/en", "x-default": "/" });
+    expect(en.openGraph).toMatchObject({ locale: "en_US" });
+  });
+});

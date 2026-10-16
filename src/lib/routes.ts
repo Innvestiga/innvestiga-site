@@ -1,13 +1,19 @@
-// Every public, indexable route. Milestone 2 appends the scenario, country,
-// FAQ and /en/ routes here; the sitemap and the SEO audit both read it.
+import { COVERAGE, coverageHref } from "@/data/coverage";
+import { SCENARIOS, scenarioHref } from "@/data/scenarios";
+
+// Every public, indexable route; the sitemap and the SEO audit both read it.
 export const INDEXABLE_ROUTES: string[] = [
   "/",
-  "/contacto",
-  "/demo",
   "/nosotros",
   "/servicios",
   "/servicios/auditorias",
+  ...SCENARIOS.map(scenarioHref),
   "/servicios/canales-digitales",
   "/servicios/consumer-insights",
   "/cobertura",
+  ...COVERAGE.map(coverageHref),
+  "/preguntas-frecuentes",
+  "/contacto",
+  "/demo",
+  "/en",
 ];
