@@ -7,7 +7,6 @@ import { gsap } from "@/lib/gsap";
 import Button from "@/components/ui/Button";
 import { STATS } from "@/lib/constants";
 import { COVERAGE, coverageHref } from "@/data/coverage";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import HeroMap from "./HeroMap";
 
 export default function HeroSection() {
@@ -135,10 +134,7 @@ export default function HeroSection() {
                   { end: STATS.municipalities, label: "municipios que podemos evaluar" },
                 ].map((s) => (
                   <div key={s.label} className="flex flex-col">
-                    <AnimatedCounter
-                      end={s.end}
-                      className="text-[1.45rem] sm:text-3xl md:text-4xl font-heading font-bold text-ink tracking-tight leading-none"
-                    />{" "}
+                    <span className="text-[1.45rem] sm:text-3xl md:text-4xl font-heading font-bold text-ink tracking-tight leading-none">{s.end.toLocaleString("en-US")}</span>{" "}
                     <span className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-muted">
                       {s.label}
                     </span>

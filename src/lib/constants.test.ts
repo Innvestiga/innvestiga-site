@@ -17,15 +17,8 @@ describe("constants", () => {
     expect(NAV_LINKS[2].children?.length).toBe(8);
   });
 
-  it("lists the six social profiles under @innvestiga", () => {
-    expect(SOCIAL_PROFILES.map((p) => p.url)).toEqual([
-      "https://www.linkedin.com/company/innvestiga",
-      "https://www.youtube.com/@innvestiga",
-      "https://www.tiktok.com/@innvestiga",
-      "https://www.instagram.com/innvestiga",
-      "https://www.facebook.com/innvestiga",
-      "https://x.com/innvestiga",
-    ]);
+  it("keeps LinkedIn as the only active social profile (WhatsApp is linked separately)", () => {
+    expect(SOCIAL_PROFILES.map((p) => p.url)).toEqual(["https://www.linkedin.com/company/innvestiga"]);
   });
 
   it("builds a wa.me link only when a WhatsApp number is configured", () => {

@@ -21,8 +21,8 @@ describe("organizationSchema", () => {
     expect(org.contactPoint.telephone).toBe("+502 2277 7220");
   });
 
-  it("links the six social profiles and the Google Business profile", () => {
-    expect(org.sameAs).toHaveLength(7);
+  it("links LinkedIn and the Google Business profile", () => {
+    expect(org.sameAs).toEqual(["https://www.linkedin.com/company/innvestiga", "https://share.google/0iOxKKg89kGZD7o7h"]);
   });
 });
 

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { STATS } from "@/lib/constants";
 import { COVERAGE, coverageHref } from "@/data/coverage";
 
@@ -91,10 +90,7 @@ export default function CoverageSplit() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="relative inline-block">
-              <AnimatedCounter
-                end={STATS.countries}
-                className="text-[22vw] md:text-[16vw] lg:text-[12vw] font-heading font-bold leading-none text-gold/90 block tracking-tighter"
-              />
+              <span className="text-[22vw] md:text-[16vw] lg:text-[12vw] font-heading font-bold leading-none text-gold/90 block tracking-tighter">{STATS.countries.toLocaleString("en-US")}</span>
               {/* Shadow of the number */}
               <div className="absolute -inset-8 bg-gold/[0.04] rounded-full blur-[60px] -z-10" />
             </div>
@@ -104,10 +100,7 @@ export default function CoverageSplit() {
 
             <div className="flex flex-col gap-10 mt-20">
               <div className="relative">
-                <AnimatedCounter
-                  end={STATS.municipalities}
-                  className="text-5xl md:text-6xl font-heading font-bold text-ink block tracking-tight"
-                />
+                <span className="text-5xl md:text-6xl font-heading font-bold text-ink block tracking-tight">{STATS.municipalities.toLocaleString("en-US")}</span>
                 <span className="text-[10px] tracking-[0.3em] uppercase text-muted mt-2 block font-bold">
                   Municipios
                 </span>

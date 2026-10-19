@@ -59,15 +59,12 @@ export const OFFICES: Office[] = [
   },
 ];
 
-export type SocialIcon = "linkedin" | "youtube" | "tiktok" | "instagram" | "facebook" | "x";
+export type SocialIcon = "linkedin";
 
+// Only LinkedIn is active for now (client, 2026-10-19); WhatsApp is shown
+// next to it in the footer from CONTACT.whatsapp.
 export const SOCIAL_PROFILES: { name: string; url: string; icon: SocialIcon }[] = [
   { name: "LinkedIn", url: "https://www.linkedin.com/company/innvestiga", icon: "linkedin" },
-  { name: "YouTube", url: "https://www.youtube.com/@innvestiga", icon: "youtube" },
-  { name: "TikTok", url: "https://www.tiktok.com/@innvestiga", icon: "tiktok" },
-  { name: "Instagram", url: "https://www.instagram.com/innvestiga", icon: "instagram" },
-  { name: "Facebook", url: "https://www.facebook.com/innvestiga", icon: "facebook" },
-  { name: "X", url: "https://x.com/innvestiga", icon: "x" },
 ];
 
 export const NAV_LINKS: NavLink[] = [

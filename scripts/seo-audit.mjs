@@ -204,6 +204,9 @@ async function auditPage(path, seen) {
 
   if (!html.includes(`googletagmanager.com/gtag/js?id=${GA4_ID}`)) fail(path, `GA4 ${GA4_ID} not loaded`);
   if (!html.includes(`href="${WHATSAPP_HREF}"`)) fail(path, "floating WhatsApp button missing");
+  // Only LinkedIn and WhatsApp are active social channels.
+  const retired = html.match(/href="https:\/\/(www\.)?(youtube|tiktok|instagram|facebook|x)\.com\/[^"]*"/i);
+  if (retired) fail(path, `retired social link ${retired[0]}`);
 
   if (path === "/" || path === "/en") {
     for (const lang of ["es", "en", "x-default"]) {
