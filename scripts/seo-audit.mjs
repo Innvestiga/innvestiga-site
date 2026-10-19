@@ -206,7 +206,8 @@ async function auditPage(path, seen) {
   if (!html.includes(`href="${WHATSAPP_HREF}"`)) fail(path, "floating WhatsApp button missing");
   // Cloudflare must not rewrite visible addresses (wrap them in EmailOff).
   if (/__cf_email__|\/cdn-cgi\/l\/email-protection/.test(html)) fail(path, "email obfuscated by Cloudflare");
-  if (!html.includes("<!--email_off-->")) fail(path, "footer email is not wrapped in email_off");
+  // Cloudflare strips the email_off markers, so check the result instead.
+  if (!html.includes(">info@innvestiga.com</a>")) fail(path, "footer email is not readable in the HTML");
 
   // Only LinkedIn and WhatsApp are active social channels.
   const retired = html.match(/href="https:\/\/(www\.)?(youtube|tiktok|instagram|facebook|x)\.com\/[^"]*"/i);
