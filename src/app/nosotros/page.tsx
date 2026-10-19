@@ -109,9 +109,6 @@ export default function NosotrosPage() {
           <Button href="/contacto" variant="gold">
             Solicitar prueba piloto
           </Button>
-          <Button href="/demo" variant="outline">
-            Agendar demo
-          </Button>
         </div>
       </Section>
 

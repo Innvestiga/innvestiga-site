@@ -51,14 +51,26 @@ const EXPECT_TEXT = {
     "Máximo 3 días después de cada visita",
   ],
   "/preguntas-frecuentes": ["¿Cuánto cuesta?", "Última actualización"],
-  "/en": ["Find out what really happens in each of your stores.", "municipalities we can evaluate", "Request a pilot", "Book a demo"],
+  "/en": ["Find out what really happens in each of your stores.", "municipalities we can evaluate", "Request a pilot"],
 };
 for (const path of SCENARIO_PATHS) {
   EXPECT_TEXT[path] = ["Qué situación evaluamos", "Qué verificamos", "Qué decisión te ayuda a tomar", "República Dominicana"];
 }
 for (const path of COUNTRY_PATHS) {
-  EXPECT_TEXT[path] = ["Situaciones que auditamos", "Preguntas frecuentes", "Última actualización", "Proceso de ventas"];
+  EXPECT_TEXT[path] = [
+    "Situaciones que auditamos", "Preguntas frecuentes", "Última actualización", "Proceso de ventas",
+    "Ciudades principales donde auditamos",
+  ];
 }
+// Client intro and table rows (2026-10-19), one sample each.
+EXPECT_TEXT["/cobertura/guatemala"].push("Brindamos cobertura de auditoría de servicio y cliente oculto en los 22 departamentos", "Santa Lucía Cotzumalguapa", "12 Avenida B 5-98, Zona 8, Mixco");
+EXPECT_TEXT["/cobertura/el-salvador"].push("Evaluaciones presenciales en los 14 departamentos de El Salvador", "El Rosario (Zona Aeropuerto)", "Calle Cuscatlán No.133");
+EXPECT_TEXT["/cobertura/honduras"].push("cobertura total en los 18 departamentos de Honduras", "Roatán, Coxen Hole");
+EXPECT_TEXT["/cobertura/nicaragua"].push("15 departamentos y 2 regiones autónomas", "Puerto Cabezas (Bilwi)");
+EXPECT_TEXT["/cobertura/costa-rica"].push("Cobertura completa en las 7 provincias de Costa Rica", "San Joaquín de Flores");
+EXPECT_TEXT["/cobertura/panama"].push("en las 10 provincias de Panamá", "Ngäbe-Buglé");
+EXPECT_TEXT["/cobertura/republica-dominicana"].push("31 provincias y el Distrito Nacional", "Santiago Rodríguez");
+EXPECT_TEXT["/cobertura/chiapas-mexico"].push("9 regiones económicas del estado de Chiapas", "Comitán de Domínguez");
 for (const path of ["/cobertura/el-salvador", "/cobertura/guatemala"]) {
   EXPECT_TEXT[path].push("Atención comercial en", "Solicita tu prueba piloto en");
 }
@@ -73,9 +85,10 @@ const EXPECT_SCHEMA = {
   "/contacto": ["LocalBusiness"],
 };
 for (const path of [...SCENARIO_PATHS, ...COUNTRY_PATHS]) EXPECT_SCHEMA[path] = ["Service", "BreadcrumbList"];
+for (const path of ["/cobertura/el-salvador", "/cobertura/guatemala"]) EXPECT_SCHEMA[path].push("LocalBusiness");
 
 // Pages without breadcrumbs: the two home pages and the conversion pages.
-const NO_BREADCRUMBS = new Set(["/", "/en", "/contacto", "/demo"]);
+const NO_BREADCRUMBS = new Set(["/", "/en", "/contacto"]);
 
 const LOCALE = { "/en": "en_US" };
 
@@ -93,11 +106,18 @@ const BANNED = [
   /quiero conocer esi/i,
   /portal esi3/i,
   /market specialist(?!s)/i,
+  /agendar (una )?demo/i,
+  /book a demo/i,
+  /calendly/i,
 ];
+
+const GA4_ID = "G-3N1LL20CKL";
+const WHATSAPP_HREF = "https://wa.me/50222777220";
 
 const REDIRECTS = [
   ["/casos-de-exito", "/servicios/auditorias"],
   ["/casos-de-exito/cualquier-caso", "/servicios/auditorias"],
+  ["/demo", "/contacto"],
 ];
 
 const failures = [];
@@ -155,10 +175,14 @@ async function auditPage(path, seen) {
   if (/<meta[^>]+name="robots"[^>]+noindex/i.test(html)) fail(path, "indexable page is noindex (is NEXT_PUBLIC_SITE_ENV=production?)");
 
   const types = new Set();
+  const items = [];
   for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi)) {
     try {
       const data = JSON.parse(json);
-      for (const item of [data].flat()) types.add(item["@type"]);
+      for (const item of [data].flat()) {
+        types.add(item["@type"]);
+        items.push(item);
+      }
     } catch {
       fail(path, "invalid JSON-LD");
     }
@@ -167,6 +191,19 @@ async function auditPage(path, seen) {
   for (const type of new Set(expectedTypes)) {
     if (!types.has(type)) fail(path, `missing ${type} JSON-LD`);
   }
+
+  // Coverage pages map every department and its cities in areaServed.
+  if (COUNTRY_PATHS.includes(path)) {
+    const service = items.find((i) => i["@type"] === "Service");
+    const areas = Array.isArray(service?.areaServed) ? service.areaServed : [];
+    if (areas.length < 7 || !areas.every((a) => a["@type"] === "AdministrativeArea")) {
+      fail(path, "Service areaServed does not list the departments as AdministrativeArea");
+    }
+    if (!areas.some((a) => a.containsPlace?.length)) fail(path, "areaServed has no containsPlace cities");
+  }
+
+  if (!html.includes(`googletagmanager.com/gtag/js?id=${GA4_ID}`)) fail(path, `GA4 ${GA4_ID} not loaded`);
+  if (!html.includes(`href="${WHATSAPP_HREF}"`)) fail(path, "floating WhatsApp button missing");
 
   if (path === "/" || path === "/en") {
     for (const lang of ["es", "en", "x-default"]) {

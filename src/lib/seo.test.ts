@@ -2,26 +2,26 @@ import { describe, expect, it } from "vitest";
 import { OG_IMAGE, pageMetadata } from "./seo";
 
 const meta = pageMetadata({
-  path: "/demo",
-  title: "Agenda una Demo | Innvestiga",
-  description: "Mira cómo recibirías la evidencia.",
+  path: "/nosotros",
+  title: "Sobre Innvestiga | Innvestiga",
+  description: "Quiénes somos.",
 });
 
 describe("pageMetadata", () => {
   it("uses the full title without the layout template", () => {
-    expect(meta.title).toEqual({ absolute: "Agenda una Demo | Innvestiga" });
+    expect(meta.title).toEqual({ absolute: "Sobre Innvestiga | Innvestiga" });
   });
 
   it("sets a canonical path", () => {
-    expect(meta.alternates?.canonical).toBe("/demo");
+    expect(meta.alternates?.canonical).toBe("/nosotros");
   });
 
   it("repeats every Open Graph field because child segments overwrite openGraph", () => {
     expect(meta.openGraph).toMatchObject({
       locale: "es_LA",
       siteName: "Innvestiga",
-      url: "/demo",
-      title: "Agenda una Demo | Innvestiga",
+      url: "/nosotros",
+      title: "Sobre Innvestiga | Innvestiga",
       images: [OG_IMAGE],
     });
   });

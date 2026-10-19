@@ -120,9 +120,6 @@ export default function HeroSection() {
                 <Button href="/contacto" variant="gold">
                   Solicitar prueba piloto
                 </Button>
-                <Button href="/demo" variant="outline">
-                  Agendar demo
-                </Button>
               </motion.div>
 
               {/* Track record, right under the ask */}

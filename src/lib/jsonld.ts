@@ -1,7 +1,8 @@
 import { siteUrl } from "@/lib/env";
 import { COVERAGE } from "@/data/coverage";
 import type { FaqItem } from "@/data/faq";
-import { CONTACT, FOUNDING_YEAR, OFFICES, SITE_LEGAL_NAME, SITE_NAME, SOCIAL_PROFILES } from "@/lib/constants";
+import { CONTACT, FOUNDING_YEAR, GOOGLE_BUSINESS_URL, OFFICES, SITE_LEGAL_NAME, SITE_NAME, SOCIAL_PROFILES } from "@/lib/constants";
+import type { CoverageRegion } from "@/data/countryPages";
 
 type Schema = Record<string, unknown>;
 
@@ -15,6 +16,25 @@ function place(c: (typeof COVERAGE)[number]): Schema {
 
 function areaServed(): Schema[] {
   return COVERAGE.map(place);
+}
+
+// One AdministrativeArea per department or region, with its commercial
+// cities as containsPlace. Rows whose items are themselves areas (grouped
+// provinces, comarcas) become one AdministrativeArea per item.
+export function regionAreas(country: (typeof COVERAGE)[number], regions: CoverageRegion[]): Schema[] {
+  const containedInPlace = place(country);
+  return regions.flatMap((r) =>
+    r.areas
+      ? r.cities.map((name) => ({ "@type": "AdministrativeArea", name, containedInPlace }))
+      : [
+          {
+            "@type": "AdministrativeArea",
+            name: r.name,
+            containedInPlace,
+            containsPlace: r.cities.map((name) => ({ "@type": "City", name })),
+          },
+        ],
+  );
 }
 
 const absolute = (path: string) => (path === "/" ? `${siteUrl()}/` : `${siteUrl()}${path}`);
@@ -38,7 +58,7 @@ export function organizationSchema(): Schema {
       contactType: "sales",
       availableLanguage: ["es"],
     },
-    sameAs: SOCIAL_PROFILES.map((p) => p.url),
+    sameAs: [...SOCIAL_PROFILES.map((p) => p.url), GOOGLE_BUSINESS_URL],
   };
 }
 
@@ -86,11 +106,14 @@ export function serviceSchema({
   path,
   description,
   area,
+  regions,
 }: {
   name: string;
   path: string;
   description: string;
   area?: string;
+  /** Departments and cities of `area`, listed in areaServed. */
+  regions?: CoverageRegion[];
 }): Schema {
   const country = area ? COVERAGE.find((c) => c.slug === area) : undefined;
   return {
@@ -101,11 +124,11 @@ export function serviceSchema({
     url: absolute(path),
     serviceType: "Auditoría con cliente oculto (mystery shopper)",
     provider: { "@id": ORGANIZATION_ID() },
-    areaServed: country ? place(country) : areaServed(),
+    areaServed: country ? (regions?.length ? regionAreas(country, regions) : place(country)) : areaServed(),
   };
 }
 
-export function localBusinessSchemas(): Schema[] {
+export function localBusinessSchemas(areaServed?: Schema[]): Schema[] {
   return OFFICES.map((o) => ({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -117,12 +140,13 @@ export function localBusinessSchemas(): Schema[] {
     email: CONTACT.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: o.address,
-      addressLocality: o.city,
+      streetAddress: o.streetAddress,
+      addressLocality: o.locality,
+      addressRegion: o.region,
       addressCountry: o.countryCode,
     },
     parentOrganization: { "@id": ORGANIZATION_ID() },
-    ...(o.googleBusinessUrl ? { sameAs: [o.googleBusinessUrl] } : {}),
+    ...(areaServed ? { areaServed } : {}),
   }));
 }
 

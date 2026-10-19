@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import Button from "@/components/ui/Button";
-import { PILOT_FOLLOW_UP } from "@/lib/constants";
+import { PILOT_FOLLOW_UP, whatsappHref } from "@/lib/constants";
 import { readStoredLead, thankYouMessage } from "@/lib/pilotForm";
 
 const safeSessionStorage = () => {
@@ -31,8 +31,8 @@ export default function GraciasPage() {
           {message}
         </h1>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <Button href="/demo" variant="gold">
-            Agendar demo
+          <Button href={whatsappHref() ?? "/contacto"} variant="gold" external>
+            Escríbenos por WhatsApp
           </Button>
           <Button href="/" variant="outline">
             Volver al inicio

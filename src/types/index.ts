@@ -47,7 +47,10 @@ export interface Office {
   country: string;
   /** ISO 3166-1 alpha-2, for schema.org addresses. */
   countryCode: string;
+  /** Full address as shown on the page. */
   address: string;
-  /** Google Business profile; empty until the client sends it. */
-  googleBusinessUrl: string;
+  /** schema.org PostalAddress parts. */
+  streetAddress: string;
+  locality: string;
+  region: string;
 }

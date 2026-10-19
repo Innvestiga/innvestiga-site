@@ -50,9 +50,6 @@ export default async function ScenarioPage({ params }: PageProps<"/servicios/aud
         <Button href="/contacto" variant="gold">
           Solicitar prueba piloto
         </Button>
-        <Button href="/demo" variant="outline">
-          Agendar demo
-        </Button>
       </PageHero>
 
       <Section title="Qué situación evaluamos" tone="alt">

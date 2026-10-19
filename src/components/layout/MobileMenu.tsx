@@ -57,11 +57,11 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
               }}
             >
               <Link
-                href="/demo"
+                href="/contacto"
                 onClick={onClose}
                 className="border border-primary/40 text-primary px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest"
               >
-                Agendar demo
+                Prueba piloto
               </Link>
             </motion.div>
 

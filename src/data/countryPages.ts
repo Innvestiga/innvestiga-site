@@ -1,9 +1,23 @@
 import type { FaqItem } from "./faq";
 
+export interface CoverageRegion {
+  /** Department, province, region or metro area, as the client names it. */
+  name: string;
+  /** Main cities and commercial hubs. */
+  cities: string[];
+  /** The items are areas (grouped provinces, comarcas), not cities. */
+  areas?: true;
+}
+
 export interface CountryPage {
   slug: string;
-  /** Cities where Innvestiga is present. Pending from the client; the intro omits the list while empty. */
-  cities: string[];
+  /** Opening paragraph supplied by the client. */
+  intro: string;
+  /** Column headers of the coverage table, as the client wrote them. */
+  regionHeader: string;
+  citiesHeader: string;
+  /** Coverage table rows; also the areaServed of the page schema. */
+  regions: CoverageRegion[];
   /** "Cobertura en {País}". */
   coverage: string[];
   /** "Cómo trabajamos en {País}". */
@@ -18,7 +32,26 @@ export interface CountryPage {
 export const COUNTRY_PAGES: CountryPage[] = [
   {
     slug: "el-salvador",
-    cities: [],
+    intro:
+      "Evaluaciones presenciales en los 14 departamentos de El Salvador, cubriendo integralmente la Zona Metropolitana de San Salvador (ZMSS), el departamento de La Libertad y las zonas orientales y occidentales del país.",
+    regionHeader: "Departamento / Región",
+    citiesHeader: "Ciudades Principales, ZMSS y Nodos Comerciales",
+    regions: [
+      { name: "Zona Metropolitana (ZMSS)", cities: ["San Salvador", "Soyapango", "Ilopango", "Mejicanos", "Apopa", "Cuscatancingo", "Ciudad Delgado"] },
+      { name: "La Libertad", cities: ["Santa Tecla", "Antiguo Cuscatlán", "Nuevo Cuscatlán", "Colón (Lourdes)", "San Juan Opico"] },
+      { name: "Santa Ana", cities: ["Santa Ana", "Chalchuapa", "Metapán"] },
+      { name: "San Miguel", cities: ["San Miguel"] },
+      { name: "Sonsonate", cities: ["Sonsonate", "Acajutla", "Izalco"] },
+      { name: "Ahuachapán", cities: ["Ahuachapán"] },
+      { name: "Cabañas", cities: ["Sensuntepeque", "Ilobasco"] },
+      { name: "Chalatenango", cities: ["Chalatenango"] },
+      { name: "Cuscatlán", cities: ["Cojutepeque"] },
+      { name: "La Paz", cities: ["Zacatecoluca", "El Rosario (Zona Aeropuerto)"] },
+      { name: "La Unión", cities: ["La Unión"] },
+      { name: "Morazán", cities: ["San Francisco Gotera"] },
+      { name: "San Vicente", cities: ["San Vicente"] },
+      { name: "Usulután", cities: ["Usulután", "Jiquilisco"] },
+    ],
     coverage: [
       "El Salvador es uno de los dos países donde nuestro equipo comercial te atiende primero. Desde nuestra oficina en San Salvador coordinamos cada proyecto y acompañamos a tu equipo de principio a fin.",
       "Tras la reorganización municipal, el país cuenta 44 municipios y cada uno agrupa varios distritos. Para ti eso significa algo simple: podemos evaluar tus sucursales en cualquiera de esos 44 municipios, desde los centros comerciales del área metropolitana de San Salvador hasta una agencia en un municipio de oriente o de occidente.",
@@ -50,7 +83,34 @@ export const COUNTRY_PAGES: CountryPage[] = [
   },
   {
     slug: "guatemala",
-    cities: [],
+    intro:
+      "Brindamos cobertura de auditoría de servicio y cliente oculto en los 22 departamentos de Guatemala, cubriendo la Gran Área Metropolitana (GAM)—incluyendo Ciudad de Guatemala, Mixco, Villa Nueva, San José Pinula y Santa Catarina Pinula—así como los principales polos comerciales departamentales.",
+    regionHeader: "Departamento / Región",
+    citiesHeader: "Ciudades Principales, Hubs Comerciales y GAM",
+    regions: [
+      { name: "Gran Área Metropolitana (GAM)", cities: ["Ciudad de Guatemala", "Mixco", "Villa Nueva", "San José Pinula", "Santa Catarina Pinula", "Chinautla", "Amatitlán"] },
+      { name: "Alta Verapaz", cities: ["Cobán", "San Pedro Carchá"] },
+      { name: "Baja Verapaz", cities: ["Salamá"] },
+      { name: "Chimaltenango", cities: ["Chimaltenango"] },
+      { name: "Chiquimula", cities: ["Chiquimula", "Esquipulas"] },
+      { name: "El Progreso", cities: ["Guastatoya"] },
+      { name: "Escuintla", cities: ["Escuintla", "Santa Lucía Cotzumalguapa", "Puerto San José"] },
+      { name: "Huehuetenango", cities: ["Huehuetenango"] },
+      { name: "Izabal", cities: ["Puerto Barrios", "Morales", "Livingston"] },
+      { name: "Jalapa", cities: ["Jalapa"] },
+      { name: "Jutiapa", cities: ["Jutiapa"] },
+      { name: "Petén", cities: ["Flores", "Santa Elena", "San Benito", "Poptún"] },
+      { name: "Quetzaltenango", cities: ["Quetzaltenango (Xela)", "Coatepeque", "Salcajá"] },
+      { name: "Quiché", cities: ["Santa Cruz del Quiché"] },
+      { name: "Retalhuleu", cities: ["Retalhuleu"] },
+      { name: "Sacatepéquez", cities: ["Antigua Guatemala", "Jocotenango", "San Lucas Sacatepéquez"] },
+      { name: "San Marcos", cities: ["San Marcos", "Malacatán", "Tecún Umán"] },
+      { name: "Santa Rosa", cities: ["Cuilapa"] },
+      { name: "Sololá", cities: ["Sololá", "Panajachel"] },
+      { name: "Suchitepéquez", cities: ["Mazatenango", "Cuyotenango"] },
+      { name: "Totonicapán", cities: ["Totonicapán"] },
+      { name: "Zacapa", cities: ["Zacapa"] },
+    ],
     coverage: [
       "Guatemala es, junto con El Salvador, el país donde nuestro equipo comercial te atiende primero. Nuestra oficina en Guatemala City coordina los proyectos y es tu punto de contacto directo.",
       "El país tiene 340 municipios y podemos evaluar cualquiera de ellos. Eso incluye las zonas comerciales de la Ciudad de Guatemala y su área metropolitana, pero también las cabeceras departamentales y los municipios donde tu cadena abrió sus sucursales más recientes.",
@@ -82,7 +142,30 @@ export const COUNTRY_PAGES: CountryPage[] = [
   },
   {
     slug: "honduras",
-    cities: [],
+    intro:
+      "Auditorías de experiencia del cliente con cobertura total en los 18 departamentos de Honduras, evaluando los principales centros urbanos y polos industriales como Tegucigalpa, San Pedro Sula, La Ceiba, Choluteca y Roatán.",
+    regionHeader: "Departamento",
+    citiesHeader: "Ciudades Principales y Centros Comerciales",
+    regions: [
+      { name: "Francisco Morazán", cities: ["Tegucigalpa", "Comayagüela"] },
+      { name: "Cortés", cities: ["San Pedro Sula", "Choloma", "Villanueva", "La Lima", "Puerto Cortés"] },
+      { name: "Atlántida", cities: ["La Ceiba", "Tela"] },
+      { name: "Choluteca", cities: ["Choluteca"] },
+      { name: "Colón", cities: ["Trujillo", "Tocoa"] },
+      { name: "Comayagua", cities: ["Comayagua", "Siguatepeque"] },
+      { name: "Copán", cities: ["Santa Rosa de Copán", "La Entrada"] },
+      { name: "El Paraíso", cities: ["Danlí", "Yuscarán", "El Paraíso"] },
+      { name: "Gracias a Dios", cities: ["Puerto Lempira"] },
+      { name: "Intibucá", cities: ["La Esperanza"] },
+      { name: "Islas de la Bahía", cities: ["Roatán", "Coxen Hole"] },
+      { name: "La Paz", cities: ["La Paz"] },
+      { name: "Lempira", cities: ["Gracias"] },
+      { name: "Ocotepeque", cities: ["Nueva Ocotepeque"] },
+      { name: "Olancho", cities: ["Juticalpa", "Catacamas"] },
+      { name: "Santa Bárbara", cities: ["Santa Bárbara"] },
+      { name: "Valle", cities: ["Nacaome", "San Lorenzo"] },
+      { name: "Yoro", cities: ["El Progreso", "Yoro", "Olanchito"] },
+    ],
     coverage: [
       "En Honduras podemos realizar auditorías en cualquier punto de venta del país. Nuestra operación de campo llega a los 298 municipios, desde Tegucigalpa y San Pedro Sula hasta las ciudades medianas donde tu marca también tiene presencia.",
       "Honduras tiene dos polos comerciales muy distintos: la capital, con su peso administrativo, y el valle de Sula, con su actividad industrial y de comercio. Si tus sucursales se reparten entre ambos, una auditoría te dice si tu estándar se cumple igual en los dos.",
@@ -109,7 +192,29 @@ export const COUNTRY_PAGES: CountryPage[] = [
   },
   {
     slug: "nicaragua",
-    cities: [],
+    intro:
+      "Servicios de cliente misterioso en los 15 departamentos y 2 regiones autónomas de Nicaragua, con presencia continua en Managua, Masaya, León, Chinandega y Estelí.",
+    regionHeader: "Departamento / Región",
+    citiesHeader: "Ciudades Principales y Ejes Comerciales",
+    regions: [
+      { name: "Managua", cities: ["Managua", "Ciudad Sandino", "Tipitapa"] },
+      { name: "Masaya", cities: ["Masaya", "Nindirí"] },
+      { name: "Chinandega", cities: ["Chinandega", "El Viejo"] },
+      { name: "León", cities: ["León"] },
+      { name: "Estelí", cities: ["Estelí"] },
+      { name: "Granada", cities: ["Granada"] },
+      { name: "Matagalpa", cities: ["Matagalpa"] },
+      { name: "Rivas", cities: ["Rivas", "San Juan del Sur"] },
+      { name: "Boaco", cities: ["Boaco"] },
+      { name: "Carazo", cities: ["Jinotepe", "Diriamba"] },
+      { name: "Chontales", cities: ["Juigalpa"] },
+      { name: "Jinotega", cities: ["Jinotega"] },
+      { name: "Madriz", cities: ["Somoto"] },
+      { name: "Nueva Segovia", cities: ["Ocotal"] },
+      { name: "Río San Juan", cities: ["San Carlos"] },
+      { name: "RACCN", cities: ["Puerto Cabezas (Bilwi)"] },
+      { name: "RACCS", cities: ["Bluefields"] },
+    ],
     coverage: [
       "En Nicaragua podemos auditar cualquier punto de venta del país. La operación de campo cubre los 153 municipios, tanto en la región del Pacífico como en el centro y en la Costa Caribe.",
       "La mayor parte del comercio organizado se concentra en Managua y en las ciudades del Pacífico, como León, Granada o Masaya. Aun así, muchas cadenas atienden también en ciudades del norte y del centro, y ahí suele ser más difícil saber si el estándar se cumple. Una auditoría te da esa visibilidad.",
@@ -136,7 +241,19 @@ export const COUNTRY_PAGES: CountryPage[] = [
   },
   {
     slug: "costa-rica",
-    cities: [],
+    intro:
+      "Cobertura completa en las 7 provincias de Costa Rica, con énfasis en el desarrollo de la Gran Área Metropolitana (GAM)—San José, Alajuela, Heredia y Cartago—así como en los polos turísticos y comerciales costeros.",
+    regionHeader: "Provincia / Región",
+    citiesHeader: "Ciudades Principales, GAM y Distritos Comerciales",
+    regions: [
+      { name: "Gran Área Metropolitana - San José", cities: ["San José Centro", "Escazú", "Desamparados", "Curridabat", "Tibás", "Moravia", "Montes de Oca"] },
+      { name: "Gran Área Metropolitana - Alajuela", cities: ["Alajuela Centro", "San Ramón", "Grecia", "Naranjo"] },
+      { name: "Gran Área Metropolitana - Heredia", cities: ["Heredia Centro", "Barva", "Santo Domingo", "San Joaquín de Flores"] },
+      { name: "Gran Área Metropolitana - Cartago", cities: ["Cartago Centro", "La Unión (Tres Ríos)", "Turrialba"] },
+      { name: "Guanacaste", cities: ["Liberia", "Nicoya", "Santa Cruz", "Tamarindo"] },
+      { name: "Puntarenas", cities: ["Puntarenas", "Esparza", "Quepos", "Jacó"] },
+      { name: "Limón", cities: ["Limón (Puerto Limón)", "Guápiles (Pococí)", "Siquirres"] },
+    ],
     coverage: [
       "En Costa Rica contamos cantones en lugar de municipios. El país tiene 84 cantones y podemos evaluar un punto de venta en cualquiera de ellos, porque la operación de campo llega a cualquier punto de venta del territorio.",
       "Buena parte del comercio se concentra en la Gran Área Metropolitana, que reúne San José, Heredia, Alajuela y Cartago. Pero las cadenas también crecen en Guanacaste, en la zona norte y en el Caribe. Una auditoría te ayuda a confirmar que tu estándar viaja con cada apertura nueva.",
@@ -163,7 +280,23 @@ export const COUNTRY_PAGES: CountryPage[] = [
   },
   {
     slug: "panama",
-    cities: [],
+    intro:
+      "Auditorías presenciales y de canales digitales en las 10 provincias de Panamá, abarcando la capital, Panamá Oeste, la Zona Libre de Colón y las cabeceras provinciales.",
+    regionHeader: "Provincia / Comarca",
+    citiesHeader: "Ciudades Principales y Polos Económicos",
+    regions: [
+      { name: "Panamá", cities: ["Ciudad de Panamá", "San Miguelito", "Tocumen", "Juan Díaz"] },
+      { name: "Panamá Oeste", cities: ["La Chorrera", "Arraiján", "Chame", "San Carlos"] },
+      { name: "Chiriquí", cities: ["David", "La Concepción", "Boquete"] },
+      { name: "Colón", cities: ["Ciudad de Colón", "Zona Libre de Colón"] },
+      { name: "Coclé", cities: ["Penonomé", "Aguadulce", "Natá"] },
+      { name: "Herrera", cities: ["Chitré"] },
+      { name: "Los Santos", cities: ["Las Tablas"] },
+      { name: "Veraguas", cities: ["Santiago de Veraguas"] },
+      { name: "Bocas del Toro", cities: ["Isla Colón", "Changuinola"] },
+      { name: "Darién", cities: ["La Palma"] },
+      { name: "Comarcas", cities: ["Guna Yala", "Emberá-Wounaan", "Ngäbe-Buglé"], areas: true },
+    ],
     coverage: [
       "En Panamá trabajamos por distritos. El país tiene 81 distritos y podemos llegar a cualquier punto de venta en todos ellos, desde la Ciudad de Panamá hasta las provincias del interior.",
       "La capital y el eje de Panamá Oeste y Colón concentran gran parte del comercio, pero ciudades como David, Santiago o Chitré también reúnen sucursales de cadenas nacionales. Con una auditoría ves si tu atención es la misma en la capital y en el interior.",
@@ -190,7 +323,22 @@ export const COUNTRY_PAGES: CountryPage[] = [
   },
   {
     slug: "republica-dominicana",
-    cities: [],
+    intro:
+      "Evaluaciones de calidad y atención al cliente en las 31 provincias y el Distrito Nacional, cubriendo el Gran Santo Domingo, Santiago de los Caballeros y las principales regiones turísticas e industriales.",
+    regionHeader: "Provincia / Distrito",
+    citiesHeader: "Ciudades Principales y Ejes Urbanos",
+    regions: [
+      { name: "Distrito Nacional / Gran Santo Domingo", cities: ["Santo Domingo de Guzmán", "Santo Domingo Este", "Santo Domingo Norte", "Santo Domingo Oeste"] },
+      { name: "Santiago", cities: ["Santiago de los Caballeros", "Tamboril", "Villa González"] },
+      { name: "La Altagracia", cities: ["Salvaleón de Higüey", "Punta Cana", "Bávaro"] },
+      { name: "La Romana", cities: ["La Romana", "Guaymate"] },
+      { name: "Puerto Plata", cities: ["San Felipe de Puerto Plata", "Sosúa", "Cabarete"] },
+      { name: "Duarte", cities: ["San Francisco de Macorís"] },
+      { name: "La Vega", cities: ["Concepción de La Vega", "Jarabacoa", "Constanza"] },
+      { name: "San Cristóbal", cities: ["San Cristóbal", "Bajos de Haina"] },
+      { name: "San Pedro de Macorís", cities: ["San Pedro de Macorís"] },
+      { name: "Provincias Adicionales", cities: ["Azua", "Baoruco", "Barahona", "Dajabón", "El Seibo", "Elías Piña", "Espaillat", "Hato Mayor", "Hermanas Mirabal", "Independencia", "María Trinidad Sánchez", "Monseñor Nouel", "Monte Cristi", "Monte Plata", "Pedernales", "Peravia", "Samaná", "San José de Ocoa", "San Juan", "Sánchez Ramírez", "Santiago Rodríguez", "Valverde"], areas: true },
+    ],
     coverage: [
       "En República Dominicana podemos auditar en cualquier punto de venta del país. Cubrimos los 158 municipios y llevamos el mismo método que usamos en Centroamérica al Caribe.",
       "El comercio dominicano se reparte entre el Gran Santo Domingo, Santiago de los Caballeros y las zonas turísticas del este, como La Romana y Punta Cana. Cada una atiende a un cliente diferente. Una auditoría te muestra si tu estándar se sostiene en todas.",
@@ -217,7 +365,20 @@ export const COUNTRY_PAGES: CountryPage[] = [
   },
   {
     slug: "chiapas-mexico",
-    cities: [],
+    intro:
+      "Auditorías de servicio en las 9 regiones económicas del estado de Chiapas, evaluando comercios, sucursales y franquicias en Tuxtla Gutiérrez, Tapachula, San Cristóbal de las Casas y sus municipios aledaños.",
+    regionHeader: "Región Económica",
+    citiesHeader: "Ciudades Principales y Centros Urbanos",
+    regions: [
+      { name: "Metropolitana", cities: ["Tuxtla Gutiérrez (Capital)", "Chiapa de Corzo", "Berriozábal"] },
+      { name: "Soconusco", cities: ["Tapachula", "Huixtla"] },
+      { name: "Altos Tsotsil-Tseltal", cities: ["San Cristóbal de las Casas"] },
+      { name: "Fronteriza Sur", cities: ["Comitán de Domínguez"] },
+      { name: "Selva Lacandona", cities: ["Ocosingo"] },
+      { name: "Norte", cities: ["Palenque"] },
+      { name: "Istmo-Costa", cities: ["Tonalá", "Arriaga"] },
+      { name: "Frailesca", cities: ["Villaflores"] },
+    ],
     coverage: [
       "En México auditamos en el estado de Chiapas. Podemos evaluar cualquier punto de venta en los 124 municipios del estado, de Tuxtla Gutiérrez a Tapachula y de San Cristóbal de las Casas a Comitán.",
       "Chiapas comparte frontera con Guatemala y muchas marcas atienden a clientes de ambos lados. Si tu empresa tiene tiendas en el sur de México y en Centroamérica, una auditoría con el mismo método te permite leer las dos operaciones como una sola región.",
@@ -255,4 +416,4 @@ export function countryPageWords(page: CountryPage): number {
 }
 
 // Shown on country pages and the FAQ page ("Última actualización").
-export const CONTENT_UPDATED = "2026-10-16";
+export const CONTENT_UPDATED = "2026-10-19";

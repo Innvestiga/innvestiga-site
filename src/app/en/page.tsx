@@ -56,9 +56,6 @@ export default function EnglishHome() {
             <Button href="/contacto" variant="gold">
               Request a pilot
             </Button>
-            <Button href="/demo" variant="outline">
-              Book a demo
-            </Button>
           </div>
           <dl className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl">
             {COUNTERS.map((c) => (
@@ -94,9 +91,6 @@ export default function EnglishHome() {
           <div className="mt-12 flex flex-wrap gap-4">
             <Button href="/contacto" variant="gold">
               Request a pilot
-            </Button>
-            <Button href="/demo" variant="outline">
-              Book a demo
             </Button>
           </div>
         </div>

@@ -9,7 +9,7 @@ describe("sitemap", () => {
     const urls = sitemap().map((e) => e.url);
     expect(urls[0]).toBe("https://example.com/");
     expect(urls).toContain("https://example.com/contacto");
-    expect(urls).toContain("https://example.com/demo");
+    expect(urls).not.toContain("https://example.com/demo");
     expect(urls.some((u) => u.includes("/gracias") || u.includes("/blog") || u.includes("casos"))).toBe(false);
     expect(new Set(urls).size).toBe(urls.length);
   });

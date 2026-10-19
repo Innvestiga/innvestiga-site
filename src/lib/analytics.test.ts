@@ -20,8 +20,8 @@ describe("trackEvent", () => {
   it("forwards to gtag when it is loaded", () => {
     const gtag = vi.fn();
     vi.stubGlobal("window", { gtag });
-    trackEvent("demo_booking", { source: "demo" });
-    expect(gtag).toHaveBeenCalledWith("event", "demo_booking", { source: "demo" });
+    trackEvent("pilot_form_submit", { source: "contacto" });
+    expect(gtag).toHaveBeenCalledWith("event", "pilot_form_submit", { source: "contacto" });
   });
 
   it("is a no-op without gtag or on the server", () => {

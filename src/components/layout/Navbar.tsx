@@ -73,10 +73,10 @@ export default function Navbar() {
             ),
           )}
           <Link
-            href="/demo"
+            href="/contacto"
             className="border border-primary/40 text-primary px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/10 hover:border-primary transition-all duration-300"
           >
-            Agendar demo
+            Prueba piloto
           </Link>
           <a
             href={CONTACT.portal}

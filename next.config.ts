@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/casos-de-exito", destination: "/servicios/auditorias", statusCode: 301 },
       { source: "/casos-de-exito/:path*", destination: "/servicios/auditorias", statusCode: 301 },
+      // The demo page was retired (2026-10-19); the pilot request replaces it.
+      { source: "/demo", destination: "/contacto", statusCode: 301 },
     ];
   },
 };

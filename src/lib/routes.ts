@@ -14,6 +14,5 @@ export const INDEXABLE_ROUTES: string[] = [
   ...COVERAGE.map(coverageHref),
   "/preguntas-frecuentes",
   "/contacto",
-  "/demo",
   "/en",
 ];

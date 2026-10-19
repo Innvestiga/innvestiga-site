@@ -19,9 +19,6 @@ export default function PilotCta({
           <Button href="/contacto" variant="gold">
             Solicitar prueba piloto
           </Button>
-          <Button href="/demo" variant="outline">
-            Agendar demo
-          </Button>
         </div>
       </div>
     </section>

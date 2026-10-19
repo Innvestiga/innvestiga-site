@@ -49,8 +49,8 @@ export default function ESISection() {
               ))}
             </div>
             <div className="mt-10">
-              <Button href="/demo" variant="gold">
-                Agendar demo
+              <Button href="/contacto" variant="gold">
+                Solicitar prueba piloto
               </Button>
             </div>
           </motion.div>

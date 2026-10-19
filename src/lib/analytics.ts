@@ -1,6 +1,5 @@
 export type AnalyticsEvent =
   | "pilot_form_submit"
-  | "demo_booking"
   | "whatsapp_click"
   | "phone_click"
   | "video_play";

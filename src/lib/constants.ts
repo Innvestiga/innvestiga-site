@@ -22,9 +22,16 @@ export const CONTACT = {
   phoneHref: "tel:+50222777220",
   email: "info@innvestiga.com",
   portal: "https://esi3.innvestiga.com",
-  // Pending from the client; WhatsApp buttons stay hidden while empty.
-  whatsapp: "",
+  // WhatsApp Business line; WhatsApp buttons stay hidden if this is emptied.
+  whatsapp: "+502 2277 7220",
 } as const;
+
+// GA4 property for the production site (NEXT_PUBLIC_GA_ID overrides it).
+export const GA4_MEASUREMENT_ID = "G-3N1LL20CKL";
+
+// Google Business profile. The link does not say which office it belongs
+// to, so it is listed on the organization rather than on one office.
+export const GOOGLE_BUSINESS_URL = "https://share.google/0iOxKKg89kGZD7o7h";
 
 export function whatsappHref(number: string = CONTACT.whatsapp): string | null {
   const digits = number.replace(/\D/g, "");
@@ -36,15 +43,19 @@ export const OFFICES: Office[] = [
     city: "Guatemala City",
     country: "Guatemala",
     countryCode: "GT",
-    address: "Zona 10, Ciudad de Guatemala",
-    googleBusinessUrl: "",
+    address: "12 Avenida B 5-98, Zona 8, Mixco, Guatemala, Guatemala",
+    streetAddress: "12 Avenida B 5-98, Zona 8",
+    locality: "Mixco",
+    region: "Guatemala",
   },
   {
     city: "San Salvador",
     country: "El Salvador",
     countryCode: "SV",
-    address: "San Salvador, El Salvador",
-    googleBusinessUrl: "",
+    address: "Calle Cuscatlán No.133, Colonia Escalón, San Salvador, El Salvador",
+    streetAddress: "Calle Cuscatlán No.133, Colonia Escalón",
+    locality: "San Salvador",
+    region: "San Salvador",
   },
 ];
 

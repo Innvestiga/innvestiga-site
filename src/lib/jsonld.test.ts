@@ -21,8 +21,8 @@ describe("organizationSchema", () => {
     expect(org.contactPoint.telephone).toBe("+502 2277 7220");
   });
 
-  it("links the six social profiles", () => {
-    expect(org.sameAs).toHaveLength(6);
+  it("links the six social profiles and the Google Business profile", () => {
+    expect(org.sameAs).toHaveLength(7);
   });
 });
 
@@ -71,12 +71,44 @@ describe("page schemas", () => {
   it("builds one LocalBusiness per office with the shared phone", async () => {
     const { localBusinessSchemas } = await import("./jsonld");
     const offices = localBusinessSchemas() as Json[];
-    expect(offices.map((o) => o.address.addressLocality)).toEqual(["Guatemala City", "San Salvador"]);
+    expect(offices.map((o) => o.address.addressLocality)).toEqual(["Mixco", "San Salvador"]);
+    expect(offices[0].address.streetAddress).toBe("12 Avenida B 5-98, Zona 8");
+    expect(offices[1].address.streetAddress).toBe("Calle Cuscatlán No.133, Colonia Escalón");
     for (const o of offices) {
       expect(o["@type"]).toBe("LocalBusiness");
       expect(o.telephone).toBe("+502 2277 7220");
       expect(o.parentOrganization["@id"]).toMatch(/#organization$/);
     }
+  });
+
+  it("maps each department and its cities in areaServed when regions are given", async () => {
+    const { serviceSchema } = await import("./jsonld");
+    const svc = serviceSchema({
+      name: "n",
+      path: "/cobertura/panama",
+      description: "d",
+      area: "panama",
+      regions: [
+        { name: "Chiriquí", cities: ["David", "Boquete"] },
+        { name: "Comarcas", cities: ["Guna Yala"], areas: true },
+      ],
+    }) as Json;
+    expect(svc.areaServed).toEqual([
+      {
+        "@type": "AdministrativeArea",
+        name: "Chiriquí",
+        containedInPlace: { "@type": "Country", name: "Panamá" },
+        containsPlace: [
+          { "@type": "City", name: "David" },
+          { "@type": "City", name: "Boquete" },
+        ],
+      },
+      { "@type": "AdministrativeArea", name: "Guna Yala", containedInPlace: { "@type": "Country", name: "Panamá" } },
+    ]);
+  });
+
+  it("links the Google Business profile from the organization", () => {
+    expect((organizationSchema() as Json).sameAs).toContain("https://share.google/0iOxKKg89kGZD7o7h");
   });
 
   it("builds an AboutPage about the organization", async () => {

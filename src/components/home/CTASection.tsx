@@ -68,9 +68,6 @@ export default function CTASection() {
           <Button href="/contacto" variant="gold">
             Solicitar prueba piloto
           </Button>
-          <Button href="/demo" variant="outline">
-            Agendar demo
-          </Button>
         </div>
 
         {/* Bottom decorative line */}

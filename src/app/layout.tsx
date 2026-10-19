@@ -5,8 +5,10 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 import Analytics from "@/components/analytics/Analytics";
+import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
+import { GA4_MEASUREMENT_ID } from "@/lib/constants";
 import { OG_IMAGE } from "@/lib/seo";
-import { isProduction, siteUrl } from "@/lib/env";
+import { gaMeasurementId, isProduction, siteUrl } from "@/lib/env";
 
 // next/font downloads both families at build time and serves them as
 // self-hosted WOFF2 from /_next/static, with font-display: swap.
@@ -57,7 +59,8 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </SmoothScrollProvider>
-        <Analytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        <WhatsAppFloat />
+        <Analytics gaId={gaMeasurementId(GA4_MEASUREMENT_ID)} />
       </body>
     </html>
   );

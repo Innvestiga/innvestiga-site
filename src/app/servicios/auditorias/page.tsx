@@ -62,9 +62,6 @@ export default function AuditoriasPage() {
         <Button href="/contacto" variant="gold">
           Solicitar prueba piloto
         </Button>
-        <Button href="/demo" variant="outline">
-          Agendar demo
-        </Button>
       </PageHero>
 
       <Section title="Situaciones en las que una auditoría ayuda a una empresa de retail" tone="alt">

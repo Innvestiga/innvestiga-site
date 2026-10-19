@@ -49,8 +49,41 @@ describe("country pages", () => {
 
   it("never renders a bracketed placeholder", () => {
     for (const page of COUNTRY_PAGES) {
-      const text = [...page.cities, ...page.coverage, ...page.howWeWork, ...page.faqs.flatMap((f) => [f.question, f.answer])];
+      const text = [page.intro, ...page.regions.flatMap((r) => [r.name, ...r.cities]), ...page.coverage, ...page.howWeWork, ...page.faqs.flatMap((f) => [f.question, f.answer])];
       for (const t of text) expect(t).not.toMatch(/\[|\]/);
     }
+  });
+});
+
+describe("country coverage lists (client content, 2026-10-19)", () => {
+  // Rows per country as delivered: departments, provinces or regions,
+  // plus the metro-area and grouped rows the client added.
+  const ROWS: Record<string, number> = {
+    "el-salvador": 14,
+    guatemala: 22, // the GAM row stands for the Guatemala department
+    honduras: 18,
+    nicaragua: 17,
+    "costa-rica": 7,
+    panama: 11,
+    "republica-dominicana": 10,
+    "chiapas-mexico": 8,
+  };
+
+  it("has the client's intro and every row of its table", () => {
+    for (const page of COUNTRY_PAGES) {
+      expect(page.intro.length, page.slug).toBeGreaterThan(100);
+      expect(page.regions, page.slug).toHaveLength(ROWS[page.slug]);
+      for (const r of page.regions) expect(r.cities.length, `${page.slug} ${r.name}`).toBeGreaterThan(0);
+    }
+  });
+
+  it("keeps the client's wording for the first rows", () => {
+    expect(countryPage("guatemala")!.regions[0]).toEqual({
+      name: "Gran Área Metropolitana (GAM)",
+      cities: ["Ciudad de Guatemala", "Mixco", "Villa Nueva", "San José Pinula", "Santa Catarina Pinula", "Chinautla", "Amatitlán"],
+    });
+    expect(countryPage("republica-dominicana")!.regions.at(-1)).toMatchObject({ name: "Provincias Adicionales", areas: true });
+    expect(countryPage("republica-dominicana")!.regions.at(-1)!.cities).toHaveLength(22);
+    expect(countryPage("panama")!.regions.at(-1)).toMatchObject({ name: "Comarcas", areas: true });
   });
 });

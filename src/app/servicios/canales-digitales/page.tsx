@@ -44,9 +44,6 @@ export default function CanalesDigitalesPage() {
         <Button href="/contacto" variant="gold">
           Solicitar prueba piloto
         </Button>
-        <Button href="/demo" variant="outline">
-          Agendar demo
-        </Button>
       </PageHero>
 
       <Section title="Qué evaluamos" tone="alt">
