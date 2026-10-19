@@ -9,6 +9,7 @@ import RegionTable from "@/components/page/RegionTable";
 import HomeFaq from "@/components/home/HomeFaq";
 import ContactForm from "@/components/contacto/ContactForm";
 import JsonLd from "@/components/seo/JsonLd";
+import EmailOff from "@/components/seo/EmailOff";
 import Button from "@/components/ui/Button";
 import { COVERAGE, coverageHref, type CoverageCountry } from "@/data/coverage";
 import { CONTENT_UPDATED, countryPage } from "@/data/countryPages";
@@ -124,9 +125,11 @@ export default async function CountryPage({ params }: PageProps<"/cobertura/[slu
                 {CONTACT.phone}
               </a>
               <br />
-              <a href={`mailto:${CONTACT.email}`} className="text-primary hover:underline">
-                {CONTACT.email}
-              </a>
+              <EmailOff>
+                <a href={`mailto:${CONTACT.email}`} className="text-primary hover:underline">
+                  {CONTACT.email}
+                </a>
+              </EmailOff>
             </address>
             {wa && (
               <div className="mt-6">

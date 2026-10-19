@@ -1,6 +1,7 @@
 "use client";
 
 import { CONTACT, whatsappHref } from "@/lib/constants";
+import EmailOff from "@/components/seo/EmailOff";
 
 const wa = whatsappHref();
 const channels = [
@@ -21,35 +22,36 @@ export default function DirectChannels() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
       {channels.map((ch) => (
-        <a
-          key={ch.label}
-          href={ch.href}
-          target={ch.href.startsWith("http") ? "_blank" : undefined}
-          rel={ch.href.startsWith("http") ? "noopener noreferrer" : undefined}
-          className="group relative p-6 rounded-2xl overflow-hidden bg-surface border border-border hover:border-primary/30 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] transition-all duration-500"
-        >
-          {/* Hover glow */}
-          <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.03] transition-colors duration-500" />
-          <div className="relative z-10">
-            <svg
-              className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors duration-300 mb-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d={iconPaths[ch.icon]} />
-            </svg>
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-2">
-              {ch.label}
-            </span>
-            <span className="text-[12px] font-bold text-body group-hover:text-ink transition-colors duration-300 break-words block">
-              {ch.value}
-            </span>
-          </div>
-        </a>
+        <EmailOff key={ch.label}>
+          <a
+            href={ch.href}
+            target={ch.href.startsWith("http") ? "_blank" : undefined}
+            rel={ch.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            className="group relative p-6 rounded-2xl overflow-hidden bg-surface border border-border hover:border-primary/30 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] transition-all duration-500"
+          >
+            {/* Hover glow */}
+            <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.03] transition-colors duration-500" />
+            <div className="relative z-10">
+              <svg
+                className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors duration-300 mb-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d={iconPaths[ch.icon]} />
+              </svg>
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-2">
+                {ch.label}
+              </span>
+              <span className="text-[12px] font-bold text-body group-hover:text-ink transition-colors duration-300 break-words block">
+                {ch.value}
+              </span>
+            </div>
+          </a>
+        </EmailOff>
       ))}
     </div>
   );

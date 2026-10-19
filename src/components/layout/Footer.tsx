@@ -1,4 +1,5 @@
 import Link from "next/link";
+import EmailOff from "@/components/seo/EmailOff";
 import { CONTACT, NAV_LINKS, OFFICES, SITE_LEGAL_NAME, SITE_TAGLINE } from "@/lib/constants";
 import { SCENARIOS, scenarioHref } from "@/data/scenarios";
 import { COVERAGE, coverageHref } from "@/data/coverage";
@@ -71,9 +72,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${CONTACT.email}`} className={linkClass}>
-                  {CONTACT.email}
-                </a>
+                <EmailOff>
+                  <a href={`mailto:${CONTACT.email}`} className={linkClass}>
+                    {CONTACT.email}
+                  </a>
+                </EmailOff>
               </li>
               <li className="text-[12px] text-body">{OFFICES.map((o) => o.city).join(" | ")}</li>
             </ul>
