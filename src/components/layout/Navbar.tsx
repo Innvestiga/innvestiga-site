@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { NAV_LINKS, CONTACT, SITE_SUBTITLE } from "@/lib/constants";
+import { NAV_LINKS, CONTACT } from "@/lib/constants";
+import BrandWordmark from "./BrandWordmark";
 import MobileMenu from "./MobileMenu";
 import NavDropdown from "./NavDropdown";
 
@@ -45,12 +46,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex-shrink-0 group">
-          <span className="text-lg md:text-xl font-heading font-bold tracking-tighter text-primary leading-none">
-            INNVESTIGA
-            <span className="text-primary/60 text-[10px] block font-body tracking-[0.25em] font-normal mt-0.5 group-hover:text-primary transition-colors duration-300">
-              {SITE_SUBTITLE}
-            </span>
-          </span>
+          <BrandWordmark />
         </Link>
 
         {/* Desktop Nav */}

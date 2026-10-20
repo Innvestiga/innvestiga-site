@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import EmailOff from "@/components/seo/EmailOff";
 import { CONTACT, NAV_LINKS, OFFICES, SITE_LEGAL_NAME, SITE_TAGLINE } from "@/lib/constants";
 import { SCENARIOS, scenarioHref } from "@/data/scenarios";
 import { COVERAGE, coverageHref } from "@/data/coverage";
+import BrandWordmark from "./BrandWordmark";
 import SocialIcons from "./SocialIcons";
 
 const headingClass = "text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-5";
@@ -39,8 +39,8 @@ export default function Footer() {
     <footer className="relative bg-[#e3e8f0] border-t border-[#d5dce6] text-body z-10">
       <div className="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-24 py-20">
         <div className="mb-16">
-          <Link href="/" className="inline-block" aria-label={`${SITE_LEGAL_NAME}, inicio`}>
-            <Image src="/brand/innvestiga-logo.svg" alt={SITE_LEGAL_NAME} width={124} height={88} className="h-[88px] w-auto" />
+          <Link href="/" className="inline-block group" aria-label={`${SITE_LEGAL_NAME}, inicio`}>
+            <BrandWordmark />
           </Link>
           <span className="text-primary/70 text-[10px] tracking-[0.3em] font-bold uppercase mt-4 block">
             {SITE_TAGLINE}
