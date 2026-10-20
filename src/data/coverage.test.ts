@@ -1,17 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { COVERAGE, TOTAL_MUNICIPALITIES, coverageHref } from "./coverage";
+import { COVERAGE, TOTAL_MUNICIPALITIES, countryList, coverageHref } from "./coverage";
 
 describe("coverage", () => {
   it("lists the eight countries in the spec order", () => {
     expect(COVERAGE.map((c) => c.name)).toEqual([
-      "El Salvador", "Guatemala", "Honduras", "Nicaragua",
+      "Guatemala", "Honduras", "El Salvador", "Nicaragua",
       "Costa Rica", "Panamá", "República Dominicana", "Chiapas",
     ]);
   });
 
   it("uses the spec slugs", () => {
     expect(COVERAGE.map(coverageHref)).toEqual([
-      "/cobertura/el-salvador", "/cobertura/guatemala", "/cobertura/honduras",
+      "/cobertura/guatemala", "/cobertura/honduras", "/cobertura/el-salvador",
       "/cobertura/nicaragua", "/cobertura/costa-rica", "/cobertura/panama",
       "/cobertura/republica-dominicana", "/cobertura/chiapas-mexico",
     ]);
@@ -28,7 +28,11 @@ describe("coverage", () => {
     expect(unit("guatemala")).toBe("municipios");
   });
 
-  it("marks only El Salvador and Guatemala as sales priority", () => {
-    expect(COVERAGE.filter((c) => c.priority).map((c) => c.slug)).toEqual(["el-salvador", "guatemala"]);
+  it("treats every country the same: no priority flag", () => {
+    for (const c of COVERAGE) expect(Object.keys(c)).not.toContain("priority");
+  });
+
+  it("joins the names as Spanish prose in the fixed order", () => {
+    expect(countryList()).toBe("Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas");
   });
 });

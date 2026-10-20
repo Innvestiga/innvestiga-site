@@ -14,7 +14,7 @@ import Button from "@/components/ui/Button";
 import { COVERAGE, coverageHref, type CoverageCountry } from "@/data/coverage";
 import { CONTENT_UPDATED, countryPage } from "@/data/countryPages";
 import { CONTACT, OFFICES, whatsappHref } from "@/lib/constants";
-import { localBusinessSchemas, regionAreas, serviceSchema } from "@/lib/jsonld";
+import { localBusinessSchemas, serviceSchema, zoneAreas } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -28,16 +28,14 @@ const findCountry = (slug: string) => COVERAGE.find((c) => c.slug === slug);
 // Chiapas is a state, so its pages name the country too.
 const placeName = (c: CoverageCountry) => (c.slug === "chiapas-mexico" ? "Chiapas, México" : c.name);
 
-const description = (c: CoverageCountry) =>
-  `Auditorías con cliente oculto en cualquiera de los ${c.count} ${c.unit} de ${c.name}. Evidencia real y resultados en 3 días. Solicita tu prueba piloto.`;
-
 export async function generateMetadata({ params }: PageProps<"/cobertura/[slug]">) {
   const country = findCountry((await params).slug);
-  if (!country) return {};
+  const page = country && countryPage(country.slug);
+  if (!country || !page) return {};
   return pageMetadata({
     path: coverageHref(country),
     title: `Mystery Shopper y Cliente Oculto en ${placeName(country)} | Innvestiga`,
-    description: description(country),
+    description: page.description,
   });
 }
 
@@ -51,15 +49,15 @@ export default async function CountryPage({ params }: PageProps<"/cobertura/[slu
   const wa = whatsappHref();
   const intro = <p>{page.intro}</p>;
 
-  // El Salvador and Guatemala: the pilot form comes first, above the fold.
-  const formAside = country.priority ? (
+  // Every country gets the same layout: the pilot form above the fold.
+  const formAside = (
     <div id="prueba-piloto" className="rounded-2xl bg-surface border border-border p-6 md:p-8 shadow-[0_12px_32px_rgba(15,23,42,0.08)]">
       <h2 className="font-heading text-xl font-bold uppercase tracking-tight text-ink mb-4">
         Solicita tu prueba piloto en {country.name}
       </h2>
       <ContactForm defaultCountry={country.fullName} />
     </div>
-  ) : undefined;
+  );
 
   return (
     <>
@@ -68,11 +66,11 @@ export default async function CountryPage({ params }: PageProps<"/cobertura/[slu
           serviceSchema({
             name: `Auditoría con cliente oculto en ${placeName(country)}`,
             path,
-            description: description(country),
+            description: page.description,
             area: country.slug,
-            regions: page.regions,
+            zones: page.zones,
           }),
-          ...localBusinessSchemas(regionAreas(country, page.regions)).filter((_, i) => OFFICES[i].country === country.name),
+          ...localBusinessSchemas(zoneAreas(country, page.zones)).filter((_, i) => OFFICES[i].country === country.name),
         ]}
       />
       <PageHero
@@ -84,18 +82,23 @@ export default async function CountryPage({ params }: PageProps<"/cobertura/[slu
         title={`Auditorías de experiencia del cliente en ${placeName(country)}.`}
         intro={intro}
         aside={formAside}
-      >
-        {!country.priority && (
-          <>
-            <Button href="/contacto" variant="gold">
-              Solicitar prueba piloto
-            </Button>
-          </>
-        )}
-      </PageHero>
+      />
 
       <Section title={`Cobertura en ${placeName(country)}`} tone="alt">
         <Prose paragraphs={page.coverage} />
+        <div className="mt-10 space-y-8 max-w-3xl">
+          {page.zoneSections.map((z) => (
+            <div key={z.id} id={z.id} className="scroll-mt-28">
+              <h3 className="font-heading text-lg md:text-xl font-bold uppercase tracking-tight text-ink">{z.title}</h3>
+              <p className="mt-2 text-[16px] text-body leading-relaxed">{z.text}</p>
+            </div>
+          ))}
+        </div>
+        {page.coverageClosing && (
+          <div className="mt-10">
+            <Prose paragraphs={page.coverageClosing} />
+          </div>
+        )}
       </Section>
 
       <Section title={`Ciudades principales donde auditamos en ${placeName(country)}`}>

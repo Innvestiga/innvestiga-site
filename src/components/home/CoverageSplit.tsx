@@ -41,7 +41,6 @@ export default function CoverageSplit() {
               {COVERAGE.map((country, i) => (
                 <motion.div
                   key={country.slug}
-                  className={country.priority ? "col-span-2" : ""}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -49,18 +48,12 @@ export default function CoverageSplit() {
                 >
                   <Link
                     href={coverageHref(country)}
-                    className={`group relative block h-full rounded-xl overflow-hidden bg-surface border border-border hover:border-primary/25 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] transition-all duration-500 ${
-                      country.priority ? "p-7" : "p-5"
-                    }`}
+                    className={`group relative block h-full rounded-xl overflow-hidden bg-surface border border-border hover:border-primary/25 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] transition-all duration-500 p-5 min-h-[104px]`}
                   >
                     {/* Hover glow */}
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.04] transition-colors duration-500" />
                     <div className="relative z-10">
-                      <span
-                        className={`font-bold uppercase tracking-wider text-ink block ${
-                          country.priority ? "text-base" : "text-[11px]"
-                        }`}
-                      >
+                      <span className="font-bold uppercase tracking-wider text-ink block text-[12px]">
                         {country.name}
                       </span>
                       <span className="text-[11px] text-muted block mt-1 tracking-wider">

@@ -22,7 +22,7 @@ export const FAQS: FaqItem[] = [
   {
     question: "¿En qué países y municipios pueden evaluar?",
     answer:
-      "En El Salvador, Guatemala, Honduras, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas (México). Podemos evaluar cualquiera de sus 1,282 municipios.",
+      "En Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas (México). Podemos evaluar cualquiera de sus 1,282 municipios.",
   },
   {
     question: "¿Qué incluye la prueba piloto?",

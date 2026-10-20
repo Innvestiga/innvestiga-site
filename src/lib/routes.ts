@@ -9,7 +9,6 @@ export const INDEXABLE_ROUTES: string[] = [
   "/servicios/auditorias",
   ...SCENARIOS.map(scenarioHref),
   "/servicios/canales-digitales",
-  "/servicios/consumer-insights",
   "/cobertura",
   ...COVERAGE.map(coverageHref),
   "/preguntas-frecuentes",

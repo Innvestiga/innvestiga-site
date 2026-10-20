@@ -25,9 +25,7 @@ export default function NavDropdown({ link }: { link: NavLink }) {
             <li key={child.href}>
               <Link
                 href={child.href}
-                className={`block rounded-xl px-4 py-2.5 hover:bg-surface-alt focus-visible:bg-surface-alt transition-colors ${
-                  child.minor ? "text-[11px] text-muted border-t border-border mt-1 pt-3" : "text-[13px] text-ink font-medium"
-                }`}
+                className="block rounded-xl px-4 py-2.5 hover:bg-surface-alt focus-visible:bg-surface-alt transition-colors text-[13px] text-ink font-medium"
               >
                 {child.label}
               </Link>

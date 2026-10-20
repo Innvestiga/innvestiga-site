@@ -13,12 +13,15 @@ describe("constants", () => {
 
   it("keeps the menu structure with dropdowns on Servicios and Cobertura", () => {
     expect(NAV_LINKS.map((l) => l.label)).toEqual(["Nosotros", "Servicios", "Cobertura", "Contacto"]);
-    expect(NAV_LINKS[1].children?.length).toBe(8);
-    expect(NAV_LINKS[2].children?.length).toBe(8);
+    expect(NAV_LINKS[1].children?.length).toBe(7);
+    expect(NAV_LINKS[1].children?.map((c) => c.href)).not.toContain("/servicios/consumer-insights");
+    expect(NAV_LINKS[2].children?.map((c) => c.label)).toEqual([
+      "Guatemala", "Honduras", "El Salvador", "Nicaragua", "Costa Rica", "Panamá", "República Dominicana", "Chiapas",
+    ]);
   });
 
   it("keeps LinkedIn as the only active social profile (WhatsApp is linked separately)", () => {
-    expect(SOCIAL_PROFILES.map((p) => p.url)).toEqual(["https://www.linkedin.com/company/innvestiga"]);
+    expect(SOCIAL_PROFILES.map((p) => p.url)).toEqual(["https://www.linkedin.com/company/innvestiga-cx-specialists"]);
   });
 
   it("builds a wa.me link only when a WhatsApp number is configured", () => {

@@ -91,49 +91,4 @@ export const services: Service[] = [
     ],
     icon: "monitor-smartphone",
   },
-  {
-    id: "consumer-insights",
-    number: "03",
-    title: "Consumer Insights",
-    slug: "consumer-insights",
-    shortDescription:
-      "Te entregamos reportes precisos y prácticos para tomar decisiones estratégicas basadas en datos reales del consumidor.",
-    fullDescription:
-      "Nuestros estudios de Consumer Insights te brindan una comprensión profunda del comportamiento, preferencias y necesidades de tus consumidores. Utilizamos metodologías cuantitativas y cualitativas para generar inteligencia accionable que impulse tu estrategia de negocio.",
-    features: [
-      "Estudios cuantitativos y cualitativos",
-      "Focus groups y entrevistas a profundidad",
-      "Encuestas de satisfacción",
-      "Análisis de hábitos de consumo",
-      "Segmentación de mercado",
-      "Estudios de posicionamiento de marca",
-    ],
-    process: [
-      {
-        step: 1,
-        title: "Objetivos",
-        description:
-          "Definimos las preguntas de investigación y los objetivos del estudio.",
-      },
-      {
-        step: 2,
-        title: "Metodología",
-        description:
-          "Seleccionamos las herramientas y técnicas de investigación más adecuadas.",
-      },
-      {
-        step: 3,
-        title: "Campo",
-        description:
-          "Ejecutamos el levantamiento de datos con nuestro equipo de campo regional.",
-      },
-      {
-        step: 4,
-        title: "Insights",
-        description:
-          "Transformamos los datos en insights accionables y recomendaciones estratégicas.",
-      },
-    ],
-    icon: "lightbulb",
-  },
 ];

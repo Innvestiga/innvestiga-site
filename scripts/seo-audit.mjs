@@ -11,7 +11,7 @@ const base = (baseIndex >= 0 ? args[baseIndex + 1] : "http://localhost:3000").re
 const PENDING_REWRITE = new Set([]);
 
 const COUNTRY_PATHS = [
-  "/cobertura/el-salvador", "/cobertura/guatemala", "/cobertura/honduras", "/cobertura/nicaragua",
+  "/cobertura/guatemala", "/cobertura/honduras", "/cobertura/el-salvador", "/cobertura/nicaragua",
   "/cobertura/costa-rica", "/cobertura/panama", "/cobertura/republica-dominicana", "/cobertura/chiapas-mexico",
 ];
 const SCENARIO_PATHS = [
@@ -27,7 +27,7 @@ const EXPECT_TEXT = {
     "1,282 municipios que podemos evaluar",
     "¿Cuándo fue la última vez que auditaste a tu personal? Hazlo hoy.",
   ],
-  "/servicios": ["Auditorías de experiencia del cliente para empresas de retail.", "Auditoría de canales digitales", "Otros estudios"],
+  "/servicios": ["Auditorías de experiencia del cliente para empresas de retail.", "Auditoría de canales digitales"],
   "/servicios/auditorias": [
     "Una auditoría con cliente oculto (mystery shopper) es una visita presencial de un auditor capacitado",
     "Situaciones en las que una auditoría ayuda a una empresa de retail",
@@ -37,11 +37,12 @@ const EXPECT_TEXT = {
     "Evidencia en video, fotos y audio",
   ],
   "/servicios/canales-digitales": ["Auditoría de atención en chat, redes sociales y call center."],
-  "/servicios/consumer-insights": ["Otros estudios que realizamos.", "Además de las auditorías, realizamos inteligencia de mercado"],
   "/cobertura": [
     "Auditorías CX en 1,282 municipios de Mesoamérica y el Caribe.",
     "Podemos evaluar cualquiera de...",
     "En Costa Rica contamos cantones y en Panamá, distritos.",
+    "Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas",
+    "Cada uno de los 8 países recibe el mismo método y la misma atención",
   ],
   "/nosotros": [
     "Innvestiga: 18 años de experiencia, especialistas en cliente oculto desde 2013.",
@@ -59,21 +60,33 @@ for (const path of SCENARIO_PATHS) {
 for (const path of COUNTRY_PATHS) {
   EXPECT_TEXT[path] = [
     "Situaciones que auditamos", "Preguntas frecuentes", "Última actualización", "Proceso de ventas",
-    "Ciudades principales donde auditamos",
+    "Ciudades principales donde auditamos", "Solicita tu prueba piloto en", "Países de interés",
   ];
 }
-// Client intro and table rows (2026-10-19), one sample each.
-EXPECT_TEXT["/cobertura/guatemala"].push("Brindamos cobertura de auditoría de servicio y cliente oculto en los 22 departamentos", "Santa Lucía Cotzumalguapa", "12 Avenida B 5-98, Zona 8, Mixco");
-EXPECT_TEXT["/cobertura/el-salvador"].push("Evaluaciones presenciales en los 14 departamentos de El Salvador", "El Rosario (Zona Aeropuerto)", "Calle Cuscatlán No.133");
-EXPECT_TEXT["/cobertura/honduras"].push("cobertura total en los 18 departamentos de Honduras", "Roatán, Coxen Hole");
-EXPECT_TEXT["/cobertura/nicaragua"].push("15 departamentos y 2 regiones autónomas", "Puerto Cabezas (Bilwi)");
-EXPECT_TEXT["/cobertura/costa-rica"].push("Cobertura completa en las 7 provincias de Costa Rica", "San Joaquín de Flores");
-EXPECT_TEXT["/cobertura/panama"].push("en las 10 provincias de Panamá", "Ngäbe-Buglé");
-EXPECT_TEXT["/cobertura/republica-dominicana"].push("31 provincias y el Distrito Nacional", "Santiago Rodríguez");
-EXPECT_TEXT["/cobertura/chiapas-mexico"].push("9 regiones económicas del estado de Chiapas", "Comitán de Domínguez");
+// Client intro, a zone subsection and a table row (2026-10), one sample each.
+EXPECT_TEXT["/cobertura/guatemala"].push("en cinco grandes zonas: la Gran Área Metropolitana", "Tierra Fría: el altiplano", "Pedro de Alvarado (frontera)", "12 Avenida B 5-98, Zona 8, Mixco", "Nuestra oficina en Ciudad de Guatemala");
+EXPECT_TEXT["/cobertura/el-salvador"].push("desde el río Paz hasta el río Goascorán", "Zonas con mayor desarrollo económico", "El Zonte (Surf City 1)", "Calle Cuscatlán No.133");
+EXPECT_TEXT["/cobertura/honduras"].push("el motor industrial del Valle de Sula", "Litoral Atlántico e Islas de la Bahía", "Roatán (Coxen Hole, West End)");
+EXPECT_TEXT["/cobertura/nicaragua"].push("15 departamentos y 2 regiones autónomas", "Chontales, Boaco y Caribe", "Puerto Cabezas (Bilwi)");
+EXPECT_TEXT["/cobertura/costa-rica"].push("la pampa de Guanacaste", "Zona Norte y Huetar Norte", "San Isidro de El General (Pérez Zeledón)");
+EXPECT_TEXT["/cobertura/panama"].push("las 10 provincias y comarcas de Panamá", "Colón y Zona Libre", "Isla Colón (Bocas del Toro)");
+EXPECT_TEXT["/cobertura/republica-dominicana"].push("31 provincias y el Distrito Nacional", "Región Este (Polo Turístico y Comercial)", "Boca Chica");
+EXPECT_TEXT["/cobertura/chiapas-mexico"].push("el corredor fronterizo y agroindustrial del Soconusco", "Palenque y Norte de Chiapas", "Comitán de Domínguez");
 for (const path of ["/cobertura/el-salvador", "/cobertura/guatemala"]) {
-  EXPECT_TEXT[path].push("Atención comercial en", "Solicita tu prueba piloto en");
+  EXPECT_TEXT[path].push("Atención comercial en");
 }
+
+// Client meta descriptions (2026-10): the start of each.
+const EXPECT_DESCRIPTION = {
+  "/cobertura/guatemala": "Auditorías con cliente oculto en Guatemala: Gran Área Metropolitana",
+  "/cobertura/honduras": "Auditorías de cliente oculto en Honduras: Distrito Central",
+  "/cobertura/el-salvador": "Auditorías con cliente oculto en El Salvador, del río Paz",
+  "/cobertura/nicaragua": "Auditorías con cliente oculto en Nicaragua: Managua",
+  "/cobertura/costa-rica": "Cliente incógnito en Costa Rica",
+  "/cobertura/panama": "Auditorías CX en Panamá",
+  "/cobertura/republica-dominicana": "Auditorías con cliente oculto en República Dominicana",
+  "/cobertura/chiapas-mexico": "Auditorías de cliente oculto en Chiapas",
+};
 
 // JSON-LD @types each page must carry (section I).
 const EXPECT_SCHEMA = {
@@ -109,6 +122,10 @@ const BANNED = [
   /agendar (una )?demo/i,
   /book a demo/i,
   /calendly/i,
+  /atiende primero/i,
+  /guatemala city/i,
+  /otros estudios/i,
+  /consumer insights/i,
 ];
 
 const GA4_ID = "G-3N1LL20CKL";
@@ -118,6 +135,7 @@ const REDIRECTS = [
   ["/casos-de-exito", "/servicios/auditorias"],
   ["/casos-de-exito/cualquier-caso", "/servicios/auditorias"],
   ["/demo", "/contacto"],
+  ["/servicios/consumer-insights", "/servicios"],
 ];
 
 const failures = [];
@@ -159,6 +177,10 @@ async function auditPage(path, seen) {
   }
 
   const desc = metaContent(html, "name", "description");
+  if (desc && EXPECT_DESCRIPTION[path] && !desc.startsWith(EXPECT_DESCRIPTION[path])) fail(path, `description is not the client's: ${desc}`);
+  for (const [prop, attr] of [["og:description", "property"], ["twitter:description", "name"]]) {
+    if (desc && metaContent(html, attr, prop) !== desc) fail(path, `${prop} differs from the meta description`);
+  }
   if (!desc) fail(path, "missing meta description");
   else {
     if (desc.length > 170) warnings.push(`${path}: description is ${desc.length} chars`);
@@ -192,14 +214,14 @@ async function auditPage(path, seen) {
     if (!types.has(type)) fail(path, `missing ${type} JSON-LD`);
   }
 
-  // Coverage pages map every department and its cities in areaServed.
+  // Coverage pages map every zone, its departments and its cities in areaServed.
   if (COUNTRY_PATHS.includes(path)) {
     const service = items.find((i) => i["@type"] === "Service");
     const areas = Array.isArray(service?.areaServed) ? service.areaServed : [];
-    if (areas.length < 7 || !areas.every((a) => a["@type"] === "AdministrativeArea")) {
-      fail(path, "Service areaServed does not list the departments as AdministrativeArea");
+    if (areas.length < 4 || !areas.every((a) => a["@type"] === "AdministrativeArea")) {
+      fail(path, "Service areaServed does not list the coverage zones as AdministrativeArea");
     }
-    if (!areas.some((a) => a.containsPlace?.length)) fail(path, "areaServed has no containsPlace cities");
+    if (!areas.every((a) => a.containsPlace?.some((p) => p["@type"] === "City"))) fail(path, "a zone in areaServed has no containsPlace cities");
   }
 
   if (!html.includes(`googletagmanager.com/gtag/js?id=${GA4_ID}`)) fail(path, `GA4 ${GA4_ID} not loaded`);
@@ -210,6 +232,9 @@ async function auditPage(path, seen) {
   if (!html.includes(">info@innvestiga.com</a>")) fail(path, "footer email is not readable in the HTML");
 
   // Only LinkedIn and WhatsApp are active social channels.
+  if (!html.includes('href="https://www.linkedin.com/company/innvestiga-cx-specialists"')) fail(path, "footer LinkedIn link missing or wrong");
+  if (!html.includes("/brand/innvestiga-logo.svg")) fail(path, "footer logo missing");
+
   const retired = html.match(/href="https:\/\/(www\.)?(youtube|tiktok|instagram|facebook|x)\.com\/[^"]*"/i);
   if (retired) fail(path, `retired social link ${retired[0]}`);
 

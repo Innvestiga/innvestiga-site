@@ -31,8 +31,6 @@ export interface BlogPost {
 export interface NavChild {
   label: string;
   href: string;
-  /** Rendered smaller, for links the spec demotes (e.g. "Otros estudios"). */
-  minor?: boolean;
 }
 
 export interface NavLink {
@@ -53,4 +51,5 @@ export interface Office {
   streetAddress: string;
   locality: string;
   region: string;
+  postalCode: string;
 }

@@ -12,6 +12,13 @@ export interface PilotLead {
 export const CONCERN_QUESTION = "¿Qué es lo que más te preocupa de la atención en tus sucursales hoy?";
 export const PILOT_LEAD_STORAGE_KEY = "innvestiga:pilot-lead";
 
+// The form lets the lead pick several countries ("countries" checkboxes);
+// they travel to EmailJS as one "country" value, e.g. "Guatemala, Honduras".
+export function selectedCountries(fd: FormData): string {
+  const picked = fd.getAll("countries").map((v) => String(v).trim()).filter(Boolean);
+  return picked.length ? picked.join(", ") : String(fd.get("country") ?? "").trim();
+}
+
 // Field names match the EmailJS templates (notification + auto-reply).
 export function leadFromFormData(fd: FormData): PilotLead {
   const get = (key: string) => String(fd.get(key) ?? "").trim();
@@ -19,7 +26,7 @@ export function leadFromFormData(fd: FormData): PilotLead {
     name: get("user_name"),
     company: get("company_name"),
     position: get("position"),
-    country: get("country"),
+    country: selectedCountries(fd),
     branches: get("branches"),
     email: get("user_email"),
     whatsapp: get("whatsapp"),
@@ -32,7 +39,7 @@ export function buildPilotMessage(lead: PilotLead): string {
     `Nombre: ${lead.name}`,
     `Empresa: ${lead.company}`,
     `Cargo: ${lead.position}`,
-    `País: ${lead.country}`,
+    `País(es): ${lead.country}`,
     `Número de sucursales: ${lead.branches}`,
     `Correo: ${lead.email}`,
     `WhatsApp: ${lead.whatsapp}`,

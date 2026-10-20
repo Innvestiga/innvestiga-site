@@ -34,9 +34,9 @@ const KEY_FACTS: [string, string][] = [
   ["Inicio de operaciones", "2008 (18 años de experiencia)"],
   ["Especialización", "Cliente oculto (mystery shopper) desde 2013"],
   ["Plataforma", "ESI, plataforma propia (primera versión en 2013)"],
-  ["Países", "El Salvador, Guatemala, Honduras, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas (México)"],
+  ["Países", "Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas (México)"],
   ["Cobertura", "1,282 municipios donde podemos evaluar"],
-  ["Oficinas", "Guatemala City y San Salvador"],
+  ["Oficinas", "Ciudad de Guatemala y San Salvador"],
   ["Tiempo de entrega", "Máximo 3 días después de cada visita"],
 ];
 

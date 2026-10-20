@@ -42,12 +42,6 @@ export default function ServiciosPage() {
 
       <Section title="Auditamos en 8 países" tone="surface">
         <CountryLinks />
-        <Link
-          href="/servicios/consumer-insights"
-          className="mt-12 inline-block text-[12px] text-muted underline underline-offset-4 hover:text-primary"
-        >
-          Otros estudios
-        </Link>
       </Section>
 
       <PilotCta />

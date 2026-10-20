@@ -25,13 +25,21 @@ describe("leadFromFormData", () => {
   it("returns empty strings for missing fields", () => {
     expect(leadFromFormData(new FormData()).concern).toBe("");
   });
+
+  it("joins several selected countries into one value", () => {
+    const f = fd();
+    f.delete("country");
+    f.append("countries", "Guatemala");
+    f.append("countries", "Chiapas (México)");
+    expect(leadFromFormData(f).country).toBe("Guatemala, Chiapas (México)");
+  });
 });
 
 describe("buildPilotMessage", () => {
   it("lists every answer with its Spanish label", () => {
     const msg = buildPilotMessage(leadFromFormData(fd()));
     expect(msg).toContain("Nombre: Ana López");
-    expect(msg).toContain("País: El Salvador");
+    expect(msg).toContain("País(es): El Salvador");
     expect(msg).toContain("WhatsApp: +503 7000 0000");
     expect(msg).toContain("¿Qué es lo que más te preocupa de la atención en tus sucursales hoy?\nLos tiempos de espera.");
   });

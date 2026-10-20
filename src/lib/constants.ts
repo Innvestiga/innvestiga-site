@@ -40,13 +40,14 @@ export function whatsappHref(number: string = CONTACT.whatsapp): string | null {
 
 export const OFFICES: Office[] = [
   {
-    city: "Guatemala City",
+    city: "Ciudad de Guatemala",
     country: "Guatemala",
     countryCode: "GT",
     address: "12 Avenida B 5-98, Zona 8, Mixco, Guatemala, Guatemala",
     streetAddress: "12 Avenida B 5-98, Zona 8",
     locality: "Mixco",
     region: "Guatemala",
+    postalCode: "01057",
   },
   {
     city: "San Salvador",
@@ -56,6 +57,7 @@ export const OFFICES: Office[] = [
     streetAddress: "Calle Cuscatlán No.133, Colonia Escalón",
     locality: "San Salvador",
     region: "San Salvador",
+    postalCode: "01101",
   },
 ];
 
@@ -64,7 +66,7 @@ export type SocialIcon = "linkedin";
 // Only LinkedIn is active for now (client, 2026-10-19); WhatsApp is shown
 // next to it in the footer from CONTACT.whatsapp.
 export const SOCIAL_PROFILES: { name: string; url: string; icon: SocialIcon }[] = [
-  { name: "LinkedIn", url: "https://www.linkedin.com/company/innvestiga", icon: "linkedin" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/company/innvestiga-cx-specialists", icon: "linkedin" },
 ];
 
 export const NAV_LINKS: NavLink[] = [
@@ -76,7 +78,6 @@ export const NAV_LINKS: NavLink[] = [
     children: [
       ...SCENARIOS.map((s) => ({ label: s.label, href: scenarioHref(s) })),
       { label: "Auditoría de canales digitales", href: "/servicios/canales-digitales" },
-      { label: "Otros estudios", href: "/servicios/consumer-insights", minor: true },
     ],
   },
   {

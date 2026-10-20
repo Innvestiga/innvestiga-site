@@ -4,13 +4,13 @@ import CountryLinks from "@/components/page/CountryLinks";
 import CoverageTable from "@/components/page/CoverageTable";
 import PilotCta from "@/components/page/PilotCta";
 import HeroMap from "@/components/home/HeroMap";
+import { countryList } from "@/data/coverage";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   path: "/cobertura",
   title: "Cobertura de Auditorías CX en 8 Países y 1,282 Municipios | Innvestiga",
-  description:
-    "Auditorías CX con cliente oculto en El Salvador, Guatemala, Honduras, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas: 1,282 municipios.",
+  description: `Auditorías CX con cliente oculto en ${countryList()}: 1,282 municipios.`,
 });
 
 export default function CoberturaPage() {
@@ -22,10 +22,9 @@ export default function CoberturaPage() {
         title="Auditorías CX en 1,282 municipios de Mesoamérica y el Caribe."
         intro={
           <p>
-            Estamos presentes en las principales ciudades de El Salvador, Guatemala, Honduras, Nicaragua, Costa Rica,
-            Panamá, República Dominicana y Chiapas, y podemos realizar auditorías en cualquier punto de venta de esta
-            región. Nuestro equipo comercial atiende primero a El Salvador y Guatemala, y la operación de campo llega a
-            todos los países.
+            Estamos presentes en las principales ciudades de {countryList()}, y podemos realizar auditorías en
+            cualquier punto de venta de esta región. Cada uno de los 8 países recibe el mismo método y la misma
+            atención, desde nuestras oficinas en Ciudad de Guatemala y San Salvador.
           </p>
         }
         aside={

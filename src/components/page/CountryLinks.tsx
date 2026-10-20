@@ -9,7 +9,7 @@ export default function CountryLinks({ exclude }: { exclude?: string }) {
         <li key={c.slug}>
           <Link
             href={coverageHref(c)}
-            className="group block h-full rounded-xl bg-surface border border-border p-5 hover:border-primary/40 transition-colors"
+            className="group block h-full min-h-[96px] rounded-xl bg-surface border border-border p-5 hover:border-primary/40 transition-colors"
           >
             <span className="block text-[13px] font-bold uppercase tracking-wider text-ink group-hover:text-primary">
               {c.name}

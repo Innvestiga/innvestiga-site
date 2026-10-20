@@ -15,14 +15,14 @@ describe("organizationSchema", () => {
 
   it("serves the 8 areas in order and the single phone", () => {
     expect(org.areaServed.map((a: { name: string }) => a.name)).toEqual([
-      "El Salvador", "Guatemala", "Honduras", "Nicaragua", "Costa Rica",
+      "Guatemala", "Honduras", "El Salvador", "Nicaragua", "Costa Rica",
       "Panamá", "República Dominicana", "Chiapas",
     ]);
     expect(org.contactPoint.telephone).toBe("+502 2277 7220");
   });
 
   it("links LinkedIn and the Google Business profile", () => {
-    expect(org.sameAs).toEqual(["https://www.linkedin.com/company/innvestiga", "https://share.google/0iOxKKg89kGZD7o7h"]);
+    expect(org.sameAs).toEqual(["https://www.linkedin.com/company/innvestiga-cx-specialists", "https://share.google/0iOxKKg89kGZD7o7h"]);
   });
 });
 
@@ -78,32 +78,35 @@ describe("page schemas", () => {
       expect(o["@type"]).toBe("LocalBusiness");
       expect(o.telephone).toBe("+502 2277 7220");
       expect(o.parentOrganization["@id"]).toMatch(/#organization$/);
+      expect(o.priceRange).toBe("$$");
     }
+    expect(offices.map((o) => o.name)).toEqual([
+      "Innvestiga Market Specialists — Ciudad de Guatemala",
+      "Innvestiga Market Specialists — San Salvador",
+    ]);
+    expect(offices.map((o) => o.address.postalCode)).toEqual(["01057", "01101"]);
   });
 
-  it("maps each department and its cities in areaServed when regions are given", async () => {
+  it("maps each zone with its divisions and cities in areaServed when zones are given", async () => {
     const { serviceSchema } = await import("./jsonld");
     const svc = serviceSchema({
       name: "n",
       path: "/cobertura/panama",
       description: "d",
       area: "panama",
-      regions: [
-        { name: "Chiriquí", cities: ["David", "Boquete"] },
-        { name: "Comarcas", cities: ["Guna Yala"], areas: true },
-      ],
+      zones: [{ name: "Chiriquí y Bocas del Toro", divisions: ["Chiriquí"], cities: ["David", "Boquete"] }],
     }) as Json;
     expect(svc.areaServed).toEqual([
       {
         "@type": "AdministrativeArea",
-        name: "Chiriquí",
+        name: "Chiriquí y Bocas del Toro",
         containedInPlace: { "@type": "Country", name: "Panamá" },
         containsPlace: [
+          { "@type": "AdministrativeArea", name: "Chiriquí" },
           { "@type": "City", name: "David" },
           { "@type": "City", name: "Boquete" },
         ],
       },
-      { "@type": "AdministrativeArea", name: "Guna Yala", containedInPlace: { "@type": "Country", name: "Panamá" } },
     ]);
   });
 

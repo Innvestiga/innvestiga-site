@@ -6,16 +6,15 @@ import { siteUrl } from "@/lib/env";
 
 export const dynamic = "force-static";
 
-// The first city of each department or region row (area rows excluded).
-const mainCities = (slug: string) =>
-  (countryPage(slug)?.regions ?? []).filter((r) => !r.areas).map((r) => r.cities[0]);
+// The first city of each coverage zone.
+const mainCities = (slug: string) => (countryPage(slug)?.zones ?? []).map((z) => z.cities[0]);
 
 // /llms.txt (section H): a short summary and the key links, in Markdown.
 export function GET() {
   const url = (path: string) => `${siteUrl()}${path}`;
   const body = `# Innvestiga Market Specialists
 
-> Auditorías de experiencia del cliente (CX) con cliente oculto, también llamado mystery shopper o cliente misterioso, en 8 países de Mesoamérica y el Caribe: El Salvador, Guatemala, Honduras, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas (México). Podemos evaluar cualquiera de sus 1,282 municipios y entregamos resultados en máximo 3 días en ESI, nuestra plataforma propia.
+> Auditorías de experiencia del cliente (CX) con cliente oculto, también llamado mystery shopper o cliente misterioso, en 8 países de Mesoamérica y el Caribe: Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas (México). Podemos evaluar cualquiera de sus 1,282 municipios y entregamos resultados en máximo 3 días en ESI, nuestra plataforma propia.
 
 - Innvestiga opera desde 2008 (18 años de experiencia) y se especializa en cliente oculto desde 2013.
 - Oficinas: ${OFFICES.map((o) => o.address).join(" y ")}. Teléfono y WhatsApp: ${CONTACT.phone}. Correo: ${CONTACT.email}.

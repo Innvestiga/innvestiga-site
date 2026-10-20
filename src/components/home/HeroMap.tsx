@@ -29,7 +29,7 @@ const mapData = [
     slug: "guatemala",
     label: "GUATEMALA",
     d: "M60.5,130.3L50.9,126.9L39.2,126.6L30.7,122.8L20.6,114.8L21.1,109.2L23.2,104.7L20.6,101.1L29.6,85.4L53.6,85.3L54.1,78.8L51.0,77.6L49.0,73.4L42.0,69.0L35.1,62.6L43.5,62.5L43.5,51.7L61.0,51.6L78.3,51.8L78.2,67.1L76.7,88.8L82.3,88.8L88.4,92.3L90.0,89.5L95.5,91.9L87.0,99.3L78.1,104.6L76.8,108.3L78.3,112.1L74.4,117.0L70.0,118.2L71.0,120.5L67.5,122.6L61.1,127.5L60.5,130.3Z",
-    city: { x: 55, y: 92, name: "Guatemala City" },
+    city: { x: 55, y: 92, name: "Ciudad de Guatemala" },
     fill: "rgba(30,64,175,0.12)",
     isHQ: true,
   },
@@ -96,17 +96,17 @@ const contextShapes = [
   { id: "belize", d: "M78.3,51.8L78.2,49.0L80.4,48.1L83.8,50.4L90.5,38.8L94.1,38.5L94.2,41.3L97.7,41.4L97.4,46.7L94.4,55.0L96.0,58.0L94.0,64.9L95.2,66.7L93.0,76.4L89.4,81.6L86.0,82.2L82.3,88.8L76.7,88.8L78.2,67.1L78.3,51.8Z" },
 ];
 
-// Connection arcs from Guatemala City (HQ) to each country.
+// Connection arcs from Ciudad de Guatemala to each country, in the site order.
 // Rep. Dominicana points to its TRANSFORMED inset coordinate
 // (432 + RD_DX, 40 + RD_DY) = (282, 110) so the arc still connects.
 const connections = [
-  { to: { x: 8, y: 78 } },     // Chiapas
-  { to: { x: 84, y: 133 } },   // El Salvador
   { to: { x: 140, y: 105 } },  // Honduras
+  { to: { x: 84, y: 133 } },   // El Salvador
   { to: { x: 160, y: 148 } },  // Nicaragua
   { to: { x: 171, y: 208 } },  // Costa Rica
   { to: { x: 248, y: 236 } },  // Panamá
   { to: { x: 432 + RD_DX, y: 40 + RD_DY } }, // Rep. Dominicana (inset)
+  { to: { x: 8, y: 78 } },     // Chiapas
 ];
 
 const HQ = { x: 55, y: 92 };
