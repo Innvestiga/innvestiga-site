@@ -233,7 +233,10 @@ async function auditPage(path, seen) {
 
   // Only LinkedIn and WhatsApp are active social channels.
   if (!html.includes('href="https://www.linkedin.com/company/innvestiga-cx-specialists"')) fail(path, "footer LinkedIn link missing or wrong");
-  if (!html.includes("/brand/innvestiga-logo.svg")) fail(path, "footer logo missing");
+  // The footer shows the same horizontal text wordmark as the navbar (client request, 2026-10-19).
+  const footerHtml = html.slice(html.indexOf("<footer"));
+  if (!footerHtml.includes(">INNVESTIGA<span") || !footerHtml.includes(">MARKET SPECIALISTS</span>")) fail(path, "footer wordmark missing");
+  if (html.includes("/brand/innvestiga-logo.svg")) fail(path, "retired globe logo still referenced");
 
   const retired = html.match(/href="https:\/\/(www\.)?(youtube|tiktok|instagram|facebook|x)\.com\/[^"]*"/i);
   if (retired) fail(path, `retired social link ${retired[0]}`);
