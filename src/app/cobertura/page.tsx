@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   path: "/cobertura",
-  title: "Cobertura de Auditorías CX en 8 Países y 1,282 Municipios | Innvestiga",
+  title: "Cobertura CX en 8 Países y 1,282 Municipios | Innvestiga",
   description: `Auditorías CX con cliente oculto en ${countryList()}: 1,282 municipios.`,
 });
 

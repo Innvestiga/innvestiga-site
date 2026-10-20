@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   path: "/preguntas-frecuentes",
-  title: "Preguntas Frecuentes sobre Auditorías CX y Mystery Shopper | Innvestiga",
+  title: "Preguntas Frecuentes: Cliente Oculto y Auditorías CX | Innvestiga",
   description:
     "Respuestas sobre auditorías con cliente oculto: qué son, cuánto tardan, qué países cubren y cómo funciona la prueba piloto.",
 });

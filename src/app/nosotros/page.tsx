@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   path: "/nosotros",
-  title: "Sobre Innvestiga | Auditorías de Experiencia del Cliente desde 2008",
+  title: "Innvestiga | Auditorías de Experiencia del Cliente desde 2008",
   description:
     "Innvestiga Market Specialists: 18 años de experiencia en estudios y especialización en cliente oculto (mystery shopper) desde 2013, en 8 países.",
 });

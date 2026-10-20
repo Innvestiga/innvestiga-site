@@ -28,13 +28,21 @@ const findCountry = (slug: string) => COVERAGE.find((c) => c.slug === slug);
 // Chiapas is a state, so its pages name the country too.
 const placeName = (c: CoverageCountry) => (c.slug === "chiapas-mexico" ? "Chiapas, México" : c.name);
 
+// Keep <title> at 65 characters or fewer (SEO audit limit); long country
+// names such as "República Dominicana" fall back to the shorter form.
+const TITLE_MAX = 65;
+function countryTitle(c: CoverageCountry) {
+  const full = `Mystery Shopper y Cliente Oculto en ${placeName(c)} | Innvestiga`;
+  return full.length <= TITLE_MAX ? full : `Cliente Oculto en ${placeName(c)} | Innvestiga`;
+}
+
 export async function generateMetadata({ params }: PageProps<"/cobertura/[slug]">) {
   const country = findCountry((await params).slug);
   const page = country && countryPage(country.slug);
   if (!country || !page) return {};
   return pageMetadata({
     path: coverageHref(country),
-    title: `Mystery Shopper y Cliente Oculto en ${placeName(country)} | Innvestiga`,
+    title: countryTitle(country),
     description: page.description,
   });
 }
