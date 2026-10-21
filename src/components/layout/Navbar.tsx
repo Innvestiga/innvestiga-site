@@ -45,12 +45,14 @@ export default function Navbar() {
         `}
       >
         {/* Logo */}
-        <Link href="/" className="flex-shrink-0 group">
+        <Link href="/" className="flex-shrink-0 group mr-4">
           <BrandWordmark />
         </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-7">
+        {/* Desktop Nav: one row at every width. Items never wrap their own
+            text; between lg and xl the gaps, tracking and button padding
+            tighten instead (client report, 2026-10-20). */}
+        <div className="hidden lg:flex flex-nowrap items-center gap-4 xl:gap-7 whitespace-nowrap">
           {NAV_LINKS.map((link) =>
             link.children ? (
               <NavDropdown key={link.href} link={link} />
@@ -58,7 +60,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative text-body hover:text-ink text-[10px] font-bold uppercase tracking-[0.2em] py-2 transition-colors duration-300"
+                className="group relative whitespace-nowrap text-body hover:text-ink text-[10px] font-bold uppercase tracking-[0.12em] xl:tracking-[0.2em] py-2 transition-colors duration-300"
               >
                 <span className="text-primary/40 mr-1 group-hover:text-primary/70 transition-colors duration-300">
                   {link.number}
@@ -70,7 +72,7 @@ export default function Navbar() {
           )}
           <Link
             href="/contacto"
-            className="border border-primary/40 text-primary px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/10 hover:border-primary transition-all duration-300"
+            className="whitespace-nowrap border border-primary/40 text-primary px-4 xl:px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider xl:tracking-widest hover:bg-primary/10 hover:border-primary transition-all duration-300"
           >
             Prueba piloto
           </Link>
@@ -78,7 +80,7 @@ export default function Navbar() {
             href={CONTACT.portal}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary-hover transition-all duration-300 shadow-[0_2px_12px_rgba(30,64,175,0.25)]"
+            className="whitespace-nowrap bg-primary text-white px-4 xl:px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider xl:tracking-widest hover:bg-primary-hover transition-all duration-300 shadow-[0_2px_12px_rgba(30,64,175,0.25)]"
           >
             Acceso
           </a>
