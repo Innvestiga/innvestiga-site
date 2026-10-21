@@ -151,6 +151,7 @@ const REDIRECTS = [
   ["/casos-de-exito/cualquier-caso", "/servicios/auditorias"],
   ["/demo", "/contacto"],
   ["/servicios/consumer-insights", "/servicios"],
+  ["/index.html", "/"],
 ];
 
 const failures = [];
