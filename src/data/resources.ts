@@ -7,6 +7,8 @@ export interface Resource {
   h1: string;
   /** Opening paragraph: the direct answer comes first. */
   body: string;
+  /** Question list with Innvestiga's answer to each, rendered as a FAQ. */
+  questions?: { question: string; answer: string }[];
 }
 
 // Content hub copy from the client spec (2026-10-20), verbatim.
@@ -57,6 +59,55 @@ export const RESOURCES: Resource[] = [
       "10 preguntas para elegir una empresa de cliente oculto (mystery shopper) en Centroamérica, el Caribe y Chiapas, México, y cómo responde Innvestiga.",
     h1: "Cómo elegir una empresa de cliente oculto en Centroamérica: 10 preguntas antes de contratar",
     body: "Guía objetiva de evaluación basada en: Cobertura geográfica real (+1,280 municipios), Método estandarizado, Evidencia multimedia (video/foto/audio), Tiempos de entrega (≤ 3 días), Plataforma propia (ESI) y Capacidad omnicanal.",
+    // Drafted from facts already stated on the site; pending client review.
+    questions: [
+      {
+        question: "¿Tiene cobertura real en todos los países donde opero?",
+        answer:
+          "Innvestiga audita en 8 mercados: Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas, México. Puede evaluar cualquiera de sus 1,282 municipios, con oficinas en Ciudad de Guatemala y San Salvador.",
+      },
+      {
+        question: "¿Usa el mismo método en todos los países?",
+        answer:
+          "Sí. La misma guía de evaluación y los mismos criterios se aplican en los 8 mercados, así que los resultados de cada país se comparan directamente.",
+      },
+      {
+        question: "¿Quién define los criterios de evaluación?",
+        answer: "Los criterios se definen contigo, alineados a los estándares de tu marca y a tus objetivos comerciales.",
+      },
+      {
+        question: "¿Cuánta experiencia tiene en cliente oculto?",
+        answer:
+          "Innvestiga opera desde 2008 (18 años de experiencia) y se especializa en la metodología de cliente oculto desde 2013.",
+      },
+      {
+        question: "¿Qué evidencia entrega de cada visita?",
+        answer: "Cada evaluación se respalda con evidencia multimedia: video, fotografías y audio de la visita.",
+      },
+      {
+        question: "¿En cuánto tiempo entrega los resultados?",
+        answer: "En máximo 3 días después de cada visita.",
+      },
+      {
+        question: "¿Tiene una plataforma propia para consultar resultados?",
+        answer:
+          "Sí. Los resultados se publican en ESI, la plataforma propia de Innvestiga desde 2013, con la evidencia de cada visita y comparativos entre sucursales, ciudades y países.",
+      },
+      {
+        question: "¿Puede auditar también chat, redes sociales y call center?",
+        answer: "Sí. Los canales digitales y telefónicos se evalúan con los mismos criterios que las sucursales.",
+      },
+      {
+        question: "¿Cómo garantiza resultados objetivos?",
+        answer:
+          "Los auditores están capacitados, cada evaluación se respalda con evidencia y existe un proceso para revisar y aclarar resultados.",
+      },
+      {
+        question: "¿Puedo probar el servicio antes de contratar?",
+        answer:
+          "Sí. La prueba piloto de cortesía incluye tres evaluaciones en el país que elijas, con resultados en ESI en máximo 3 días y una reunión para revisarlos.",
+      },
+    ],
   },
 ];
 

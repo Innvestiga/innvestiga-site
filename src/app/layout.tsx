@@ -42,9 +42,11 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", site: "@innvestiga" },
   // Spiral isotype (client spec, 2026-10-20). /favicon.ico comes from
-  // src/app/favicon.ico; the PNGs and the manifest live in /public.
+  // src/app/favicon.ico; the SVG (traced from the spiral PNG), the PNGs and
+  // the manifest live in /public.
   icons: {
     icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },

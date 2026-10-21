@@ -111,6 +111,8 @@ const EXPECT_SCHEMA = {
 };
 for (const path of [...SCENARIO_PATHS, ...COUNTRY_PATHS]) EXPECT_SCHEMA[path] = ["Service", "BreadcrumbList"];
 for (const path of RESOURCE_PATHS) EXPECT_SCHEMA[path] = ["Article", "BreadcrumbList"];
+EXPECT_SCHEMA["/recursos/como-elegir-empresa-cliente-oculto"].push("FAQPage");
+EXPECT_TEXT["/recursos/como-elegir-empresa-cliente-oculto"] = ["10 preguntas antes de contratar", "Cómo responde Innvestiga", "¿Puedo probar el servicio antes de contratar?"];
 for (const path of ["/cobertura/el-salvador", "/cobertura/guatemala"]) EXPECT_SCHEMA[path].push("LocalBusiness");
 
 // Pages without breadcrumbs: the two home pages and the conversion pages.
@@ -251,7 +253,7 @@ async function auditPage(path, seen) {
   if (!footerHtml.includes(">INNVESTIGA<span") || !footerHtml.includes(">MARKET SPECIALISTS</span>")) fail(path, "footer wordmark missing");
   if (html.includes("/brand/innvestiga-logo.svg")) fail(path, "retired globe logo still referenced");
   if (/mesoam/i.test(visibleText(html))) fail(path, "says Mesoamérica (use Centroamérica)");
-  if (!html.includes('href="/apple-touch-icon.png"') || !html.includes('href="/site.webmanifest"')) fail(path, "favicon set or manifest missing");
+  if (!html.includes('href="/apple-touch-icon.png"') || !html.includes('href="/site.webmanifest"') || !html.includes('href="/favicon.svg"')) fail(path, "favicon set or manifest missing");
 
   const retired = html.match(/href="https:\/\/(www\.)?(youtube|tiktok|instagram|facebook|x)\.com\/[^"]*"/i);
   if (retired) fail(path, `retired social link ${retired[0]}`);
