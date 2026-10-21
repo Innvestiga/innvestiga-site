@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   path: "/cobertura",
-  title: "Cobertura CX en 8 Países y 1,282 Municipios | Innvestiga",
+  title: "Cobertura CX en 8 Mercados y 1,282 Municipios | Innvestiga",
   description: `Auditorías CX con cliente oculto en ${countryList()}: 1,282 municipios.`,
 });
 
@@ -18,12 +18,12 @@ export default function CoberturaPage() {
     <>
       <PageHero
         crumbs={[{ name: "Cobertura", path: "/cobertura" }]}
-        label="Mesoamérica y el Caribe"
-        title="Auditorías CX en 1,282 municipios de Mesoamérica y el Caribe."
+        label="Centroamérica, Caribe y Chiapas, México"
+        title="Auditorías CX en 1,282 municipios de Centroamérica, el Caribe y Chiapas, México."
         intro={
           <p>
             Estamos presentes en las principales ciudades de {countryList()}, y podemos realizar auditorías en
-            cualquier punto de venta de esta región. Cada uno de los 8 países recibe el mismo método y la misma
+            cualquier punto de venta de esta región. Cada uno de los 8 mercados recibe el mismo método y la misma
             atención, desde nuestras oficinas en Ciudad de Guatemala y San Salvador.
           </p>
         }
@@ -38,7 +38,7 @@ export default function CoberturaPage() {
         <CoverageTable />
       </Section>
 
-      <Section title="Auditamos en 8 países">
+      <Section title="Auditamos en 8 mercados">
         <CountryLinks />
       </Section>
 

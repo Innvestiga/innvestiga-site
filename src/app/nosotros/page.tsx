@@ -9,9 +9,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   path: "/nosotros",
-  title: "Innvestiga | Auditorías de Experiencia del Cliente desde 2008",
+  title: "Nosotros | Innvestiga, expertos en cliente oculto",
   description:
-    "Innvestiga Market Specialists: 18 años de experiencia en estudios y especialización en cliente oculto (mystery shopper) desde 2013, en 8 países.",
+    "Medimos la experiencia del cliente con cliente oculto (mystery shopper) en Centroamérica, el Caribe y Chiapas, México. Desde 2008; plataforma propia desde 2013.",
 });
 
 const TIMELINE = [
@@ -25,7 +25,7 @@ const TIMELINE = [
   },
   {
     year: "Hoy",
-    text: "Operamos en 8 países y podemos evaluar cualquiera de sus 1,282 municipios, con resultados en máximo 3 días.",
+    text: "Operamos en 8 mercados y podemos evaluar cualquiera de sus 1,282 municipios, con resultados en máximo 3 días.",
   },
 ];
 
@@ -34,7 +34,7 @@ const KEY_FACTS: [string, string][] = [
   ["Inicio de operaciones", "2008 (18 años de experiencia)"],
   ["Especialización", "Cliente oculto (mystery shopper) desde 2013"],
   ["Plataforma", "ESI, plataforma propia (primera versión en 2013)"],
-  ["Países", "Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas (México)"],
+  ["Mercados", "Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas, México"],
   ["Cobertura", "1,282 municipios donde podemos evaluar"],
   ["Oficinas", "Ciudad de Guatemala y San Salvador"],
   ["Tiempo de entrega", "Máximo 3 días después de cada visita"],
@@ -47,12 +47,12 @@ export default function NosotrosPage() {
       <PageHero
         crumbs={[{ name: "Nosotros", path: "/nosotros" }]}
         label="Sobre Innvestiga"
-        title="Innvestiga: 18 años de experiencia, especialistas en cliente oculto desde 2013."
+        title="Medimos la experiencia del cliente donde ocurre: en cada punto de venta"
         intro={
           <p>
             Innvestiga Market Specialists es una empresa de investigación de mercados que opera desde 2008. Desde 2013
             concentramos nuestra experiencia en la metodología de cliente oculto (mystery shopper) y creamos ESI, nuestra
-            plataforma propia. Hoy auditamos puntos de venta en 8 países de Mesoamérica y el Caribe.
+            plataforma propia. Hoy auditamos puntos de venta en 8 mercados de Centroamérica, el Caribe y Chiapas, México.
           </p>
         }
       />

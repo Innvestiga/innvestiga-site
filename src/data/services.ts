@@ -35,7 +35,7 @@ export const services: Service[] = [
         step: 3,
         title: "Análisis",
         description:
-          "Procesamos los datos recolectados y generamos indicadores clave de desempeño.",
+          "Procesamos los datos recolectados y generamos indicadores clave de desempeño (KPI) por sucursal y por etapa del journey de compra.",
       },
       {
         step: 4,

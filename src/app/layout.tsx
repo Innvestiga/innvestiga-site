@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Innvestiga",
   },
   description:
-    "Auditorías CX con cliente oculto (mystery shopper) en 8 países y 1,282 municipios de Mesoamérica y el Caribe. Resultados en 3 días. Solicita tu prueba piloto.",
+    "Auditorías CX con cliente oculto (mystery shopper) en Centroamérica, República Dominicana y Chiapas, México. Resultados en 3 días. Solicita tu prueba piloto.",
   openGraph: {
     type: "website",
     locale: "es_LA",
@@ -41,6 +41,19 @@ export const metadata: Metadata = {
     images: [OG_IMAGE],
   },
   twitter: { card: "summary_large_image", site: "@innvestiga" },
+  // Spiral isotype (client spec, 2026-10-20). /favicon.ico comes from
+  // src/app/favicon.ico; the PNGs and the manifest live in /public.
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon-144x144.png", sizes: "144x144", type: "image/png" },
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/site.webmanifest",
   // Staging and local builds are never indexable. Pages that set their own
   // robots (only /gracias, which is noindex anyway) override this.
   ...(isProduction() ? {} : { robots: { index: false, follow: false } }),

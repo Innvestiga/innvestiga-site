@@ -21,6 +21,9 @@ export default function SectorsSection() {
         <h2 className="font-heading text-3xl md:text-4xl font-bold uppercase tracking-tight text-ink">
           Sectores donde hemos trabajado
         </h2>
+        <p className="mt-4 text-body text-base md:text-lg leading-relaxed max-w-2xl">
+          Auditamos cadenas de retail y servicios con múltiples sucursales.
+        </p>
         <ul className="mt-8 flex flex-wrap gap-2.5">
           {SECTORS.map((s) => (
             <li

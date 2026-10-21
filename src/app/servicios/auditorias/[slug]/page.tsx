@@ -4,6 +4,7 @@ import Section, { Checklist } from "@/components/page/Section";
 import ScenarioCards from "@/components/page/ScenarioCards";
 import CountryLinks from "@/components/page/CountryLinks";
 import PilotCta from "@/components/page/PilotCta";
+import ServiceSummary from "@/components/page/ServiceSummary";
 import JsonLd from "@/components/seo/JsonLd";
 import Button from "@/components/ui/Button";
 import { SCENARIOS, findScenario, scenarioHref } from "@/data/scenarios";
@@ -52,6 +53,10 @@ export default async function ScenarioPage({ params }: PageProps<"/servicios/aud
         </Button>
       </PageHero>
 
+      <Section title="En resumen">
+        <ServiceSummary evaluates={scenario.evaluates} purpose={scenario.purpose} />
+      </Section>
+
       <Section title="Qué situación evaluamos" tone="alt">
         <div className="max-w-3xl space-y-4 text-[16px] text-body leading-relaxed">
           <p className="font-heading text-xl md:text-2xl font-bold text-ink">{scenario.question}</p>
@@ -70,7 +75,7 @@ export default async function ScenarioPage({ params }: PageProps<"/servicios/aud
         <p className="max-w-3xl font-heading text-xl md:text-2xl font-bold text-ink leading-snug">{scenario.decision}</p>
       </Section>
 
-      <Section title="Auditamos en 8 países">
+      <Section title="Auditamos en 8 mercados">
         <CountryLinks />
       </Section>
 

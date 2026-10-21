@@ -55,7 +55,7 @@ export default function AuditoriasPage() {
           <p>
             Una auditoría con cliente oculto (mystery shopper) es una visita presencial de un auditor capacitado que actúa
             como un cliente real y califica la atención contra los estándares de tu marca. Innvestiga la realiza en 8
-            países, puede evaluar cualquiera de sus 1,282 municipios y entrega resultados en máximo 3 días.
+            mercados, puede evaluar cualquiera de sus 1,282 municipios y entrega resultados en máximo 3 días.
           </p>
         }
       >
@@ -78,7 +78,7 @@ export default function AuditoriasPage() {
         <Checklist items={RECEIVES} columns={1} />
       </Section>
 
-      <Section title="Auditamos en 8 países">
+      <Section title="Auditamos en 8 mercados">
         <CountryLinks />
       </Section>
 

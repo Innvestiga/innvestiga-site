@@ -25,7 +25,7 @@ export function GET() {
           Auditorías CX con Cliente Oculto
         </div>
         <div style={{ fontSize: 34, marginTop: 28, color: "#4b5563" }}>
-          8 países · 1,282 municipios · Resultados en máximo 3 días
+          8 mercados · 1,282 municipios · Resultados en máximo 3 días
         </div>
       </div>
     ),

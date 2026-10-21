@@ -5,7 +5,7 @@ describe("coverage", () => {
   it("lists the eight countries in the spec order", () => {
     expect(COVERAGE.map((c) => c.name)).toEqual([
       "Guatemala", "Honduras", "El Salvador", "Nicaragua",
-      "Costa Rica", "Panamá", "República Dominicana", "Chiapas",
+      "Costa Rica", "Panamá", "República Dominicana", "Chiapas, México",
     ]);
   });
 
@@ -33,6 +33,6 @@ describe("coverage", () => {
   });
 
   it("joins the names as Spanish prose in the fixed order", () => {
-    expect(countryList()).toBe("Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas");
+    expect(countryList()).toBe("Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas, México");
   });
 });

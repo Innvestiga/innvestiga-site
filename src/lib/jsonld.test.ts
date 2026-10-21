@@ -16,9 +16,13 @@ describe("organizationSchema", () => {
   it("serves the 8 areas in order and the single phone", () => {
     expect(org.areaServed.map((a: { name: string }) => a.name)).toEqual([
       "Guatemala", "Honduras", "El Salvador", "Nicaragua", "Costa Rica",
-      "Panamá", "República Dominicana", "Chiapas",
+      "Panamá", "República Dominicana", "Chiapas, México",
     ]);
+    expect(org.areaServed.at(-1)).toMatchObject({ "@type": "AdministrativeArea", name: "Chiapas, México" });
     expect(org.contactPoint.telephone).toBe("+502 2277 7220");
+    expect(org.telephone).toBe("+502 2277 7220");
+    expect(org.email).toBe("info@innvestiga.com");
+    expect(org.description).toMatch(/Centroamérica, República Dominicana y Chiapas, México/);
   });
 
   it("links LinkedIn and the Google Business profile", () => {

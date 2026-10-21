@@ -53,8 +53,8 @@ export default function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <div className="w-12 h-px bg-primary" />
-                <span className="text-[10px] font-bold tracking-[0.45em] uppercase text-primary">
-                  Experiencia del Cliente · Plataforma ESI
+                <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-primary">
+                  Cliente oculto · Mystery shopper · Experiencia del cliente (CX)
                 </span>
               </motion.div>
 
@@ -85,8 +85,9 @@ export default function HeroSection() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.75 }}
               >
-                Auditorías de experiencia del cliente con cliente misterioso en 8 países de
-                Centroamérica, el Caribe y Chiapas. Evidencia real y resultados en máximo 3 días.
+                Auditorías de experiencia del cliente con cliente misterioso en 8 mercados: seis países de
+                Centroamérica (Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica y Panamá), República
+                Dominicana en el Caribe y Chiapas, México. Evidencia real y resultados en máximo 3 días.
               </motion.p>
 
               <motion.p
@@ -130,7 +131,7 @@ export default function HeroSection() {
               >
                 {[
                   { end: STATS.yearsExperience, label: "años de experiencia" },
-                  { end: STATS.countries, label: "países" },
+                  { end: STATS.countries, label: "mercados" },
                   { end: STATS.municipalities, label: "municipios que podemos evaluar" },
                 ].map((s) => (
                   <div key={s.label} className="flex flex-col">
@@ -151,15 +152,15 @@ export default function HeroSection() {
               transition={{ duration: 1.2, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
               {/* Panel header */}
-              <div className="flex items-center justify-between px-6 pt-5">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-6 pt-5">
+                <div className="flex items-center gap-2 whitespace-nowrap">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                   <span className="text-[10px] font-bold tracking-[0.35em] uppercase text-primary/70">
                     Cobertura regional
                   </span>
                 </div>
-                <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-muted">
-                  Centroamérica · Caribe
+                <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-muted whitespace-nowrap">
+                  Centroamérica · Caribe · Chiapas, México
                 </span>
               </div>
 

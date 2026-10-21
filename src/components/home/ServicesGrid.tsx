@@ -24,7 +24,7 @@ export default function ServicesGrid() {
             </span>
           </div>
           <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.88] uppercase max-w-4xl tracking-tighter text-ink">
-            Situaciones que una auditoría
+            Situaciones que una auditoría de cliente oculto
             <br />
             <span className="text-muted">te ayuda a resolver.</span>
           </h2>

@@ -6,14 +6,14 @@ export const metadata = pageMetadata({
   path: "/en",
   title: "CX Audits and Mystery Shopping in Central America | Innvestiga",
   description:
-    "Mystery shopping and customer experience audits in 8 countries and 1,282 municipalities across Mesoamerica and the Caribbean. Results in 3 days.",
+    "Mystery shopping and customer experience audits in 8 markets: Central America, the Dominican Republic and Chiapas, Mexico. Results in 3 days.",
   locale: "en_US",
   languages: { es: "/", en: "/en", "x-default": "/" },
 });
 
 const COUNTERS = [
   { value: STATS.yearsExperience, label: "years of experience" },
-  { value: STATS.countries, label: "countries" },
+  { value: STATS.countries, label: "markets" },
   { value: STATS.municipalities, label: "municipalities we can evaluate" },
 ];
 
@@ -21,7 +21,7 @@ const COUNTERS = [
 const REASONS = [
   {
     title: "A logistics team across the region.",
-    text: "We can evaluate any of the 1,282 municipalities in 8 countries, with one method.",
+    text: "We can evaluate any of the 1,282 municipalities in 8 markets, with one method.",
   },
   { title: "Results in 3 days at most.", text: "You decide while it still matters." },
   { title: "Our own platform, ESI.", text: "Evidence, comparisons and clear results for your committee." },
@@ -49,8 +49,8 @@ export default function EnglishHome() {
             Find out what really happens in each of <span className="text-gold-gradient">your stores.</span>
           </h1>
           <p className="mt-6 text-base md:text-lg text-body max-w-2xl leading-relaxed">
-            Customer experience audits with mystery shoppers in 8 countries across Central America, the Caribbean and
-            Chiapas. Real evidence and results in 3 days at most.
+            Customer experience audits with mystery shoppers in 8 markets: six Central American countries, the
+            Dominican Republic in the Caribbean, and Chiapas, Mexico. Real evidence and results in 3 days at most.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/contacto" variant="gold">

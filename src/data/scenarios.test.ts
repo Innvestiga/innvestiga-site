@@ -19,14 +19,14 @@ describe("scenarios", () => {
 });
 
 describe("scenario pages", () => {
-  it("uses the spec titles, which stay unique and near 60 characters", () => {
+  it("uses the client SEO titles (2026-10-20), unique and under 60 characters", () => {
     expect(SCENARIOS.map((s) => s.title)).toEqual([
-      "Auditoría del Proceso de Ventas en Tienda | Innvestiga",
-      "Auditoría de Garantías en Retail | Innvestiga",
-      "Auditoría de Manejo de Reclamos y Quejas | Innvestiga",
-      "Auditoría de Reparaciones y Servicio Técnico | Innvestiga",
-      "Auditoría de Política de Devoluciones y Cambios | Innvestiga",
-      "Auditoría de Promociones y Precios en Tienda | Innvestiga",
+      "Cliente oculto en proceso de ventas | Innvestiga",
+      "Auditoría de garantías con cliente oculto | Innvestiga",
+      "Cliente oculto en reclamos y conflictos | Innvestiga",
+      "Cliente oculto en servicio técnico | Innvestiga",
+      "Cliente oculto en devoluciones y cambios | Innvestiga",
+      "Auditoría de promociones y precios | Innvestiga",
     ]);
   });
 
@@ -37,6 +37,9 @@ describe("scenario pages", () => {
       expect(s.description.length).toBeLessThanOrEqual(170);
       expect(s.checks.length).toBeGreaterThanOrEqual(4);
       expect(s.decision).toMatch(/\.$/);
+      expect(s.title.length).toBeLessThan(60);
+      expect(s.evaluates.length).toBeGreaterThan(20);
+      expect(s.purpose).toMatch(/\.$/);
     }
   });
 

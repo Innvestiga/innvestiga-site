@@ -3,7 +3,7 @@ export type CoverageUnit = "municipios" | "cantones" | "distritos";
 export interface CoverageCountry {
   slug: string;
   name: string;
-  /** Name used in tables and schema, e.g. "Chiapas (México)". */
+  /** Name used in tables and schema, e.g. "Chiapas, México". */
   fullName: string;
   count: number;
   unit: CoverageUnit;
@@ -19,10 +19,10 @@ export const COVERAGE: CoverageCountry[] = [
   { slug: "costa-rica", name: "Costa Rica", fullName: "Costa Rica", count: 84, unit: "cantones" },
   { slug: "panama", name: "Panamá", fullName: "Panamá", count: 81, unit: "distritos" },
   { slug: "republica-dominicana", name: "República Dominicana", fullName: "República Dominicana", count: 158, unit: "municipios" },
-  { slug: "chiapas-mexico", name: "Chiapas", fullName: "Chiapas (México)", count: 124, unit: "municipios" },
+  { slug: "chiapas-mexico", name: "Chiapas, México", fullName: "Chiapas, México", count: 124, unit: "municipios" },
 ];
 
-/** The 8 names in order, joined as Spanish prose ("A, B, ... y Chiapas"). */
+/** The 8 names in order, joined as Spanish prose ("A, B, ... y Chiapas, México"). */
 export function countryList(names: string[] = COVERAGE.map((c) => c.name)): string {
   return `${names.slice(0, -1).join(", ")} y ${names.at(-1)}`;
 }

@@ -132,7 +132,7 @@ export const COUNTRY_PAGES: CountryPage[] = [
       {
         question: "¿Puedo comparar mis sucursales guatemaltecas con las de otros países?",
         answer:
-          "Sí. Usamos la misma guía de evaluación en los 8 países donde auditamos, así que tus resultados de Guatemala se comparan directamente con los de El Salvador, Honduras o cualquier otro mercado.",
+          "Sí. Usamos la misma guía de evaluación en los 8 mercados donde auditamos, así que tus resultados de Guatemala se comparan directamente con los de El Salvador, Honduras o cualquier otro mercado.",
       },
     ],
   },
@@ -690,7 +690,7 @@ export const COUNTRY_PAGES: CountryPage[] = [
       {
         question: "¿Auditan en todo México o solo en Chiapas?",
         answer:
-          "En México trabajamos en el estado de Chiapas. Ahí podemos evaluar cualquiera de sus 124 municipios, además de los otros 7 países de nuestra cobertura.",
+          "En México trabajamos en el estado de Chiapas. Ahí podemos evaluar cualquiera de sus 124 municipios, además de los otros 7 mercados de nuestra cobertura.",
       },
       {
         question: "¿Pueden comparar mis tiendas de Chiapas con las de Guatemala?",

@@ -1,12 +1,13 @@
 import type { NavLink, Office } from "@/types";
 import { COVERAGE, coverageHref } from "@/data/coverage";
 import { SCENARIOS, scenarioHref } from "@/data/scenarios";
+import { RESOURCES_HUB } from "@/data/resources";
 
 export const SITE_NAME = "Innvestiga";
 export const SITE_LEGAL_NAME = "Innvestiga Market Specialists";
 export const SITE_TAGLINE = "Auditorías CX con Cliente Oculto";
 export const SITE_SUBTITLE = "MARKET SPECIALISTS";
-export const SITE_REGION = "Mesoamérica y el Caribe";
+export const SITE_REGION = "Centroamérica, el Caribe y Chiapas, México";
 
 export const FOUNDING_YEAR = 2008;
 export const ESI_FIRST_YEAR = 2013;
@@ -79,6 +80,11 @@ export const NAV_LINKS: NavLink[] = [
       ...SCENARIOS.map((s) => ({ label: s.label, href: scenarioHref(s) })),
       { label: "Auditoría de canales digitales", href: "/servicios/canales-digitales" },
     ],
+    featured: {
+      title: "Centro de Recursos & Guías CX →",
+      subtitle: "Estrategias de cliente incógnito, métricas de NPS y auditoría retail",
+      href: RESOURCES_HUB,
+    },
   },
   {
     number: "03",
@@ -89,8 +95,10 @@ export const NAV_LINKS: NavLink[] = [
   { number: "04", label: "Contacto", href: "/contacto" },
 ];
 
-// Pending from the client: what the pilot includes. Rendered only when set.
-export const PILOT_SCOPE: string | null = null;
+// What the pilot includes (client spec, 2026-10-20). Shown on /contacto and
+// as the full answer of the pilot FAQ.
+export const PILOT_SCOPE: string | null =
+  "La prueba piloto de cortesía incluye tres evaluaciones a cualquiera de las sucursales de tu cadena en el país que más lo requieras, evaluadas con un protocolo base de atención. Los resultados se publicarán en la plataforma ESI en máximo 3 días, con evidencia multimedia de cada visita. Luego agendaremos una reunión para revisar los resultados, y ampliar dudas e inquietudes para la ejecución del programa completo.";
 
 // Pending from the client: who follows up and how fast, for /gracias.
 export const PILOT_FOLLOW_UP: { executive: string | null; hours: number | null } = {

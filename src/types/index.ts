@@ -33,11 +33,19 @@ export interface NavChild {
   href: string;
 }
 
+export interface NavFeatured {
+  title: string;
+  subtitle: string;
+  href: string;
+}
+
 export interface NavLink {
   number: string;
   label: string;
   href: string;
   children?: NavChild[];
+  /** Highlighted card on the right of the dropdown (mega menu). */
+  featured?: NavFeatured;
 }
 
 export interface Office {

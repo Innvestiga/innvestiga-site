@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   path: "/servicios",
-  title: "Servicios de Auditoría CX con Cliente Oculto | Innvestiga",
+  title: "Servicios de Cliente Oculto | Innvestiga",
   description:
     "Auditorías con cliente oculto para retail: proceso de ventas, garantías, reclamos, servicio técnico, devoluciones, precios y canales digitales.",
 });
@@ -22,13 +22,14 @@ export default function ServiciosPage() {
         title="Auditorías de experiencia del cliente para empresas de retail."
         intro={
           <p>
-            Una auditoría con cliente oculto te muestra lo que realmente pasa en cada sucursal. Elige la situación que
-            quieres evaluar.
+            Una auditoría con cliente oculto (mystery shopper) evalúa el mismo escenario, con los mismos criterios, en
+            cada sucursal. Elige la situación que quieres medir: proceso de ventas, garantías, reclamos, reparaciones,
+            devoluciones, promociones o canales digitales.
           </p>
         }
       />
 
-      <Section title="Situaciones que una auditoría te ayuda a resolver" tone="alt">
+      <Section title="Situaciones que una auditoría de cliente oculto te ayuda a resolver" tone="alt">
         <ScenarioCards />
         <div className="mt-10 flex flex-col gap-4">
           <Link
@@ -40,7 +41,7 @@ export default function ServiciosPage() {
         </div>
       </Section>
 
-      <Section title="Auditamos en 8 países" tone="surface">
+      <Section title="Auditamos en 8 mercados" tone="surface">
         <CountryLinks />
       </Section>
 

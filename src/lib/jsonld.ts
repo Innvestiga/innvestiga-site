@@ -8,9 +8,13 @@ type Schema = Record<string, unknown>;
 
 export const ORGANIZATION_ID = () => `${siteUrl()}/#organization`;
 
+// Client spec, 2026-10-20 (global schema).
+export const ORGANIZATION_DESCRIPTION =
+  "Auditorías de experiencia del cliente con cliente oculto (mystery shopper) en Centroamérica, República Dominicana y Chiapas, México.";
+
 function place(c: (typeof COVERAGE)[number]): Schema {
   return c.slug === "chiapas-mexico"
-    ? { "@type": "State", name: c.name, containedInPlace: { "@type": "Country", name: "México" } }
+    ? { "@type": "AdministrativeArea", name: c.name, containedInPlace: { "@type": "Country", name: "México" } }
     : { "@type": "Country", name: c.name };
 }
 
@@ -45,7 +49,10 @@ export function organizationSchema(): Schema {
     alternateName: SITE_NAME,
     url: `${url}/`,
     logo: `${url}/brand/logo`,
+    description: ORGANIZATION_DESCRIPTION,
     foundingDate: String(FOUNDING_YEAR),
+    telephone: CONTACT.phone,
+    email: CONTACT.email,
     areaServed: areaServed(),
     contactPoint: {
       "@type": "ContactPoint",
@@ -146,6 +153,33 @@ export function localBusinessSchemas(areaServed?: Schema[]): Schema[] {
     parentOrganization: { "@id": ORGANIZATION_ID() },
     ...(areaServed ? { areaServed } : {}),
   }));
+}
+
+// Content hub guides (/recursos/*), published by the organization.
+export function articleSchema({
+  headline,
+  path,
+  description,
+  datePublished,
+}: {
+  headline: string;
+  path: string;
+  description: string;
+  datePublished: string;
+}): Schema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    description,
+    url: absolute(path),
+    mainEntityOfPage: absolute(path),
+    inLanguage: "es",
+    datePublished,
+    dateModified: datePublished,
+    author: { "@id": ORGANIZATION_ID() },
+    publisher: { "@id": ORGANIZATION_ID() },
+  };
 }
 
 export function aboutPageSchema(): Schema {

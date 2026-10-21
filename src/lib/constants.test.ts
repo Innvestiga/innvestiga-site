@@ -16,7 +16,7 @@ describe("constants", () => {
     expect(NAV_LINKS[1].children?.length).toBe(7);
     expect(NAV_LINKS[1].children?.map((c) => c.href)).not.toContain("/servicios/consumer-insights");
     expect(NAV_LINKS[2].children?.map((c) => c.label)).toEqual([
-      "Guatemala", "Honduras", "El Salvador", "Nicaragua", "Costa Rica", "Panamá", "República Dominicana", "Chiapas",
+      "Guatemala", "Honduras", "El Salvador", "Nicaragua", "Costa Rica", "Panamá", "República Dominicana", "Chiapas, México",
     ]);
   });
 

@@ -48,7 +48,7 @@ export default function BenefitsSection() {
             </div>
             <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase leading-[0.95] tracking-tight text-ink">
               Lo que ganas con una{" "}
-              <span className="text-gold-gradient">auditoría</span>
+              <span className="text-gold-gradient">auditoría de cliente oculto</span>
             </h2>
 
             <ol className="mt-10 space-y-0 border-t border-border">

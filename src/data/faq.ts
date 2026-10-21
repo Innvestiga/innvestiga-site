@@ -7,13 +7,13 @@ export interface FaqItem {
 
 const PILOT_VALUE = "Te permite comprobar el método en tus propias sucursales antes de decidir.";
 
-// Section G, verbatim. The pilot answer prepends the scope once the client
-// sends it; until then only the sentence that is already approved is shown.
+// Section G, verbatim. The pilot answer is the client's scope text when set,
+// otherwise the sentence that was approved first.
 export const FAQS: FaqItem[] = [
   {
     question: "¿Qué es una auditoría con cliente oculto (mystery shopper)?",
     answer:
-      "Es una evaluación presencial en la que un auditor capacitado visita un punto de venta como si fuera un cliente real y califica la atención contra los estándares de la marca. También se le llama cliente misterioso. Innvestiga la realiza en 8 países.",
+      "Es una evaluación presencial en la que un auditor capacitado visita un punto de venta como si fuera un cliente real y califica la atención contra los estándares de la marca. También se le llama cliente misterioso. Innvestiga la realiza en 8 mercados de Centroamérica, el Caribe y Chiapas, México.",
   },
   {
     question: "¿Cuánto tardan los resultados?",
@@ -22,11 +22,11 @@ export const FAQS: FaqItem[] = [
   {
     question: "¿En qué países y municipios pueden evaluar?",
     answer:
-      "En Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas (México). Podemos evaluar cualquiera de sus 1,282 municipios.",
+      "En Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas, México. Podemos evaluar cualquiera de sus 1,282 municipios.",
   },
   {
     question: "¿Qué incluye la prueba piloto?",
-    answer: PILOT_SCOPE ? `${PILOT_SCOPE} ${PILOT_VALUE}` : PILOT_VALUE,
+    answer: PILOT_SCOPE ?? PILOT_VALUE,
   },
   {
     question: "¿En qué se diferencia de una encuesta de satisfacción?",

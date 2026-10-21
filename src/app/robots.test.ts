@@ -18,6 +18,6 @@ describe("robots", () => {
       { userAgent: "*", allow: "/" },
       { userAgent: AI_CRAWLERS, allow: "/" },
     ]);
-    expect(AI_CRAWLERS).toEqual(["GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended", "Bingbot"]);
+    expect(AI_CRAWLERS).toEqual(["OAI-SearchBot", "GPTBot", "ClaudeBot", "PerplexityBot", "Googlebot", "Google-Extended", "Bingbot"]);
   });
 });

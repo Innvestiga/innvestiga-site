@@ -2,6 +2,7 @@ import PageHero from "@/components/page/PageHero";
 import Section, { Checklist } from "@/components/page/Section";
 import CountryLinks from "@/components/page/CountryLinks";
 import PilotCta from "@/components/page/PilotCta";
+import ServiceSummary from "@/components/page/ServiceSummary";
 import JsonLd from "@/components/seo/JsonLd";
 import Button from "@/components/ui/Button";
 import { services } from "@/data/services";
@@ -14,7 +15,7 @@ const DESCRIPTION =
 
 export const metadata = pageMetadata({
   path: PATH,
-  title: "Auditoría de Chat, Redes Sociales y Call Center | Innvestiga",
+  title: "Auditoría de chat, redes y call center | Innvestiga",
   description: DESCRIPTION,
 });
 
@@ -46,6 +47,13 @@ export default function CanalesDigitalesPage() {
         </Button>
       </PageHero>
 
+      <Section title="En resumen">
+        <ServiceSummary
+          evaluates="Tiempos de respuesta, claridad y resolución en chat, WhatsApp y redes."
+          purpose="Garantiza una experiencia omnicanal homogénea."
+        />
+      </Section>
+
       <Section title="Qué evaluamos" tone="alt">
         <Checklist items={POINTS} />
       </Section>
@@ -62,7 +70,7 @@ export default function CanalesDigitalesPage() {
         </ol>
       </Section>
 
-      <Section title="Auditamos en 8 países" tone="alt">
+      <Section title="Auditamos en 8 mercados" tone="alt">
         <CountryLinks />
       </Section>
 

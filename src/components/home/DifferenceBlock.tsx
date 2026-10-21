@@ -24,6 +24,9 @@ export default function DifferenceBlock() {
         Las encuestas reflejan la opinión de los clientes que deciden contestar. Una auditoría con cliente oculto evalúa la
         misma visita, con los mismos criterios, en cada punto de venta. Así sabes dónde se cumple tu estándar y dónde no.
       </p>
+      <p className="mt-4 text-body text-base leading-relaxed">
+        También complementa tu NPS: la encuesta te dice cuánto te recomiendan; la auditoría te muestra por qué.
+      </p>
     </motion.div>
   );
 }

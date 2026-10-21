@@ -33,7 +33,7 @@ export default function CoverageSplit() {
             </div>
 
             <h2 className="font-heading text-3xl md:text-5xl font-bold uppercase leading-[0.95] tracking-tight text-ink mb-10">
-              Auditamos en 8 países.{" "}
+              Auditamos en 8 mercados: Centroamérica, Caribe y Chiapas, México.{" "}
               <span className="text-gold-gradient">Podemos evaluar cualquier punto de venta.</span>
             </h2>
 
@@ -88,7 +88,7 @@ export default function CoverageSplit() {
               <div className="absolute -inset-8 bg-gold/[0.04] rounded-full blur-[60px] -z-10" />
             </div>
             <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-muted mt-2 block">
-              Países
+              Mercados
             </span>
 
             <div className="flex flex-col gap-10 mt-20">

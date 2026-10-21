@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const REASONS = [
   {
     title: "Equipo logístico en la región.",
-    text: "Podemos evaluar cualquiera de los 1,282 municipios de 8 países, con un mismo método.",
+    text: "Podemos evaluar cualquiera de los 1,282 municipios de 8 mercados, con un mismo método.",
   },
   { title: "Resultados en máximo 3 días.", text: "Decides cuando todavía importa." },
   { title: "Plataforma propia, ESI.", text: "Evidencia, comparativos y resultados claros para tu comité." },

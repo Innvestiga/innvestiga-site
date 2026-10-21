@@ -14,6 +14,10 @@ const COUNTRY_PATHS = [
   "/cobertura/guatemala", "/cobertura/honduras", "/cobertura/el-salvador", "/cobertura/nicaragua",
   "/cobertura/costa-rica", "/cobertura/panama", "/cobertura/republica-dominicana", "/cobertura/chiapas-mexico",
 ];
+const RESOURCE_PATHS = [
+  "/recursos/que-es-cliente-oculto", "/recursos/cliente-oculto-y-nps", "/recursos/cliente-oculto-recursos-humanos",
+  "/recursos/journey-de-compra", "/recursos/como-elegir-empresa-cliente-oculto",
+];
 const SCENARIO_PATHS = [
   "/servicios/auditorias/proceso-de-ventas", "/servicios/auditorias/garantias",
   "/servicios/auditorias/reclamos-y-conflictos", "/servicios/auditorias/reparaciones-y-servicio-tecnico",
@@ -26,6 +30,14 @@ const EXPECT_TEXT = {
     "18 años de experiencia",
     "1,282 municipios que podemos evaluar",
     "¿Cuándo fue la última vez que auditaste a tu personal? Hazlo hoy.",
+    // Client spec, 2026-10-20.
+    "8 mercados: seis países de Centroamérica",
+    "Cliente oculto, cliente misterioso o mystery shopper: un mismo método",
+    "Qué gana cada gerencia con una auditoría",
+    "También complementa tu NPS",
+    "Auditamos cadenas de retail y servicios con múltiples sucursales.",
+    "La prueba piloto de cortesía incluye tres evaluaciones",
+    "Centro de Recursos & Guías CX",
   ],
   "/servicios": ["Auditorías de experiencia del cliente para empresas de retail.", "Auditoría de canales digitales"],
   "/servicios/auditorias": [
@@ -38,14 +50,14 @@ const EXPECT_TEXT = {
   ],
   "/servicios/canales-digitales": ["Auditoría de atención en chat, redes sociales y call center."],
   "/cobertura": [
-    "Auditorías CX en 1,282 municipios de Mesoamérica y el Caribe.",
+    "Auditorías CX en 1,282 municipios de Centroamérica, el Caribe y Chiapas, México.",
     "Podemos evaluar cualquiera de...",
     "En Costa Rica contamos cantones y en Panamá, distritos.",
-    "Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas",
-    "Cada uno de los 8 países recibe el mismo método y la misma atención",
+    "Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá, República Dominicana y Chiapas, México",
+    "Cada uno de los 8 mercados recibe el mismo método y la misma atención",
   ],
   "/nosotros": [
-    "Innvestiga: 18 años de experiencia, especialistas en cliente oculto desde 2013.",
+    "Medimos la experiencia del cliente donde ocurre: en cada punto de venta",
     "Nuestra historia",
     "Una experiencia que se nota en cada auditoría",
     "Datos clave",
@@ -55,7 +67,7 @@ const EXPECT_TEXT = {
   "/en": ["Find out what really happens in each of your stores.", "municipalities we can evaluate", "Request a pilot"],
 };
 for (const path of SCENARIO_PATHS) {
-  EXPECT_TEXT[path] = ["Qué situación evaluamos", "Qué verificamos", "Qué decisión te ayuda a tomar", "República Dominicana"];
+  EXPECT_TEXT[path] = ["¿Qué evaluamos?", "¿Para qué sirve?","Qué situación evaluamos", "Qué verificamos", "Qué decisión te ayuda a tomar", "República Dominicana"];
 }
 for (const path of COUNTRY_PATHS) {
   EXPECT_TEXT[path] = [
@@ -98,6 +110,7 @@ const EXPECT_SCHEMA = {
   "/contacto": ["LocalBusiness"],
 };
 for (const path of [...SCENARIO_PATHS, ...COUNTRY_PATHS]) EXPECT_SCHEMA[path] = ["Service", "BreadcrumbList"];
+for (const path of RESOURCE_PATHS) EXPECT_SCHEMA[path] = ["Article", "BreadcrumbList"];
 for (const path of ["/cobertura/el-salvador", "/cobertura/guatemala"]) EXPECT_SCHEMA[path].push("LocalBusiness");
 
 // Pages without breadcrumbs: the two home pages and the conversion pages.
@@ -237,6 +250,8 @@ async function auditPage(path, seen) {
   const footerHtml = html.slice(html.indexOf("<footer"));
   if (!footerHtml.includes(">INNVESTIGA<span") || !footerHtml.includes(">MARKET SPECIALISTS</span>")) fail(path, "footer wordmark missing");
   if (html.includes("/brand/innvestiga-logo.svg")) fail(path, "retired globe logo still referenced");
+  if (/mesoam/i.test(visibleText(html))) fail(path, "says Mesoamérica (use Centroamérica)");
+  if (!html.includes('href="/apple-touch-icon.png"') || !html.includes('href="/site.webmanifest"')) fail(path, "favicon set or manifest missing");
 
   const retired = html.match(/href="https:\/\/(www\.)?(youtube|tiktok|instagram|facebook|x)\.com\/[^"]*"/i);
   if (retired) fail(path, `retired social link ${retired[0]}`);
@@ -273,7 +288,7 @@ async function auditPage(path, seen) {
 
 async function main() {
   const robots = await (await fetch(`${base}/robots.txt`)).text();
-  for (const bot of ["GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended", "Bingbot"]) {
+  for (const bot of ["OAI-SearchBot", "GPTBot", "ClaudeBot", "PerplexityBot", "Googlebot", "Google-Extended", "Bingbot"]) {
     if (!robots.includes(bot)) failures.push(`robots.txt: missing ${bot}`);
   }
   if (/Disallow: \/\s*$/m.test(robots)) failures.push("robots.txt blocks the whole site (staging build?)");
@@ -286,7 +301,7 @@ async function main() {
   const llmsText = await llms.text();
   if (llms.status !== 200 || !llmsText.startsWith("# Innvestiga")) failures.push(`llms.txt: status ${llms.status}`);
 
-  for (const path of ["/preguntas-frecuentes", "/en", ...COUNTRY_PATHS, ...SCENARIO_PATHS]) {
+  for (const path of ["/preguntas-frecuentes", "/en", "/recursos", ...COUNTRY_PATHS, ...SCENARIO_PATHS, ...RESOURCE_PATHS]) {
     if (!paths.includes(path)) failures.push(`sitemap.xml: missing ${path}`);
   }
 

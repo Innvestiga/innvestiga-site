@@ -3,6 +3,7 @@ import EmailOff from "@/components/seo/EmailOff";
 import { CONTACT, NAV_LINKS, OFFICES, SITE_LEGAL_NAME, SITE_TAGLINE } from "@/lib/constants";
 import { SCENARIOS, scenarioHref } from "@/data/scenarios";
 import { COVERAGE, coverageHref } from "@/data/coverage";
+import { RESOURCES, resourceHref } from "@/data/resources";
 import BrandWordmark from "./BrandWordmark";
 import SocialIcons from "./SocialIcons";
 
@@ -32,8 +33,6 @@ function Column({ title, links }: { title: string; links: { href: string; label:
   );
 }
 
-// The Blog link returns to "Recursos" once its first three real articles
-// are published (spec section A).
 export default function Footer() {
   return (
     <footer className="relative bg-[#e3e8f0] border-t border-[#d5dce6] text-body z-10">
@@ -60,6 +59,7 @@ export default function Footer() {
           <Column
             title="Recursos"
             links={[
+              ...RESOURCES.map((r) => ({ href: resourceHref(r), label: r.label })),
               { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
               { href: CONTACT.portal, label: "Acceso clientes", external: true },
             ]}
@@ -88,7 +88,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-border">
           <p className="text-[10px] text-muted tracking-[0.15em] uppercase leading-relaxed">
             © {new Date().getFullYear()} {SITE_LEGAL_NAME}. Todos los derechos reservados. Auditorías CX con cliente oculto
-            en Mesoamérica y el Caribe.
+            en Centroamérica, el Caribe y Chiapas, México.
           </p>
         </div>
       </div>

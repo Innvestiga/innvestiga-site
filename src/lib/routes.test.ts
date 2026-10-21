@@ -7,11 +7,12 @@ describe("indexable routes", () => {
       "/", "/nosotros", "/servicios", "/servicios/auditorias", "/servicios/canales-digitales",
       "/cobertura", "/contacto", "/preguntas-frecuentes", "/en",
       "/servicios/auditorias/garantias", "/cobertura/chiapas-mexico",
+      "/recursos", "/recursos/que-es-cliente-oculto", "/recursos/como-elegir-empresa-cliente-oculto",
     ]) {
       expect(INDEXABLE_ROUTES).toContain(path);
     }
     expect(INDEXABLE_ROUTES).not.toContain("/demo");
     expect(INDEXABLE_ROUTES).not.toContain("/servicios/consumer-insights");
-    expect(INDEXABLE_ROUTES).toHaveLength(9 + 6 + 8);
+    expect(INDEXABLE_ROUTES).toHaveLength(9 + 6 + 8 + 1 + 5);
   });
 });
