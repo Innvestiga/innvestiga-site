@@ -253,6 +253,8 @@ async function auditPage(path, seen) {
   const footerHtml = html.slice(html.indexOf("<footer"));
   if (!footerHtml.includes(">INNVESTIGA<span") || !footerHtml.includes(">MARKET SPECIALISTS</span>")) fail(path, "footer wordmark missing");
   if (html.includes("/brand/innvestiga-logo.svg")) fail(path, "retired globe logo still referenced");
+  // Clutch badge next to LinkedIn and WhatsApp, nofollow as Clutch asks for footers (2026-10-21).
+  if (!/class="clutch-widget[^"]*"[^>]*data-nofollow="true"[^>]*data-clutchcompany-id="2754330"/.test(footerHtml)) fail(path, "Clutch footer badge missing or not nofollow");
   if (/mesoam/i.test(visibleText(html))) fail(path, "says Mesoamérica (use Centroamérica)");
   if (!html.includes('href="/apple-touch-icon.png"') || !html.includes('href="/site.webmanifest"') || !html.includes('href="/favicon.svg"')) fail(path, "favicon set or manifest missing");
 

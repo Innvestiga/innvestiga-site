@@ -6,6 +6,7 @@ import { COVERAGE, coverageHref } from "@/data/coverage";
 import { RESOURCES, resourceHref } from "@/data/resources";
 import BrandWordmark from "./BrandWordmark";
 import SocialIcons from "./SocialIcons";
+import ClutchBadge from "./ClutchBadge";
 
 const headingClass = "text-[10px] font-bold tracking-[0.3em] uppercase text-muted block mb-5";
 const linkClass = "text-[12px] text-body hover:text-primary transition-colors duration-300";
@@ -81,7 +82,10 @@ export default function Footer() {
               </li>
               <li className="text-[12px] text-body">{OFFICES.map((o) => o.city).join(" | ")}</li>
             </ul>
-            <SocialIcons className="mt-5" />
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <SocialIcons />
+              <ClutchBadge />
+            </div>
           </div>
         </div>
 
