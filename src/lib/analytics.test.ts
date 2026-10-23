@@ -5,7 +5,7 @@ afterEach(() => vi.unstubAllGlobals());
 
 describe("classifyContactLink", () => {
   it.each([
-    ["tel:+50222777220", "phone_click"],
+    ["tel:+50376661141", "phone_click"],
     ["https://wa.me/50255551234", "whatsapp_click"],
     ["https://api.whatsapp.com/send?phone=502", "whatsapp_click"],
     ["mailto:info@innvestiga.com", null],

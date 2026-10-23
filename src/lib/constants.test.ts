@@ -3,8 +3,8 @@ import { CONTACT, GA4_MEASUREMENT_ID, GOOGLE_BUSINESS_URL, NAV_LINKS, OFFICES, S
 
 describe("constants", () => {
   it("uses the single phone number and a dialable tel link", () => {
-    expect(CONTACT.phone).toBe("+502 2277 7220");
-    expect(CONTACT.phoneHref).toBe("tel:+50222777220");
+    expect(CONTACT.phone).toBe("+503 7666 1141");
+    expect(CONTACT.phoneHref).toBe("tel:+50376661141");
   });
 
   it("states the spec numbers", () => {
@@ -30,8 +30,8 @@ describe("constants", () => {
   });
 
   it("uses the client's WhatsApp Business number, GA4 property and Google Business profile", () => {
-    expect(CONTACT.whatsapp).toBe("+502 2277 7220");
-    expect(whatsappHref()).toBe("https://wa.me/50222777220");
+    expect(CONTACT.whatsapp).toBe("+503 7666 1141");
+    expect(whatsappHref()).toBe("https://wa.me/50376661141");
     expect(GA4_MEASUREMENT_ID).toBe("G-3N1LL20CKL");
     expect(GOOGLE_BUSINESS_URL).toBe("https://share.google/0iOxKKg89kGZD7o7h");
   });

@@ -144,7 +144,7 @@ const BANNED = [
 ];
 
 const GA4_ID = "G-3N1LL20CKL";
-const WHATSAPP_HREF = "https://wa.me/50222777220";
+const WHATSAPP_HREF = "https://wa.me/50376661141";
 
 const REDIRECTS = [
   ["/casos-de-exito", "/servicios/auditorias"],
@@ -242,6 +242,9 @@ async function auditPage(path, seen) {
 
   if (!html.includes(`googletagmanager.com/gtag/js?id=${GA4_ID}`)) fail(path, `GA4 ${GA4_ID} not loaded`);
   if (!html.includes(`href="${WHATSAPP_HREF}"`)) fail(path, "floating WhatsApp button missing");
+  // Contact number since 2026-10-23; the old Guatemala landline no longer works.
+  if (!html.includes('href="tel:+50376661141"')) fail(path, "footer phone link is not +503 7666 1141");
+  if (/2277[\s-]?7220|50222777220/.test(html)) fail(path, "old landline +502 2277 7220 still on the page");
   // Cloudflare must not rewrite visible addresses (wrap them in EmailOff).
   if (/__cf_email__|\/cdn-cgi\/l\/email-protection/.test(html)) fail(path, "email obfuscated by Cloudflare");
   // Cloudflare strips the email_off markers, so check the result instead.

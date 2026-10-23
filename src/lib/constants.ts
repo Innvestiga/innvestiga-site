@@ -19,12 +19,14 @@ export const STATS = {
 } as const;
 
 export const CONTACT = {
-  phone: "+502 2277 7220",
-  phoneHref: "tel:+50222777220",
+  phone: "+503 7666 1141",
+  phoneHref: "tel:+50376661141",
   email: "info@innvestiga.com",
   portal: "https://esi3.innvestiga.com",
-  // WhatsApp Business line; WhatsApp buttons stay hidden if this is emptied.
-  whatsapp: "+502 2277 7220",
+  // El Salvador mobile, also the WhatsApp line (client, 2026-10-23: the
+  // Guatemala landline +502 2277 7220 no longer works). WhatsApp buttons
+  // stay hidden if whatsapp is emptied.
+  whatsapp: "+503 7666 1141",
 } as const;
 
 // GA4 property for the production site (NEXT_PUBLIC_GA_ID overrides it).
