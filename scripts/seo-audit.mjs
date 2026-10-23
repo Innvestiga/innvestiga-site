@@ -72,7 +72,7 @@ for (const path of SCENARIO_PATHS) {
 for (const path of COUNTRY_PATHS) {
   EXPECT_TEXT[path] = [
     "Situaciones que auditamos", "Preguntas frecuentes", "Última actualización", "Proceso de ventas",
-    "Ciudades principales donde auditamos", "Solicita tu prueba piloto en", "Países de interés",
+    "Ciudades principales donde auditamos", "Solicita tu prueba piloto en", "Correo Corporativo",
   ];
 }
 // Client intro, a zone subsection and a table row (2026-10), one sample each.
@@ -271,6 +271,12 @@ async function auditPage(path, seen) {
   // puts personal data in the URL (and in GA4 page_view).
   for (const [form] of html.matchAll(/<form\b[^>]*>/gi)) {
     if (!/method="post"/i.test(form)) fail(path, `form without method="post": ${form}`);
+  }
+  // Pilot form (client spec, 2026-10-22): Formspree, exactly four visible fields.
+  for (const [form] of html.matchAll(/<form\b[\s\S]*?<\/form>/gi)) {
+    if (!form.includes('action="https://formspree.io/f/meaajblw"')) fail(path, "pilot form does not post to Formspree");
+    const names = [...form.matchAll(/<input[^>]*name="([^"]+)"/gi)].map((m) => m[1]).filter((n) => !n.startsWith("_"));
+    if (names.join(",") !== "nombre,empresa_cargo,email,whatsapp") fail(path, `pilot form fields are ${names.join(",")}`);
   }
 
   // Map labels and fills must be visible without the GSAP intro.

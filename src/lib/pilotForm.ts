@@ -1,87 +1,68 @@
+// Pilot request form (client spec, 2026-10-22): four fields, posted to
+// Formspree. Field names are the client's; "email" lets Formspree use the
+// address as the reply-to.
+export const FORMSPREE_ENDPOINT = "https://formspree.io/f/meaajblw";
+
+export const PILOT_FIELDS = ["nombre", "empresa_cargo", "email", "whatsapp"] as const;
+
 export interface PilotLead {
   name: string;
-  company: string;
-  position: string;
-  country: string;
-  branches: string;
+  companyRole: string;
   email: string;
   whatsapp: string;
-  concern: string;
 }
 
-export const CONCERN_QUESTION = "¿Qué es lo que más te preocupa de la atención en tus sucursales hoy?";
 export const PILOT_LEAD_STORAGE_KEY = "innvestiga:pilot-lead";
 
-// The form lets the lead pick several countries ("countries" checkboxes);
-// they travel to EmailJS as one "country" value, e.g. "Guatemala, Honduras".
-export function selectedCountries(fd: FormData): string {
-  const picked = fd.getAll("countries").map((v) => String(v).trim()).filter(Boolean);
-  return picked.length ? picked.join(", ") : String(fd.get("country") ?? "").trim();
-}
-
-// Field names match the EmailJS templates (notification + auto-reply).
 export function leadFromFormData(fd: FormData): PilotLead {
-  const get = (key: string) => String(fd.get(key) ?? "").trim();
-  return {
-    name: get("user_name"),
-    company: get("company_name"),
-    position: get("position"),
-    country: selectedCountries(fd),
-    branches: get("branches"),
-    email: get("user_email"),
-    whatsapp: get("whatsapp"),
-    concern: get("concern"),
-  };
+  const get = (key: (typeof PILOT_FIELDS)[number]) => String(fd.get(key) ?? "").trim();
+  return { name: get("nombre"), companyRole: get("empresa_cargo"), email: get("email"), whatsapp: get("whatsapp") };
 }
 
-export function buildPilotMessage(lead: PilotLead): string {
-  return [
-    `Nombre: ${lead.name}`,
-    `Empresa: ${lead.company}`,
-    `Cargo: ${lead.position}`,
-    `País(es): ${lead.country}`,
-    `Número de sucursales: ${lead.branches}`,
-    `Correo: ${lead.email}`,
-    `WhatsApp: ${lead.whatsapp}`,
-    "",
-    CONCERN_QUESTION,
-    lead.concern,
-  ].join("\n");
+// Formspree's _subject sets the notification subject. Country pages name
+// their country so the team knows where the request came from.
+export function pilotSubject(country?: string): string {
+  return country ? `Solicitud de prueba piloto — ${country}` : "Solicitud de prueba piloto";
 }
 
-// Analytics must never receive personal data.
-export function pilotAnalyticsParams(lead: PilotLead): { country: string; branches: string } {
-  return { country: lead.country, branches: lead.branches };
+// POSTs the form to Formspree as AJAX (Accept: application/json), so the
+// lead stays on the site. Throws when Formspree rejects the submission.
+export async function submitToFormspree(body: FormData, fetcher: typeof fetch = fetch): Promise<void> {
+  const res = await fetcher(FORMSPREE_ENDPOINT, {
+    method: "POST",
+    body,
+    headers: { Accept: "application/json" },
+  });
+  if (!res.ok) throw new Error(`Formspree responded ${res.status}`);
 }
 
+// Only the first name is kept, for the thank-you line on /gracias.
 export function storeLead(storage: Pick<Storage, "setItem"> | null, lead: PilotLead): void {
   try {
-    storage?.setItem(PILOT_LEAD_STORAGE_KEY, JSON.stringify({ name: lead.name, company: lead.company }));
+    storage?.setItem(PILOT_LEAD_STORAGE_KEY, JSON.stringify({ name: lead.name }));
   } catch {
     // Private mode or quota: /gracias falls back to the generic message.
   }
 }
 
-export function readStoredLead(storage: Pick<Storage, "getItem"> | null): { name: string; company: string } | null {
+export function readStoredLead(storage: Pick<Storage, "getItem"> | null): { name: string } | null {
   try {
     const raw = storage?.getItem(PILOT_LEAD_STORAGE_KEY);
     if (!raw) return null;
-    const parsed = JSON.parse(raw) as { name?: unknown; company?: unknown };
-    return typeof parsed.name === "string" && typeof parsed.company === "string" && parsed.name
-      ? { name: parsed.name, company: parsed.company }
-      : null;
+    const parsed = JSON.parse(raw) as { name?: unknown };
+    return typeof parsed.name === "string" && parsed.name ? { name: parsed.name } : null;
   } catch {
     return null;
   }
 }
 
 export function thankYouMessage(
-  lead: { name: string; company: string } | null,
+  lead: { name: string } | null,
   followUp: { executive: string | null; hours: number | null },
 ): string {
   if (!lead) return "Gracias. Recibimos tu solicitud y te escribiremos con una propuesta de prueba piloto.";
   if (followUp.executive && followUp.hours) {
-    return `Gracias, ${lead.name}. ${followUp.executive} te escribirá en menos de ${followUp.hours} horas con una propuesta de prueba piloto pensada para ${lead.company}.`;
+    return `Gracias, ${lead.name}. ${followUp.executive} te escribirá en menos de ${followUp.hours} horas con una propuesta de prueba piloto para tu empresa.`;
   }
-  return `Gracias, ${lead.name}. Te escribiremos con una propuesta de prueba piloto pensada para ${lead.company}.`;
+  return `Gracias, ${lead.name}. Te escribiremos con una propuesta de prueba piloto para tu empresa.`;
 }

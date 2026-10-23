@@ -106,8 +106,3 @@ export const PILOT_FOLLOW_UP: { executive: string | null; hours: number | null }
   hours: null,
 };
 
-export const EMAILJS = {
-  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
-  templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
-  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "e1gu7dpEs7lxyViEj",
-} as const;

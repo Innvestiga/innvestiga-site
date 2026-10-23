@@ -63,7 +63,7 @@ export default async function CountryPage({ params }: PageProps<"/cobertura/[slu
       <h2 className="font-heading text-xl font-bold uppercase tracking-tight text-ink mb-4">
         Solicita tu prueba piloto en {country.name}
       </h2>
-      <ContactForm defaultCountry={country.fullName} />
+      <ContactForm country={country.fullName} />
     </div>
   );
 
