@@ -19,13 +19,13 @@ export const STATS = {
 } as const;
 
 export const CONTACT = {
-  phone: "+503 7666 1141",
-  phoneHref: "tel:+50376661141",
+  // Guatemala landline for calls (client, 2026-10-25).
+  phone: "+502 2277 7220",
+  phoneHref: "tel:+50222777220",
   email: "info@innvestiga.com",
   portal: "https://esi3.innvestiga.com",
-  // El Salvador mobile, also the WhatsApp line (client, 2026-10-23: the
-  // Guatemala landline +502 2277 7220 no longer works). WhatsApp buttons
-  // stay hidden if whatsapp is emptied.
+  // El Salvador mobile, used only for WhatsApp (client, 2026-10-25).
+  // WhatsApp buttons stay hidden if this is emptied.
   whatsapp: "+503 7666 1141",
 } as const;
 

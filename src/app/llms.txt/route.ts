@@ -18,7 +18,7 @@ export function GET() {
 > Auditorías de experiencia del cliente (CX) con cliente oculto, también llamado mystery shopper o cliente misterioso, en 8 mercados: seis países de Centroamérica (Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica y Panamá), República Dominicana en el Caribe y Chiapas, México. Podemos evaluar cualquiera de sus 1,282 municipios y entregamos resultados en máximo 3 días en ESI, nuestra plataforma propia.
 
 - Innvestiga opera desde 2008 (18 años de experiencia) y se especializa en cliente oculto desde 2013.
-- Oficinas: ${OFFICES.map((o) => o.address).join(" y ")}. Teléfono y WhatsApp: ${CONTACT.phone}. Correo: ${CONTACT.email}.
+- Oficinas: ${OFFICES.map((o) => o.address).join(" y ")}. Teléfono: ${CONTACT.phone}. WhatsApp: ${CONTACT.whatsapp}. Correo: ${CONTACT.email}.
 - Prueba piloto disponible para comprobar el método en tus propias sucursales antes de decidir.
 
 ## Auditorías

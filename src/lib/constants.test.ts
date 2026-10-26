@@ -3,8 +3,8 @@ import { CONTACT, GA4_MEASUREMENT_ID, GOOGLE_BUSINESS_URL, NAV_LINKS, OFFICES, S
 
 describe("constants", () => {
   it("uses the single phone number and a dialable tel link", () => {
-    expect(CONTACT.phone).toBe("+503 7666 1141");
-    expect(CONTACT.phoneHref).toBe("tel:+50376661141");
+    expect(CONTACT.phone).toBe("+502 2277 7220");
+    expect(CONTACT.phoneHref).toBe("tel:+50222777220");
   });
 
   it("states the spec numbers", () => {

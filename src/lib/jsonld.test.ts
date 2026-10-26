@@ -19,8 +19,8 @@ describe("organizationSchema", () => {
       "Panamá", "República Dominicana", "Chiapas, México",
     ]);
     expect(org.areaServed.at(-1)).toMatchObject({ "@type": "AdministrativeArea", name: "Chiapas, México" });
-    expect(org.contactPoint.telephone).toBe("+503 7666 1141");
-    expect(org.telephone).toBe("+503 7666 1141");
+    expect(org.contactPoint.telephone).toBe("+502 2277 7220");
+    expect(org.telephone).toBe("+502 2277 7220");
     expect(org.email).toBe("info@innvestiga.com");
     expect(org.description).toMatch(/Centroamérica, República Dominicana y Chiapas, México/);
   });
@@ -80,7 +80,7 @@ describe("page schemas", () => {
     expect(offices[1].address.streetAddress).toBe("Calle Cuscatlán No.133, Colonia Escalón");
     for (const o of offices) {
       expect(o["@type"]).toBe("LocalBusiness");
-      expect(o.telephone).toBe("+503 7666 1141");
+      expect(o.telephone).toBe("+502 2277 7220");
       expect(o.parentOrganization["@id"]).toMatch(/#organization$/);
       expect(o.priceRange).toBe("$$");
     }
